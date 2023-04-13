@@ -26,27 +26,27 @@ const Navbar = () => {
 	const services: MenuItem[] = [
 		{
 			type: "Хостелы/Приюты",
-			link: "/lang",
+			link: "/services",
 		},
 		{
 			type: "Вет.клиники/Аптеки",
-			link: "/lang",
+			link: "/services",
 		},
 		{
 			type: "Акссесуары",
-			link: "/lang",
+			link: "/services",
 		},
 		{
 			type: "Зоомагазины",
-			link: "/lang",
+			link: "/services",
 		},
 		{
 			type: "Купить питомца",
-			link: "/lang",
+			link: "/services",
 		},
 		{
 			type: "Животные даром",
-			link: "/lang",
+			link: "/services",
 		},
 	];
 
@@ -60,38 +60,58 @@ const Navbar = () => {
 				<Image
 					src={logo}
 					alt="rerer"
-					width={100}
-					height={100}
-					className="mx-4"
+					width={110}
+					height={120}
+					className="mx-auto"
 				/>
 			</div>
 
 			<div className="flex items-center space-x-10 w-11/12 justify-around">
 				<button className="flex items-center">
-					Бишкек <Image src={geomap} alt="error" className="mx-auto" />
+					Бишкек <Image src={geomap} alt="error" className="mx-2" />
 				</button>
 
 				<div className="relative">
 					<input
 						type="text"
 						placeholder="Найти питомца"
-						className="rounded-md pl-8 pr-3 py-2 bg-slate-300 text-gray-900 focus:outline-none relative h-14"
+						className="rounded-md pl-8 pr-3 py-2  text-gray-900 focus:outline-none relative h-14 border-gray-400 border"
 						style={{ width: "600px" }}
 					/>
 					<button className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-primary h-full w-14 rounded-r-md">
 						<Image src={searchIcon} alt="error" className="mx-auto"></Image>
 					</button>
 				</div>
-				<select name="lang" id="">
-					{lang.map((item) => (
-						<option value="">{item.type}</option>
-					))}
-				</select>
+
+				<div className="relative inline-flex">
+					<select className="block appearance-none w-full hover:border-gray-500 px-4 py-2 pr-8 rounded cursor-pointer leading-tight focus:outline-none focus:shadow-outline">
+						<option>Рус</option>
+						<option>Кырг</option>
+						<option>Англ</option>
+					</select>
+					<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+						<svg
+							className="fill-current h-4 w-4"
+							// xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+						>
+							<path d="M10 12l-6-6h12z" />
+						</svg>
+					</div>
+				</div>
+
 				<div className="flex mx-auto justify-center">
 					<Menu as="div" className="relative inline-block text-left mx-auto">
 						<div>
 							<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 								Услуги
+								<svg
+									className="fill-current h-4 w-4 mx-4"
+									// xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+								>
+									<path d="M10 12l-6-6h12z" />
+								</svg>
 							</Menu.Button>
 						</div>
 						<Transition
@@ -110,12 +130,10 @@ const Navbar = () => {
 											{({ active }) => (
 												<button
 													className={`${
-														active
-															? "bg-violet-500 text-white"
-															: "text-gray-900"
+														active ? "bg-primary text-white" : "text-gray-900"
 													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
-													{item.type}
+													<Link href={item.link}>{item.type}</Link>
 												</button>
 											)}
 										</Menu.Item>
@@ -127,9 +145,26 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			<button className="bg-secondary w-24 h-12 rounded-2xl shadow-xl shadow-primary shadow-outline">
+			{/* <button className="bg-secondary w-24 h-12 rounded-2xl relative z-1">
 				Войти
-			</button>
+			</button> */}
+
+			{/* <div className="relative">
+				<button className="bg-secondary w-24 h-12 rounded-2xl relative z-[1]">
+					<div className="absolute bg-primary bottom-[-6px] right-[-6px] w-full h-full z-[-2] transform translate-x-2 translate-y-2 opacity-0 hover:opacity-100 transition-all duration-300 text-center ">
+						Войти
+					</div>
+				</button>
+			</div> */}
+
+			<div className="relative">
+				<button className="bg-secondary w-24 h-12 rounded-2xl relative z-[1]">
+					<Link href="/account/registration">Войти</Link>
+					<div className="absolute bg-primary bottom-[-6px] right-[-6px] w-full h-full z-[-2] transform translate-x-2 translate-y-2 opacity-0 hover:opacity-100 transition-all duration-300 text-center rounded-2xl">
+						Войти
+					</div>
+				</button>
+			</div>
 		</nav>
 
 		// <nav className="bg-gray-800">
