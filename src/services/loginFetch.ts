@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, } from '@tanstack/react-query';
 import { User } from '@/utils/types';
 import { baseAxios } from '@/utils/baseAxios';
 
@@ -17,17 +17,9 @@ const loginUser = async (arg: loginUserArg) => {
 }
 
 export const useLoginUser = () => {
-    const queryClient = useQueryClient();
 
     const mutation = useMutation({
         mutationFn: loginUser,
-        onSettled() {
-            queryClient.invalidateQueries({
-                predicate(query) {
-                    return query.queryKey?.[0] === "account/login" //?
-                }
-            })
-        }
     })
 
     return [mutation.mutateAsync, mutation] as const

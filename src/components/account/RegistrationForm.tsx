@@ -9,10 +9,10 @@ type Props = {
 }
 
 const registrationFormSchema = z.object({
-    email: z.string().min(1, "Это поле не может быть пустым!"),
-    phone_number: z.string().min(1, "Это поле не может быть пустым"),
-    password: z.string().min(1, "Это поле не может быть пустым!"),
-    password2: z.string().min(1, "Это поле не может быть пустым!")
+    email: z.string().nonempty("Это поле не может быть пустым!").email(),
+    phone_number: z.string().nonempty("Это поле не может быть пустым"),
+    password: z.string().nonempty("Это поле не может быть пустым!").min(8),
+    password2: z.string().nonempty("Это поле не может быть пустым!")
 })
     .refine(val => val.password === val.password2, {
         message: "Пароли не совпадают!",
@@ -34,6 +34,8 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
     });
 
     const handleSubmit = (values: RegistrationFormValues) => {
+        console.log(values);
+
         onSubmit(values);
         form.reset();
     };
@@ -43,21 +45,25 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <TextInput
                     withAsterisk
+                    label="Эл. почта"
                     placeholder="Эл. почта"
                     {...form.getInputProps('email')}
                 />
                 <TextInput
                     withAsterisk
+                    label="Номер телефона"
                     placeholder="Номер телефона"
-                    {...form.getInputProps('phoneNumber')}
+                    {...form.getInputProps('phone_number')}
                 />
                 <TextInput
                     withAsterisk
+                    label="Пароль"
                     placeholder="Пароль"
                     {...form.getInputProps('password')}
                 />
                 <TextInput
                     withAsterisk
+                    label="Подтверждение пароля"
                     placeholder="Подтверждение пароля"
                     {...form.getInputProps('password2')}
                 />
@@ -66,7 +72,7 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
                 </Group>
                 <Group>
                     <Text>У вас есть аккаунт? </Text>
-                    <Button variant="subtle">Войти</Button>
+                    <Button variant="subtle" >Войти</Button>
                 </Group>
             </form>
         </FocusTrap>
