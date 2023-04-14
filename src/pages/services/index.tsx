@@ -1,13 +1,12 @@
 import React from "react";
 import Header from "@/components/ServicesList/Header";
-import Navbar from "@/components/Navbar";
-import AddServicesForm from "@/components/ServicesList/AddServicesForm";
+import ListAdvServices from "@/components/ServicesList/ListAdvServices";
 
 const ListServices = () => {
 	return (
 		<div>
 			<Header />
-			<AddServicesForm />
+			<ListAdvServices />
 		</div>
 	);
 };
