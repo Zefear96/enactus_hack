@@ -1,5 +1,5 @@
 import React from "react";
-import z from "zod";
+import z, { object } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import {
 	FocusTrap,
@@ -8,93 +8,125 @@ import {
 	Button,
 	Text,
 	Select,
+	NumberInput,
+	FileInput,
 } from "@mantine/core";
+import { useCreatePet } from "@/services/createServices";
+import { Pets } from "@/utils/types";
 
-const AddServicesForm = () => {
-	// const [registerUser] = useRegisterUser();
-	// const handleSubmit = (data: RegistrationFormValues) => {
-	// 	console.log(data);
+type Props = {
+	onSubmit(values: PetsFormValues): void;
+	defaultValues?: Partial<PetsFormValues>;
+};
 
-	// 	registerUser(data);
-	// };
+const createPetFormSchema = z.object({
+	title: z.string().nonempty("Это поле не может быть пустым!"),
+	breed: z.string(),
+	image: z
+		.instanceof(File)
+		.refine((file) => {
+			if (!file) {
+				// If no file is uploaded, skip validation
+				return true;
+			}
+			const validTypes = ["image/jpeg", "image/png", "image/gif"];
+			if (!validTypes.includes(file.type)) {
+				throw new Error(
+					"Неверный формат файла! Пожалуйста, загрузите файл в формате JPEG, PNG или GIF.",
+				);
+			}
+			const maxSize = 500000; // 500 KB
+			if (file.size > maxSize) {
+				throw new Error(
+					"Максимальный размер файла 500 KB. Пожалуйста, загрузите файл меньшего размера.",
+				);
+			}
+			return true;
+		})
+		.nullable()
+		.optional(),
+	description: z.string(),
+	price: z.number(),
+	category: z.preprocess((val) => {
+		if (typeof val === "number") return val;
+		if (typeof val === "string") return parseInt(val);
+		return null;
+	}, z.number().finite()),
+});
 
-	// const form = useForm<RegistrationFormValues>({
-	// 	initialValues: {
-	// 		email: "",
-	// 		phone_number: "",
-	// 		password: "",
-	// 		password2: "",
-	// 		...defaultValues,
-	// 	},
-	// 	validate: zodResolver(registrationFormSchema),
-	// });
+export type PetsFormValues = z.infer<typeof createPetFormSchema>;
 
-	// const handleSubmit = (values: RegistrationFormValues) => {
-	// 	console.log(values);
+const AddServicesForm = ({ onSubmit, defaultValues = {} }: Props) => {
+	const [createPet] = useCreatePet();
 
-	// 	onSubmit(values);
-	// 	form.reset();
-	// };
+	const form = useForm<PetsFormValues>({
+		initialValues: {
+			title: "",
+			breed: "",
+			image: null,
+			description: "",
+			price: 0,
+			category: 0,
+			...defaultValues,
+		},
+
+		validate: zodResolver(createPetFormSchema),
+		transformValues: (values) => createPetFormSchema.parse(values),
+	});
+
+	const handleSubmit = (values: PetsFormValues) => {
+		console.log(values);
+		createPet(values);
+		form.reset();
+	};
 
 	return (
 		<div>
-			AddServicesForm
 			<FocusTrap active>
-				<form>
+				<form className=" w-1/3 mx-auto" onSubmit={form.onSubmit(handleSubmit)}>
 					<Select
 						withAsterisk
 						label="Категория : собака / кошка "
 						placeholder="Выберите категорию"
 						data={[
-							{ value: "react", label: "React" },
-							{ value: "ng", label: "Angular" },
-							{ value: "svelte", label: "Svelte" },
-							{ value: "vue", label: "Vue" },
+							{ value: "1", label: "Птицы" },
+							{ value: "2", label: "Собаки" },
+							{ value: "3", label: "Кошки" },
 						]}
+						{...form.getInputProps("category")}
+					/>
+					<TextInput
+						withAsterisk
+						placeholder="Заголовок"
+						{...form.getInputProps("title")}
+						label="Заголовок"
 					/>
 					<TextInput
 						withAsterisk
 						placeholder="Порода"
-						// {...form.getInputProps("phone_number")}
+						{...form.getInputProps("breed")}
 						label="Порода"
 					/>
-					<TextInput
+
+					<FileInput
 						withAsterisk
-						placeholder="Возраст"
-						// {...form.getInputProps("phone_number")}
-						label="Возраст"
+						placeholder="Выберите файл"
+						{...form.getInputProps("image")}
+						label="Выберите файл"
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Фото/видео"
-						// {...form.getInputProps("phone_number")}
-						label="Фото/видео"
+						placeholder="Описание"
+						{...form.getInputProps("description")}
+						label="Описание"
 					/>
-					<TextInput
-						withAsterisk
-						placeholder="Особые приметы"
-						// {...form.getInputProps("phone_number")}
-						label="Особые приметы"
-					/>
-					<TextInput
-						withAsterisk
-						placeholder="Характер"
-						// {...form.getInputProps("phone_number")}
-						label="Характер"
-					/>
-					<TextInput
+					{/* <NumberInput
 						withAsterisk
 						placeholder="Цена"
-						// {...form.getInputProps("phone_number")}
+						{...form.getInputProps("price")}
 						label="Цена"
-					/>
-
-					<TextInput
-						withAsterisk
-						placeholder="Контактные данные"
-						// {...form.getInputProps("phone_number")}
-						label="Контактные данные"
-					/>
+						type="number"
+					/> */}
 
 					<Group position="right" mt="md">
 						<Button type="submit">Отправить</Button>
