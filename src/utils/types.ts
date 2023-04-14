@@ -14,7 +14,7 @@ export type User = {
   name: string | null;
   last_name: string | null;
   date_birth: string | null;
-  city: string | null //TODO
+  city: string | null
   profile_image: string | null;
   phone_number: string
   is_active: boolean
