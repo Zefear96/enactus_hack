@@ -158,11 +158,16 @@ const Navbar = () => {
 			</div> */}
 
 			<div className="relative">
-				<button className="bg-secondary w-24 h-12 rounded-2xl relative z-[1]">
-					<Link href="/account/registration">Войти</Link>
-					<div className="absolute bg-primary bottom-[-6px] right-[-6px] w-full h-full z-[-2] transform translate-x-2 translate-y-2 opacity-0 hover:opacity-100 transition-all duration-300 text-center rounded-2xl">
-						Войти
-					</div>
+				<button
+					className="bg-bluelogin text-yellowlogin w-24 h-12 rounded-2xl relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
+					onMouseOver={(e) => {
+						e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+					}}
+					onMouseOut={(e) => {
+						e.currentTarget.style.boxShadow = "none";
+					}}
+				>
+					Войти
 				</button>
 			</div>
 		</nav>
