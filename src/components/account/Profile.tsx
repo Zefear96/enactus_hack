@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFetchUser } from '@/services/fetchUser';
-import { User } from '@/utils/types';
+import Link from 'next/link';
 
 const Profile = () => {
     const [currentUser, { isLoading, isError }] = useFetchUser();
@@ -12,7 +12,8 @@ const Profile = () => {
     return (
         <div>
             <p>{currentUser.email}</p>
-            <p></p>
+            <p>{currentUser.phone_number}</p>
+            <Link href="account/edit"><button>Изменить данные</button></Link>
         </div>
     )
 }
