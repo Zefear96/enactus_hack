@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Login from '@/components/account/Login';
 
 const LoginPage = () => {
     return (
-        <div>login</div>
+        <div>
+            <Login />
+        </div>
     )
 }
 

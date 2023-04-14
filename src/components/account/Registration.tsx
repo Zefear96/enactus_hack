@@ -6,7 +6,9 @@ const Registration = () => {
 
     const [registerUser] = useRegisterUser();
     const handleSubmit = (data: RegistrationFormValues) => {
-        registerUser({ data });
+        console.log(data);
+
+        registerUser(data);
     }
 
     return (

@@ -36,7 +36,7 @@ const LoginForm = ({ onSubmit, defaultValues = {} }: Props) => {
                 <TextInput
                     withAsterisk
                     placeholder="Номер телефона"
-                    {...form.getInputProps('phoneNumber')}
+                    {...form.getInputProps('phone_number')}
                 />
                 <TextInput
                     withAsterisk
