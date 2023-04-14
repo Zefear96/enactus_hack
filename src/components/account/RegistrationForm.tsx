@@ -1,7 +1,9 @@
 import React from 'react';
 import z from 'zod';
 import { useForm, zodResolver } from "@mantine/form";
-import { FocusTrap, TextInput, Group, Button, Text } from "@mantine/core";
+import { FocusTrap, TextInput, Group, Text, Title, PasswordInput } from "@mantine/core";
+import Link from 'next/link';
+import { IconLock } from '@tabler/icons-react';
 
 type Props = {
     onSubmit(values: RegistrationFormValues): void;
@@ -9,10 +11,10 @@ type Props = {
 }
 
 const registrationFormSchema = z.object({
-    email: z.string().nonempty("Это поле не может быть пустым!").email(),
+    email: z.string().nonempty("Это поле не может быть пустым!").email("Неверный формат почты"),
     phone_number: z.string().nonempty("Это поле не может быть пустым"),
-    password: z.string().nonempty("Это поле не может быть пустым!").min(8),
-    password2: z.string().nonempty("Это поле не может быть пустым!")
+    password: z.string().nonempty("Это поле не может быть пустым").min(8, "Длина пароля не менее 8 символов"),
+    password2: z.string().nonempty("Это поле не может быть пустым")
 })
     .refine(val => val.password === val.password2, {
         message: "Пароли не совпадают!",
@@ -42,39 +44,59 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
     return (
         <FocusTrap active>
-            <form onSubmit={form.onSubmit(handleSubmit)}>
-                <TextInput
-                    withAsterisk
-                    label="Эл. почта"
-                    placeholder="Эл. почта"
-                    {...form.getInputProps('email')}
-                />
-                <TextInput
-                    withAsterisk
-                    label="Номер телефона"
-                    placeholder="Номер телефона"
-                    {...form.getInputProps('phone_number')}
-                />
-                <TextInput
-                    withAsterisk
-                    label="Пароль"
-                    placeholder="Пароль"
-                    {...form.getInputProps('password')}
-                />
-                <TextInput
-                    withAsterisk
-                    label="Подтверждение пароля"
-                    placeholder="Подтверждение пароля"
-                    {...form.getInputProps('password2')}
-                />
-                <Group position="right" mt="md">
-                    <Button type="submit">Отправить</Button>
-                </Group>
-                <Group>
-                    <Text>У вас есть аккаунт? </Text>
-                    <Button variant="subtle" >Войти</Button>
-                </Group>
-            </form>
+            <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
+
+                <form onSubmit={form.onSubmit(handleSubmit)} className="w-4/5 mx-auto my-5">
+                    <Title ta="center" fw={700} my="40px">Регистрация</Title>
+                    <TextInput
+                        className="border-b"
+                        variant="unstyled"
+                        size="lg"
+                        my="10px"
+                        withAsterisk
+                        placeholder="Эл. почта"
+                        {...form.getInputProps('email')}
+                    />
+                    <TextInput
+                        className="border-b"
+                        variant="unstyled"
+                        size="lg"
+                        my="10px"
+                        withAsterisk
+                        placeholder="Номер телефона"
+
+                        {...form.getInputProps('phone_number')}
+                    />
+                    <PasswordInput
+                        className=" placeholder-blackplaceholder border-b"
+                        variant="unstyled"
+                        size="lg"
+                        my="10px"
+                        withAsterisk
+                        placeholder="Пароль"
+                        {...form.getInputProps('password')}
+                        icon={<IconLock size={16} />}
+                    />
+                    <PasswordInput
+                        className="border-b placeholder-blackplaceholder"
+                        variant="unstyled"
+                        size="lg"
+                        my="10px"
+                        withAsterisk
+                        placeholder="Подтвердите пароль"
+                        {...form.getInputProps('password2')}
+                        icon={<IconLock size={16} />}
+
+                    />
+                    {/* <input type="text" className="border-b placeholder-red-500" placeholder='TEST' /> */}
+                    <button type="submit" className=' bg-yellowlogin w-full h-14 rounded-3xl my-10'
+                    >Отправить</button>
+                    <Group position="center" mb="40px">
+                        <Text c="dimmed" fz="lg">У вас есть аккаунт? <Link href="/account/login/" className=' text-blue-500' >Войти</Link></Text>
+                        {/* <Button variant="subtle" p="0">Войти</Button> */}
+                    </Group>
+                </form>
+            </div>
         </FocusTrap>
     )
 }

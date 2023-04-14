@@ -12,8 +12,10 @@ const Registration = () => {
     }
 
     return (
+        <div className='flex justify-center items-center m-auto my-10'>
+            <RegistrationForm onSubmit={handleSubmit} />
+        </div>
 
-        <RegistrationForm onSubmit={handleSubmit} />
 
     )
 }

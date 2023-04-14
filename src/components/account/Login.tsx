@@ -12,8 +12,9 @@ const Login = () => {
     }
 
     return (
-
-        <LoginForm onSubmit={handleSubmit} />
+        <div className='flex justify-center items-center m-auto my-10'>
+            <LoginForm onSubmit={handleSubmit} />
+        </div>
 
     )
 }
