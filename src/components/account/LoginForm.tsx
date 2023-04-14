@@ -9,8 +9,8 @@ type Props = {
 }
 
 const loginFormSchema = z.object({
-    phone_number: z.string().min(1, "Это поле не может быть пустым"),
-    password: z.string().min(1, "Это поле не может быть пустым!"),
+    phone_number: z.string().nonempty("Это поле не может быть пустым"),
+    password: z.string().nonempty("Это поле не может быть пустым!").min(8),
 })
 
 export type LoginFormValues = z.infer<typeof loginFormSchema>;

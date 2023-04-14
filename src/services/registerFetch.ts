@@ -10,10 +10,9 @@ type RegisterUserArg = {
 }
 
 const registerUser = async (arg: RegisterUserArg) => {
-    const res = await baseAxios.post<User>("/account/register/", arg);
-    console.log(res);
+    const { data } = await baseAxios.post<User>("/account/register/", arg);
 
-    return res.data
+    return data
 }
 
 export const useRegisterUser = () => {

@@ -8,7 +8,7 @@ const Login = () => {
     const handleSubmit = (data: LoginFormValues) => {
         console.log(data);
 
-        loginUser({ data });
+        loginUser(data);
     }
 
     return (
