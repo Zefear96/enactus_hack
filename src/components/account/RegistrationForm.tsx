@@ -34,7 +34,7 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
     });
 
     const handleSubmit = (values: RegistrationFormValues) => {
-        console.log(values);
+        // console.log(values);
 
         onSubmit(values);
         form.reset();

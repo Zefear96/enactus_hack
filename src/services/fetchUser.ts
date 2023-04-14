@@ -13,7 +13,7 @@ export const fetchUser = async () => {
 export const useFetchUser = () => {
     const query = useQuery({
         queryFn: () => fetchUser,
-        queryKey: ["account/edit_profile",],
+        queryKey: ["account"],
         initialData: null,
     }) //usequery вызовет функцию, получит данные и вернет
 
