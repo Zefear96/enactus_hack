@@ -6,7 +6,7 @@ import { createEmotionCache, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 // import { modals } from '@/components/modals';
 import Navbar from "@/components/Navbar";
-
+import { FooterLinks } from "@/components/Footer";
 // declare module "@mantine/modals" {
 //   export interface MantineModalsOverride {
 //     modals: typeof modals;
@@ -19,6 +19,58 @@ export const myCache = createEmotionCache({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+
+	// const data = [{
+	// 	title: "О нас", links: [{ label: "Команда", link: "/team" }, { label: "История", link: "/history" }, { label: "Контакты", link: "/contacts" },],
+	// },
+	// {
+	// 	title: "Продукты",
+	// 	links: [
+	// 		{ label: "Продукт 1", link: "/product-1" },
+	// 		{ label: "Продукт 2", link: "/product-2" },
+	// 		{ label: "Продукт 3", link: "/product-3" },
+	// 	],
+	// },
+	// ];
+	const data = [{
+		title: "Услуги",
+		links: [
+			{
+				label: "Хостелы/Приюты", link: "/"
+			},
+			{
+				label: "Вет.клиники/Аптеки", link: "/"
+			},
+			{
+				label: "Акссесуары", link: "/"
+			},
+			{
+				label: "Зоомагазины", link: "/"
+			},
+			{
+				label: "Животные даром", link: "/"
+			}
+		]
+	},
+	{
+		title: "Информации",
+		links: [
+			{
+				label: "Контакты", link: "/"
+			},
+			{
+				label: "Оплата", link: "/"
+			},
+			{
+				label: "Реклама", link: "/"
+			},
+			{
+				label: "Вопросы", link: "/"
+			},
+		]
+	}
+	]
+
 	return (
 		<QueryClientProvider client={queryClient}>
 			<MantineProvider
@@ -34,6 +86,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				{/* <ModalsProvider modals={modals}> */}
 				<Navbar />
 				<Component {...pageProps} />
+				<FooterLinks data={data} />
 				{/* </ModalsProvider> */}
 			</MantineProvider>
 		</QueryClientProvider>
