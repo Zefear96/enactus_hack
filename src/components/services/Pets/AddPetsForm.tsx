@@ -11,7 +11,7 @@ import {
 	NumberInput,
 	FileInput,
 } from "@mantine/core";
-import { useCreatePet } from "@/services/createServices";
+import { useCreatePet } from "@/services/pets/createPet";
 import { Pet } from "@/utils/types";
 
 type Props = {

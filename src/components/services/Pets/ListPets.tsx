@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ItemPet from "./ItemPet";
 import Link from "next/link";
 
-import { useFetchPets } from "@/services/fetchServices";
+import { useFetchPets } from "@/services/pets/fetchPets";
 
 const ListPets = () => {
 	const [data] = useFetchPets();
