@@ -23,13 +23,13 @@ export type User = {
 	user_permissions: any[];
 };
 
-export type Pets = {
+export type Pet = {
 	id: number;
 	owner: string;
 	breed: string;
-	image: File | null | string;
+	image: string | null;
 	description: string;
-	price: string;
+	price: number;
 	category: number;
 	title: string;
 };

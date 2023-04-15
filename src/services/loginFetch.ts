@@ -1,33 +1,33 @@
-import { useMutation, } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 // import { User } from '@/utils/types';
-import { baseAxios } from '@/utils/baseAxios';
-import { storageSetItem } from '@/utils/storage'
-import { access } from 'fs';
+import { baseAxios } from "@/utils/baseAxios";
+import { storageSetItem } from "@/utils/storage";
+import { access } from "fs";
 
 type loginUserArg = {
-    phone_number: string;
-    password: string
-}
+	phone_number: string;
+	password: string;
+};
 
 const loginUser = async (arg: loginUserArg) => {
-    const { data } = await baseAxios.post("/account/login/", {
-        ...arg
-    });
+	const { data } = await baseAxios.post<{ access: string; refresh: string }>(
+		"/account/login/",
+		arg,
+	);
 
-    // console.log(data);
-    storageSetItem("app.accessToken", data.access)
+	// console.log(data);
+	storageSetItem("app.accessToken", data.access);
 
-    return data
-}
+	return data;
+};
 
 export const useLoginUser = () => {
+	const mutation = useMutation({
+		mutationFn: loginUser,
+	});
 
-    const mutation = useMutation({
-        mutationFn: loginUser,
-    })
-
-    return [mutation.mutateAsync, mutation] as const
-}
+	return [mutation.mutateAsync, mutation] as const;
+};
 
 //Первый вариант логики без оптимизации
 
