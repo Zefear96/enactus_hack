@@ -10,7 +10,6 @@ type ArgPet = {
 export const fetchPet = async (arg: ArgPet) => {
 	const { data } = await baseAxios.get<Pet>(`/pets/change/${arg.id}`);
 	console.log(data);
-	// return data[0]?
 	return data;
 };
 
