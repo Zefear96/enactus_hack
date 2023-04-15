@@ -93,9 +93,9 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Эл. почта или номер телефона"
+						placeholder="Номер телефона"
 						{...form.getInputProps("contact")}
-						label="Эл. почта или номер телефона"
+						label="Контактный номер"
 					/>
 					<TextInput
 						withAsterisk
@@ -111,9 +111,9 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Ссылка на сайт"
+						placeholder="Ссылка на сайт или соцсеть"
 						{...form.getInputProps("social_net")}
-						label="Ссылка на сайт"
+						label="Ссылка на сайт или соцсеть"
 					/>
 					<FileInput
 						withAsterisk
