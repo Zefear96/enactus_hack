@@ -6,9 +6,9 @@ import {
 	TextInput,
 	Group,
 	Button,
-	Text,
 	Select,
 	FileInput,
+	Title
 
 } from "@mantine/core";
 
@@ -76,9 +76,9 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
 	return (
 		<div>
-			AddCommercialForm
 			<FocusTrap active>
 				<form onSubmit={form.onSubmit(handleSubmit)}>
+					<Title ta="center" fw={700} my="30px">Подать рекламу</Title>
 					<TextInput
 						withAsterisk
 						placeholder="Имя, Фамилия или название компании"
