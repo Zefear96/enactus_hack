@@ -7,7 +7,7 @@ type ArgCommercial = {
 }
 
 export const fetchOneCommercial = async (arg: ArgCommercial) => {
-    const { data } = await baseAxios.get<Commercial>(`/shop/get_shop/${arg.id}`);
+    const { data } = await baseAxios.get<Commercial>(`/shop/get_shop_detail/${arg.id}`);
     console.log(data);
 
     return data
@@ -17,7 +17,7 @@ export const fetchOneCommercial = async (arg: ArgCommercial) => {
 export const useFetchOneCommercial = (arg: ArgCommercial) => {
     const query = useQuery({
         queryFn: () => fetchOneCommercial(arg),
-        queryKey: ["pet"],
+        queryKey: ["commercials"],
         initialData: null,
     })
     return [query.data, query] as const;

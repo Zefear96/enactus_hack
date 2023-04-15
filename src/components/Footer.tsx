@@ -108,7 +108,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
     });
 
     return (
-        <footer className='flex justify-between items-center max-w-screen-xl mx-auto mt-7'>
+        <footer className='flex justify-between items-center max-w-screen-xl mx-auto my-7'>
             <Link href="/">
                 <Image
                     src={logo}
