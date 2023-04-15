@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { Pets } from "@/utils/types";
+import { Pet } from "@/utils/types";
 import { baseAxios } from "@/utils/baseAxios";
 
 type createPetArg = {
@@ -21,7 +21,7 @@ const createPet = async (arg: createPetArg) => {
 		formData.append(key, stringValue);
 	});
 
-	const { data } = await baseAxios.post<Pets>("/pets/create_pets/", formData, {
+	const { data } = await baseAxios.post<Pet>("/pets/create_pets/", formData, {
 		headers: {
 			"Content-Type": "multipart/form-data",
 		},

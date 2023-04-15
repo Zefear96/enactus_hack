@@ -1,5 +1,5 @@
 import React from "react";
-import AddCommercialForm from "@/components/ServicesList/AddCommercialForm";
+import AddCommercialForm from "@/components/services/AddCommercialForm";
 
 const commercial = () => {
 	return (

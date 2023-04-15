@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "@/components/ServicesList/Header";
-import ListAdvServices from "@/components/ServicesList/ListAdvServices";
+import Header from "@/components/services/Header";
+import ListPets from "@/components/services/Pets/ListPets";
 
 const ListServices = () => {
 	return (
 		<div>
 			<Header />
-			<ListAdvServices />
+			<ListPets />
 		</div>
 	);
 };

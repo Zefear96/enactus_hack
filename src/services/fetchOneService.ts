@@ -3,25 +3,22 @@ import { storageGetItem } from "@/utils/storage";
 import { Pet } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
 
-type Results = {
-	count: number | null;
-	next: number | null;
-	prev: number | null;
-	results: Pet[];
+type ArgPet = {
+	id: number;
 };
 
-export const fetchPets = async () => {
-	const { data } = await baseAxios.get<Results>("/pets/get_pets/");
+export const fetchPet = async (arg: ArgPet) => {
+	const { data } = await baseAxios.get<Pet>(`/pets/change/${arg.id}`);
 	console.log(data);
 	// return data[0]?
-	return data.results;
+	return data;
 };
 
-export const useFetchPets = () => {
+export const useFetchPet = (arg: ArgPet) => {
 	const query = useQuery({
-		queryFn: fetchPets,
-		queryKey: ["pets"],
-		initialData: [],
+		queryFn: () => fetchPet(arg),
+		queryKey: ["pet"],
+		initialData: null,
 	}); //usequery вызовет функцию, получит данные и вернет
 
 	return [query.data, query] as const;

@@ -12,7 +12,7 @@ import {
 	FileInput,
 } from "@mantine/core";
 import { useCreatePet } from "@/services/createServices";
-import { Pets } from "@/utils/types";
+import { Pet } from "@/utils/types";
 
 type Props = {
 	onSubmit(values: PetsFormValues): void;
@@ -56,7 +56,7 @@ const createPetFormSchema = z.object({
 
 export type PetsFormValues = z.infer<typeof createPetFormSchema>;
 
-const AddServicesForm = ({ onSubmit, defaultValues = {} }: Props) => {
+const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	const [createPet] = useCreatePet();
 
 	const form = useForm<PetsFormValues>({
@@ -92,6 +92,9 @@ const AddServicesForm = ({ onSubmit, defaultValues = {} }: Props) => {
 							{ value: "1", label: "Птицы" },
 							{ value: "2", label: "Собаки" },
 							{ value: "3", label: "Кошки" },
+							{ value: "4", label: "Рыбки" },
+							{ value: "5", label: "Насекомые" },
+							{ value: "6", label: "Рептилии" },
 						]}
 						{...form.getInputProps("category")}
 					/>
@@ -102,7 +105,6 @@ const AddServicesForm = ({ onSubmit, defaultValues = {} }: Props) => {
 						label="Заголовок"
 					/>
 					<TextInput
-						withAsterisk
 						placeholder="Порода"
 						{...form.getInputProps("breed")}
 						label="Порода"
@@ -113,9 +115,9 @@ const AddServicesForm = ({ onSubmit, defaultValues = {} }: Props) => {
 						placeholder="Выберите файл"
 						{...form.getInputProps("image")}
 						label="Выберите файл"
+						required
 					/>
 					<TextInput
-						withAsterisk
 						placeholder="Описание"
 						{...form.getInputProps("description")}
 						label="Описание"
@@ -137,4 +139,4 @@ const AddServicesForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	);
 };
 
-export default AddServicesForm;
+export default AddPetsForm;

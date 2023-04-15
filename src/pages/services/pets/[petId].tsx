@@ -1,14 +1,24 @@
 // import { baseAxios } from '@/utils/baseAxios';
+import DetailsPet from "@/components/services/Pets/DetailsPet";
+import { fetchPet, useFetchPet } from "@/services/fetchOneService";
+import { Pet } from "@/utils/types";
 import { GetServerSideProps } from "next";
 import React from "react";
 
 type Props = {
 	petId: number;
-	// data: any;
 };
 
 const PetDetailsPage = ({ petId }: Props) => {
-	return <div>PetDetailsPage</div>;
+	const [data] = useFetchPet({ id: petId });
+
+	if (!data) return <h1>Not Found!!</h1>;
+
+	return (
+		<div>
+			<DetailsPet item={data} />
+		</div>
+	);
 };
 
 export default PetDetailsPage;
@@ -19,19 +29,14 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
 	const petId = context.params?.petId ? parseInt(context.params?.petId) : null;
 
-	if (!petId)
+	if (!petId) {
 		return {
 			notFound: true,
 		};
-
-	// '/pet/:petId'
-
-	// const { data } = await baseAxios.get(`/pets/${petId}`);
-
+	}
 	return {
 		props: {
-			petId: petId,
-			// data,
+			petId,
 		},
 	};
 };

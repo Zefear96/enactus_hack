@@ -1,11 +1,10 @@
 import React from "react";
-import AdvListServices from "@/components/ServicesList/ListAdvServices";
+import ListPets from "@/components/services/Pets/ListPets";
 
 const AdvListPage = () => {
 	return (
 		<div>
-			AdvListPage
-			<AdvListServices />
+			<ListPets />
 		</div>
 	);
 };
