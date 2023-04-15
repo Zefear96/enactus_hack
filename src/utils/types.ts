@@ -33,3 +33,15 @@ export type Pet = {
 	category: number;
 	title: string;
 };
+
+export type Commercial = {
+	id: number;
+	title: string;
+	category: string;
+	description: string;
+	address: string;
+	contact: string;
+	social_net: string;
+	is_confirmed: boolean;
+	image: string | null
+}
