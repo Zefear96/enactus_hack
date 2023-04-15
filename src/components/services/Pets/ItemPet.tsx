@@ -27,7 +27,7 @@ const ItemPet = ({ item }: { item: Props }) => {
 			: URL.createObjectURL(item.image);
 
 	return (
-		<Link href={`/services/list/${item.id}`}>
+		<Link href={`/services/pets/${item.id}`}>
 			<Card
 				shadow="sm"
 				padding="xl"

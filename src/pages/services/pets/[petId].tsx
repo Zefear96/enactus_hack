@@ -1,6 +1,6 @@
 // import { baseAxios } from '@/utils/baseAxios';
 import DetailsPet from "@/components/services/Pets/DetailsPet";
-import { fetchPet, useFetchPet } from "@/services/fetchOneService";
+import { fetchPet, useFetchPet } from "@/services/pets/fetchOnePet";
 import { Pet } from "@/utils/types";
 import { GetServerSideProps } from "next";
 import React from "react";
