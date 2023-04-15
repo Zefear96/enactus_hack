@@ -1,19 +1,17 @@
-import { createStyles, Text, Container, ActionIcon, Group, rem } from '@mantine/core';
+import { createStyles, Text, Container, ActionIcon, Group, rem, Center } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
+import Link from 'next/link';
+import Image from "next/image";
+import logo from "../../public/logo.png";
+import arcticons_vk from '../../public/arcticons_vk.png';
+import arcticons_telegram from '../../public/arcticons_telegram.png';
+import phone from '../../public/phone.png';
+import instagram from '../../public/instagram.png';
 
 const useStyles = createStyles((theme) => ({
-    footer: {
-        marginTop: rem(120),
-        paddingTop: `calc(${theme.spacing.xl} * 2)`,
-        paddingBottom: `calc(${theme.spacing.xl} * 2)`,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-        borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-            }`,
-    },
 
     logo: {
-        maxWidth: rem(200),
 
         [theme.fn.smallerThan('sm')]: {
             display: 'flex',
@@ -22,28 +20,17 @@ const useStyles = createStyles((theme) => ({
         },
     },
 
-    description: {
-        marginTop: rem(5),
-
-        [theme.fn.smallerThan('sm')]: {
-            marginTop: theme.spacing.xs,
-            textAlign: 'center',
-        },
-    },
-
     inner: {
         display: 'flex',
         justifyContent: 'space-between',
-
-        [theme.fn.smallerThan('sm')]: {
-            flexDirection: 'column',
-            alignItems: 'center',
-        },
     },
 
     groups: {
         display: 'flex',
         flexWrap: 'wrap',
+        width: '40%',
+        justifyContent: 'space-between',
+        textAlign: 'center',
 
         [theme.fn.smallerThan('sm')]: {
             display: 'none',
@@ -54,9 +41,17 @@ const useStyles = createStyles((theme) => ({
         width: rem(160),
     },
 
+    connect: {
+        width: rem(200),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+
     link: {
         display: 'block',
-        color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
+        // color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
+        color: '#000000',
         fontSize: theme.fontSizes.sm,
         paddingTop: rem(3),
         paddingBottom: rem(3),
@@ -72,21 +67,6 @@ const useStyles = createStyles((theme) => ({
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
         marginBottom: `calc(${theme.spacing.xs} / 2)`,
         color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    },
-
-    afterFooter: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: theme.spacing.xl,
-        paddingTop: theme.spacing.xl,
-        paddingBottom: theme.spacing.xl,
-        borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-            }`,
-
-        [theme.fn.smallerThan('sm')]: {
-            flexDirection: 'column',
-        },
     },
 
     social: {
@@ -120,7 +100,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
         ));
 
         return (
-            <div className={classes.wrapper} key={group.title}>
+            <div className='w-3/6' key={group.title}>
                 <Text className={classes.title}>{group.title}</Text>
                 {links}
             </div>
@@ -128,33 +108,51 @@ export function FooterLinks({ data }: FooterLinksProps) {
     });
 
     return (
-        <footer className={classes.footer}>
-            <Container className={classes.inner}>
-                <div className={classes.logo}>
-                    <MantineLogo size={30} />
-                    <Text size="xs" color="dimmed" className={classes.description}>
-                        Build fully functional accessible web applications faster than ever
-                    </Text>
-                </div>
-                <div className={classes.groups}>{groups}</div>
-            </Container>
-            <Container className={classes.afterFooter}>
-                <Text color="dimmed" size="sm">
-                    © 2020 mantine.dev. All rights reserved.
-                </Text>
-
-                <Group spacing={0} className={classes.social} position="right" noWrap>
+        <footer className='flex justify-between items-center max-w-screen-xl mx-auto mt-7'>
+            <Link href="/">
+                <Image
+                    src={logo}
+                    alt="error"
+                    width={110}
+                    height={120}
+                    className="mx-auto"
+                />
+            </Link>
+            <div className={classes.groups}>{groups}</div>
+            {/* style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }} */}
+            <div className={`w-40 flex flex-col items-center`}>
+                <Text ta='center' className={`${classes.title} w-60 `}>Свяжитесь с нами!</Text>
+                <Group spacing={0} className={classes.social} position="right" noWrap mt='xs' mb='xs'>
                     <ActionIcon size="lg">
-                        <IconBrandTwitter size="1.05rem" stroke={1.5} />
+                        {/* <IconBrandTwitter size="1.05rem" stroke={1.5} /> */}
+                        <Image src={arcticons_telegram} alt="error" />
                     </ActionIcon>
                     <ActionIcon size="lg">
-                        <IconBrandYoutube size="1.05rem" stroke={1.5} />
+                        <Image src={instagram} alt="error" />
                     </ActionIcon>
                     <ActionIcon size="lg">
-                        <IconBrandInstagram size="1.05rem" stroke={1.5} />
+                        <Image src={arcticons_vk} alt="error" />
+                    </ActionIcon>
+                    <ActionIcon size="lg">
+                        <Image src={phone} alt="error" />
                     </ActionIcon>
                 </Group>
-            </Container>
+                <Link href="/account/registration">
+                    <button
+                        className="bg-bluelogin text-yellowlogin w-60 mb-4 rounded-3xl h-10 relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
+                        onMouseOver={(e) => {
+                            e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+                        }}
+                        onMouseOut={(e) => {
+                            e.currentTarget.style.boxShadow = "none";
+                        }}
+                    >
+                        Напишите нам
+                    </button>
+                </Link>
+                <Text ta='center' className='w-60'>Если у вас есть вопросы?</Text>
+            </div>
+
         </footer>
     );
 }
