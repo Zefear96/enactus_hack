@@ -20,18 +20,6 @@ export const myCache = createEmotionCache({
 
 export default function App({ Component, pageProps }: AppProps) {
 
-	// const data = [{
-	// 	title: "О нас", links: [{ label: "Команда", link: "/team" }, { label: "История", link: "/history" }, { label: "Контакты", link: "/contacts" },],
-	// },
-	// {
-	// 	title: "Продукты",
-	// 	links: [
-	// 		{ label: "Продукт 1", link: "/product-1" },
-	// 		{ label: "Продукт 2", link: "/product-2" },
-	// 		{ label: "Продукт 3", link: "/product-3" },
-	// 	],
-	// },
-	// ];
 	const data = [{
 		title: "Услуги",
 		links: [
