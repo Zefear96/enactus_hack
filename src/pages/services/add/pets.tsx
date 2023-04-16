@@ -1,8 +1,8 @@
 import React from "react";
-import AddPetsForm from "@/components/services/Pets/AddPetsForm";
+import CreatePet from "@/components/services/Pets/CreatePet";
 
 const services = () => {
-	return <AddPetsForm onSubmit={console.log} />;
+	return <CreatePet />;
 };
 
 export default services;

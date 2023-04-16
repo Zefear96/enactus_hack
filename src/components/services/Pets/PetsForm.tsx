@@ -56,7 +56,7 @@ const createPetFormSchema = z.object({
 
 export type PetsFormValues = z.infer<typeof createPetFormSchema>;
 
-const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
+const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	const [createPet] = useCreatePet();
 
 	const form = useForm<PetsFormValues>({
@@ -76,7 +76,7 @@ const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
 	const handleSubmit = (values: PetsFormValues) => {
 		console.log(values);
-		createPet(values);
+		onSubmit(values);
 		form.reset();
 	};
 
@@ -139,4 +139,4 @@ const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	);
 };
 
-export default AddPetsForm;
+export default PetsForm;
