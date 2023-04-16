@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Image, Text } from "@mantine/core";
 import { Pet } from "@/utils/types";
 import Link from "next/link";
+import { useEditPet } from "@/services/pets/editPet";
 
 type Props = {
 	owner: string;
@@ -13,10 +14,6 @@ type Props = {
 	price: number;
 	category: number;
 };
-
-// interface Props extends Pets {
-// 	image: string | null | File;
-// }
 
 const ItemPet = ({ item }: { item: Props }) => {
 	console.log(item);

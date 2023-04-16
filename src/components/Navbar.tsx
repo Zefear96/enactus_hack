@@ -146,7 +146,7 @@ const Navbar = () => {
 			</div>
 
 			<div className="relative">
-				<Link href="/account/registration">
+				<Link href="/account/login">
 					<button
 						className="bg-bluelogin text-yellowlogin w-24 h-12 rounded-2xl relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
 						onMouseOver={(e) => {
@@ -160,7 +160,7 @@ const Navbar = () => {
 					</button>
 				</Link>
 
-				<Link href="/services/add/adv">
+				<Link href="/services/add/pets">
 					<button
 						className="bg-bluelogin text-yellowlogin w-24 h-12 rounded-2xl relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
 						onMouseOver={(e) => {

@@ -1,5 +1,6 @@
 // import { baseAxios } from '@/utils/baseAxios';
 import DetailsPet from "@/components/services/Pets/DetailsPet";
+import EditPet from "@/components/services/Pets/EditPet";
 import { fetchPet, useFetchPet } from "@/services/pets/fetchOnePet";
 import { Pet } from "@/utils/types";
 import { GetServerSideProps } from "next";
@@ -11,12 +12,14 @@ type Props = {
 
 const PetDetailsPage = ({ petId }: Props) => {
 	const [data] = useFetchPet({ id: petId });
+	console.log(data);
 
 	if (!data) return <h1>Not Found!!</h1>;
 
 	return (
 		<div>
 			<DetailsPet item={data} />
+			{/* <EditPet oneItem={data} /> */}
 		</div>
 	);
 };

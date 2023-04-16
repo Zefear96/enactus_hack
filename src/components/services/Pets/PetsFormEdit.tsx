@@ -17,14 +17,16 @@ import { Pet } from "@/utils/types";
 type Props = {
 	onSubmit(values: PetsFormValues): void;
 	defaultValues?: Partial<PetsFormValues>;
+	imageUrl?: string;
 };
 
 const createPetFormSchema = z.object({
 	title: z.string().nonempty("Это поле не может быть пустым!"),
 	breed: z.string(),
-	image: (typeof window !== "undefined" ? z.instanceof(File) : z.any())
+	image: z
+		.instanceof(File)
 		.refine((file) => {
-			if (!file || !(file instanceof File)) {
+			if (!file) {
 				// If no file is uploaded, skip validation
 				return true;
 			}
@@ -55,7 +57,7 @@ const createPetFormSchema = z.object({
 
 export type PetsFormValues = z.infer<typeof createPetFormSchema>;
 
-const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
+const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	const [createPet] = useCreatePet();
 
 	const form = useForm<PetsFormValues>({
@@ -75,7 +77,7 @@ const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
 	const handleSubmit = (values: PetsFormValues) => {
 		console.log(values);
-		createPet(values);
+		onSubmit(values);
 		form.reset();
 	};
 
@@ -138,4 +140,4 @@ const AddPetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	);
 };
 
-export default AddPetsForm;
+export default PetsForm;
