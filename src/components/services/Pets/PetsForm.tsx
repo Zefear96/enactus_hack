@@ -23,10 +23,9 @@ type Props = {
 const createPetFormSchema = z.object({
 	title: z.string().nonempty("Это поле не может быть пустым!"),
 	breed: z.string(),
-	image: z
-		.instanceof(File)
+	image: (typeof window !== "undefined" ? z.instanceof(File) : z.any())
 		.refine((file) => {
-			if (!file) {
+			if (!file || !(file instanceof File)) {
 				// If no file is uploaded, skip validation
 				return true;
 			}
