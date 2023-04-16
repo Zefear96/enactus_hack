@@ -36,6 +36,13 @@ const DetailsPet = ({ item }: Props) => {
 	function openModal() {
 		setIsOpen(true);
 	}
+
+	function handleDelete() {
+		deletePet(item);
+		closeModal();
+		router.push("/services/pets");
+	}
+
 	return (
 		<>
 			<Card withBorder shadow="sm" radius="md" className=" mx-auto my-8 w-1/2">
@@ -134,10 +141,7 @@ const DetailsPet = ({ item }: Props) => {
 										<button
 											type="button"
 											className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 w-1/3"
-											onClick={() => {
-												deletePet(item);
-												closeModal();
-											}}
+											onClick={handleDelete}
 										>
 											Да
 										</button>

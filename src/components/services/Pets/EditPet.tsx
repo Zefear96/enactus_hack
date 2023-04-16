@@ -33,14 +33,15 @@ type PropsOnePet = {
 	owner: string;
 };
 
-type PropsId = {
-	petId: number;
-};
+// type PropsId = {
+// 	petId: number;
+// };
 
 const EditPet = ({ petId }: Props) => {
 	const [editPet, { isLoading, isError }] = useEditPet();
 	const [onePet] = useFetchPet({ id: petId });
 	console.log(onePet);
+	console.log(petId);
 
 	const router = useRouter();
 
@@ -64,7 +65,7 @@ const EditPet = ({ petId }: Props) => {
 				defaultValues={{
 					title: onePet.title,
 					breed: onePet.breed,
-					image: onePet.image,
+					// image: onePet.image,
 					description: onePet.description,
 					price: onePet.price,
 					category: onePet.category,
@@ -77,20 +78,20 @@ const EditPet = ({ petId }: Props) => {
 
 export default EditPet;
 
-export const getServerSideProps: GetServerSideProps<
-	Props,
-	{ petId: string }
-> = async (context) => {
-	const petId = context.params?.petId ? parseInt(context.params?.petId) : null;
+// export const getServerSideProps: GetServerSideProps<
+// 	Props,
+// 	{ petId: string }
+// > = async (context) => {
+// 	const petId = context.params?.petId ? parseInt(context.params?.petId) : null;
 
-	if (!petId) {
-		return {
-			notFound: true,
-		};
-	}
-	return {
-		props: {
-			petId,
-		},
-	};
-};
+// 	if (!petId) {
+// 		return {
+// 			notFound: true,
+// 		};
+// 	}
+// 	return {
+// 		props: {
+// 			petId,
+// 		},
+// 	};
+// };

@@ -44,13 +44,36 @@
 // };
 import EditPet from "@/components/services/Pets/EditPet";
 import React from "react";
+import { GetServerSideProps } from "next";
 
-const edit = () => {
+type Props = {
+	petId: number;
+};
+
+const edit = ({ petId }: Props) => {
 	return (
 		<div>
-			<EditPet />
+			<EditPet petId={petId} />
 		</div>
 	);
 };
 
 export default edit;
+
+export const getServerSideProps: GetServerSideProps<
+	Props,
+	{ petId: string }
+> = async (context) => {
+	const petId = context.params?.petId ? parseInt(context.params?.petId) : null;
+
+	if (!petId) {
+		return {
+			notFound: true,
+		};
+	}
+	return {
+		props: {
+			petId,
+		},
+	};
+};

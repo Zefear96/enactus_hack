@@ -9,9 +9,6 @@ type ArgPet = {
 
 export const fetchPet = async (arg: ArgPet) => {
 	const { data } = await baseAxios.get<Pet>(`/pets/get_pet/${arg.id}`);
-	// if (data.image && !data.image.startsWith("http")) {
-	// 	data.image = MEDIA_URL + data.image;
-	// }
 
 	console.log(data);
 	// return data[0]?
