@@ -5,6 +5,7 @@ import searchIcon from "../../public/searchIcon.png";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useLogout, useCheckAuth } from "@/services/user/checkAuth";
 
 type MenuItem = {
 	type: string;
@@ -12,6 +13,9 @@ type MenuItem = {
 };
 
 const Navbar = () => {
+	const logout = useLogout();
+	const [refresh] = useCheckAuth()
+
 	const lang: MenuItem[] = [
 		{
 			type: "Рус",
@@ -129,9 +133,8 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${
-														active ? "bg-primary text-white" : "text-gray-900"
-													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${active ? "bg-primary text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
@@ -173,6 +176,13 @@ const Navbar = () => {
 						Добавить объявление
 					</button>
 				</Link>
+
+				<button onClick={() => logout()}>
+					LOGOUT
+				</button>
+				<button onClick={() => refresh()}>
+					REFRESH
+				</button>
 			</div>
 		</nav>
 	);
