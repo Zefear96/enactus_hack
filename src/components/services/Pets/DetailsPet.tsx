@@ -9,7 +9,12 @@ import {
 	SimpleGrid,
 	rem,
 } from "@mantine/core";
-import { IconDots, IconAdjustments, IconTrash } from "@tabler/icons-react";
+import {
+	IconDots,
+	IconAdjustments,
+	IconTrash,
+	IconFlag,
+} from "@tabler/icons-react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import { Pet } from "@/utils/types";
@@ -56,23 +61,29 @@ const DetailsPet = ({ item }: Props) => {
 								</ActionIcon>
 							</Menu.Target>
 
-							{fetchUser?.email === item.owner ? (
-								<Menu.Dropdown>
-									<Link href={`/services/pets/edit`}>
-										<Menu.Item icon={<IconAdjustments size={rem(14)} />}>
-											Редактировать
-										</Menu.Item>
-									</Link>
+							<Menu.Dropdown>
+								{fetchUser?.email === item.owner ? (
+									<>
+										<Link href={`/services/pets/edit`}>
+											<Menu.Item icon={<IconAdjustments size={rem(14)} />}>
+												Редактировать
+											</Menu.Item>
+										</Link>
 
-									<Menu.Item
-										icon={<IconTrash size={rem(14)} />}
-										color="red"
-										onClick={openModal}
-									>
-										Удалить
+										<Menu.Item
+											icon={<IconTrash size={rem(14)} />}
+											color="red"
+											onClick={openModal}
+										>
+											Удалить
+										</Menu.Item>
+									</>
+								) : (
+									<Menu.Item icon={<IconFlag size={rem(14)} />} color="red">
+										Подать жалобу
 									</Menu.Item>
-								</Menu.Dropdown>
-							) : null}
+								)}
+							</Menu.Dropdown>
 						</Menu>
 					</Group>
 				</Card.Section>
@@ -92,7 +103,7 @@ const DetailsPet = ({ item }: Props) => {
 								? item.image
 								: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
 						}
-						height={160}
+						height={350}
 						alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
 					/>
 				</Card.Section>

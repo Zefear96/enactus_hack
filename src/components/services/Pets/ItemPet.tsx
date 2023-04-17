@@ -30,6 +30,7 @@ const ItemPet = ({ item }: { item: Props }) => {
 				padding="xl"
 				// style={{ width: "300px" }}
 				className=" mx-auto my-8"
+				style={{ background: "#FFD437", borderRadius: "8px" }}
 			>
 				<Card.Section>
 					<Image

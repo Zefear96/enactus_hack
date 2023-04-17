@@ -81,9 +81,9 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	};
 
 	return (
-		<div>
+		<div className=" my-10">
 			<FocusTrap active>
-				<form className=" w-1/3 mx-auto" onSubmit={form.onSubmit(handleSubmit)}>
+				<form className=" w-1/4 mx-auto" onSubmit={form.onSubmit(handleSubmit)}>
 					<Select
 						withAsterisk
 						label="Категория : собака / кошка "
@@ -97,6 +97,7 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 							{ value: "6", label: "Рептилии" },
 						]}
 						{...form.getInputProps("category")}
+						className="my-5"
 					/>
 					<TextInput
 						withAsterisk
@@ -131,7 +132,17 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 					/> */}
 
 					<Group position="right" mt="md">
-						<Button type="submit">Отправить</Button>
+						<Button
+							type="submit"
+							style={{
+								width: "100%",
+								background: "#FFD437",
+								color: "black",
+								height: "50px",
+							}}
+						>
+							Отправить
+						</Button>
 					</Group>
 				</form>
 			</FocusTrap>
