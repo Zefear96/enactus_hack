@@ -17,6 +17,7 @@ const loginUser = async (arg: loginUserArg) => {
 
 	// console.log(data);
 	storageSetItem("app.accessToken", data.access);
+	storageSetItem("app.refreshToken", data.refresh);
 
 	return data;
 };
