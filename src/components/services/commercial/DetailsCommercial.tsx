@@ -20,7 +20,7 @@ const useStyles = createStyles((theme) => ({
         borderRadius: '10px',
         borderColor: '#CCCCFF !important',
         boxShadow: '-4px 0px 4px rgba(117, 117, 117, 0.1), 4px 0px 4px rgba(117, 117, 117, 0.1), 0px 4px 4px rgba(117, 117, 117, 0.1);',
-        width: '50%'
+        width: '41%'
     },
     picture: {
         objectFit: 'contain',

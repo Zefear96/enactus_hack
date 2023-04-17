@@ -2,7 +2,7 @@ import React from 'react'
 import { Group, Text, Title } from "@mantine/core";
 import Link from 'next/link';
 
-const confirmation = () => {
+const Confirmation = () => {
     return (
         <div className='flex justify-center items-center m-auto my-10'>
             <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
@@ -20,4 +20,6 @@ const confirmation = () => {
     )
 }
 
-export default confirmation
+export default Confirmation
+
+// TODO поменять редирект на страницу жалоб и отзывов
