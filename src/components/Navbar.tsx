@@ -6,7 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLogout, useCheckAuth } from "@/services/user/checkAuth";
-import React from 'react'
+import React from "react";
 
 type MenuItem = {
 	type: string;
@@ -18,8 +18,8 @@ const Navbar = () => {
 	const [refresh] = useCheckAuth();
 
 	React.useEffect(() => {
-		refresh()
-	}, [])
+		refresh();
+	}, []);
 
 	const lang: MenuItem[] = [
 		{
@@ -138,8 +138,9 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${active ? "bg-primary text-white" : "text-gray-900"
-														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${
+														active ? "bg-primary text-white" : "text-gray-900"
+													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
@@ -154,7 +155,7 @@ const Navbar = () => {
 			</div>
 
 			<div className="relative">
-				<Link href="/account/login">
+				{/* <Link href="/account/login">
 					<button
 						className="bg-bluelogin text-yellowlogin w-24 h-12 rounded-2xl relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
 						onMouseOver={(e) => {
@@ -166,10 +167,38 @@ const Navbar = () => {
 					>
 						Войти
 					</button>
+				</Link> */}
+
+				<Link href="/account/login">
+					<button
+						style={{
+							color: "blue",
+							backgroundColor: "yellow",
+							boxShadow: "10px 10px 0px 4px #988CE1",
+							borderRadius: "16px",
+							transition: "all 0.3s ease",
+							height: "60px",
+							width: "100px",
+							marginTop: "15px",
+						}}
+						onMouseOver={(e) => {
+							e.currentTarget.style.backgroundColor = "blue";
+							e.currentTarget.style.color = "yellow";
+							e.currentTarget.style.boxShadow = "none";
+						}}
+						onMouseOut={(e) => {
+							e.currentTarget.style.backgroundColor = "yellow";
+							e.currentTarget.style.color = "blue";
+							e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+						}}
+					>
+						<span className="flex items-center mx-auto justify-center">
+							Войти
+						</span>
+					</button>
 				</Link>
-				<button onClick={() => logout()}>
-					LOGOUT
-				</button>
+
+				<button onClick={() => logout()}>LOGOUT</button>
 			</div>
 		</nav>
 	);
