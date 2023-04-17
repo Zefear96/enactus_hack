@@ -15,7 +15,6 @@ type ArgPet = {
 };
 
 export const editPet = async (arg: ArgPet) => {
-
 	// if (typeof arg.data.image === "object") {
 	//     newPost.append("image", editedPost.image);
 	//   }
@@ -27,15 +26,17 @@ export const editPet = async (arg: ArgPet) => {
 		if (!stringValue) return;
 
 		formData.append(key, stringValue);
+		console.log(formData);
 	});
 
 	const { data } = await baseAxios.patch<Pet>(
 		`/pets/change/${arg.id}`,
-		formData, {
-		headers: {
-			"Content-Type": "multipart/form-data",
+		formData,
+		{
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
 		},
-	}
 	);
 
 	console.log(data);

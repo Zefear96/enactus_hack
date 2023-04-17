@@ -75,8 +75,6 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	});
 
 	const handleSubmit = (values: PetsFormValues) => {
-		console.log('worked');
-
 		// console.log(values);
 		onSubmit(values);
 		form.reset();

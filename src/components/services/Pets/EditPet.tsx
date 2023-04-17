@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEditPet } from "@/services/pets/editPet";
 import { useFetchPet } from "@/services/pets/fetchOnePet";
 import { GetServerSideProps } from "next";
+import PetsFormEdit from "./PetsFormEdit";
 
 type Props = {
 	item: Pet;
@@ -54,6 +55,8 @@ const EditPet = ({ item }: Props) => {
 			id: onePet.id,
 			data: values,
 		});
+		console.log("worked");
+
 		router.push("/services/pets");
 	};
 
@@ -67,7 +70,7 @@ const EditPet = ({ item }: Props) => {
 				defaultValues={{
 					title: onePet.title,
 					breed: onePet.breed,
-					image: null,
+					image: onePet.image,
 					description: onePet.description,
 					price: onePet.price,
 					category: onePet.category,

@@ -19,8 +19,8 @@ export const useDeletePet = () => {
 	const mutation = useMutation({
 		mutationFn: deletePet,
 		onSettled(data, error, variables, context) {
-			queryClient.invalidateQueries(["todos"]);
-			queryClient.invalidateQueries(["todos", { id: variables.id }]);
+			queryClient.invalidateQueries(["pet"]);
+			queryClient.invalidateQueries(["pet", { id: variables.id }]);
 		},
 	});
 

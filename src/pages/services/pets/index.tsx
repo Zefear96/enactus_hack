@@ -10,6 +10,7 @@ const AdvListPage = () => {
 				<Image src={petfree} alt="error" className="mx-5"></Image>
 				<span className=" text-xl">Животные даром</span>
 			</div>
+
 			<ListPets />
 		</div>
 	);
