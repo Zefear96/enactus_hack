@@ -6,6 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLogout, useCheckAuth } from "@/services/user/checkAuth";
+import React from 'react'
 
 type MenuItem = {
 	type: string;
@@ -14,7 +15,11 @@ type MenuItem = {
 
 const Navbar = () => {
 	const logout = useLogout();
-	const [refresh] = useCheckAuth()
+	const [refresh] = useCheckAuth();
+
+	React.useEffect(() => {
+		refresh()
+	}, [])
 
 	const lang: MenuItem[] = [
 		{
