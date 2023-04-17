@@ -11,6 +11,12 @@ import {
 	Title
 
 } from "@mantine/core";
+import elsom from '../../../../public/elsom.png';
+import odengi from '../../../../public/odengi.png';
+import mbank from '../../../../public/mbank.png';
+import optima from '../../../../public/optima.png';
+import balance from '../../../../public/balance.png';
+import Image from "next/image";
 
 type Props = {
 	onSubmit(values: CommercialFormValues): void;
@@ -69,63 +75,71 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
 	const handleSubmit = (values: CommercialFormValues) => {
 		console.log(values);
-
 		onSubmit(values);
+
 		form.reset();
 	};
 
 	return (
-		<div>
+		<div className="w-full">
 			<FocusTrap active>
-				<form onSubmit={form.onSubmit(handleSubmit)}>
+				<form onSubmit={form.onSubmit(handleSubmit)} >
 					<Title ta="center" fw={700} my="30px">Подать рекламу</Title>
 					<TextInput
 						withAsterisk
-						placeholder="Имя, Фамилия или название компании"
 						{...form.getInputProps("title")}
 						label="Имя, Фамилия или название компании"
+						variant="filled"
+						my='sm'
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Категория"
 						{...form.getInputProps("category")}
 						label="Категория"
+						variant="filled"
+						my='sm'
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Номер телефона"
 						{...form.getInputProps("contact")}
 						label="Контактный номер"
+						variant="filled"
+						my='sm'
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Адрес"
 						{...form.getInputProps("address")}
 						label="Адрес"
+						variant="filled"
+						my='sm'
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Содержание рекламы"
 						{...form.getInputProps("description")}
 						label="Содержание рекламы"
+						variant="filled"
+						my='sm'
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Ссылка на сайт или соцсеть"
 						{...form.getInputProps("social_net")}
 						label="Ссылка на сайт или соцсеть"
+						variant="filled"
+						my='sm'
+
 					/>
 					<FileInput
 						withAsterisk
-						placeholder="Выберите файл"
 						{...form.getInputProps("image")}
 						label="Выберите файл"
 						required
+						variant="filled"
+						my='sm'
+
 					/>
 					<Select
 						withAsterisk
 						label="Способ оплаты"
-						placeholder="Способ оплаты"
 						data={[
 							{ value: "Элсом", label: "Элсом" },
 							{ value: "О! Деньги", label: "О! Деньги" },
@@ -133,10 +147,20 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 							{ value: "Оптима", label: "Оптима" },
 							{ value: "Balance", label: "Beeline Balance" },
 						]}
+						variant="filled"
+						my='sm'
 					/>
-
+					<div className="flex justify-center items-center my-5" style={{ backgroundColor: '#F1F3F5' }}>
+						<Group position="apart" my="md" w='90%'>
+							<Image src={elsom} alt='error :(' style={{ width: '70px' }} />
+							<Image src={odengi} alt='error :(' style={{ width: '70px' }} />
+							<Image src={mbank} alt='error :(' style={{ width: '60px' }} />
+							<Image src={optima} alt='error :(' style={{ width: '70px' }} />
+							<Image src={balance} alt='error :(' style={{ width: '70px' }} />
+						</Group>
+					</div>
 					<Group position="right" mt="md">
-						<Button type="submit">Отправить</Button>
+						<button type="submit" className=' bg-yellowlogin w-full h-14 rounded-lg my-1'>Отправить</button>
 					</Group>
 				</form>
 			</FocusTrap>
