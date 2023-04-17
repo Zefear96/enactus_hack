@@ -159,20 +159,6 @@ const Navbar = () => {
 						Войти
 					</button>
 				</Link>
-
-				<Link href="/services/add/pets">
-					<button
-						className="bg-bluelogin text-yellowlogin w-24 h-12 rounded-2xl relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
-						onMouseOver={(e) => {
-							e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
-						}}
-						onMouseOut={(e) => {
-							e.currentTarget.style.boxShadow = "none";
-						}}
-					>
-						Добавить объявление
-					</button>
-				</Link>
 			</div>
 		</nav>
 	);

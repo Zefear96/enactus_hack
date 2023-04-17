@@ -50,7 +50,7 @@ type Props = {
 	petId: number;
 };
 
-const edit = ({ petId }: Props) => {
+const editPage = ({ petId }: Props) => {
 	return (
 		<div>
 			<EditPet petId={petId} />
@@ -58,7 +58,7 @@ const edit = ({ petId }: Props) => {
 	);
 };
 
-export default edit;
+export default editPage;
 
 export const getServerSideProps: GetServerSideProps<
 	Props,
