@@ -12,6 +12,7 @@ type createPetArg = {
 };
 
 const createPet = async (arg: createPetArg) => {
+
 	const formData = new FormData();
 
 	Object.entries(arg).forEach(([key, value]) => {

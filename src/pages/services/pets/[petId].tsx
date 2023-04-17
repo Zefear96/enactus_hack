@@ -19,7 +19,7 @@ const PetDetailsPage = ({ petId }: Props) => {
 	return (
 		<div>
 			<DetailsPet item={data} />
-			{/* <EditPet oneItem={data} /> */}
+			<EditPet item={data} />
 		</div>
 	);
 };
