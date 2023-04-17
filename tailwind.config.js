@@ -17,7 +17,8 @@ module.exports = {
 				bluelogin: "#4526FF",
 				yellowlogin: "#FFD437",
 				greybase: "#F5F5F5",
-				blackplaceholder: "rgba(0, 0, 0, 0.6)"
+				blackplaceholder: "rgba(0, 0, 0, 0.6)",
+				greybg: "#F3F3F3",
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
