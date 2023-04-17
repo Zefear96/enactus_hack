@@ -8,7 +8,7 @@ import { GetServerSideProps } from "next";
 import PetsFormEdit from "./PetsFormEdit";
 
 type Props = {
-	petId: number;
+	item: Pet;
 };
 
 type PropsOnePet = {
@@ -38,17 +38,19 @@ type PropsOnePet = {
 // 	petId: number;
 // };
 
-const EditPet = ({ petId }: Props) => {
+const EditPet = ({ item }: Props) => {
 	const [editPet, { isLoading, isError }] = useEditPet();
-	const [onePet] = useFetchPet({ id: petId });
+	const [onePet] = useFetchPet({ id: item.id });
 	console.log(onePet);
-	console.log(petId);
+	// console.log(petId);
 
 	const router = useRouter();
 
 	if (!onePet) return <h1>Not Found!!</h1>;
 
 	const handleSubmit = (values: PetsFormValues) => {
+		console.log('worked edit');
+
 		editPet({
 			id: onePet.id,
 			data: values,

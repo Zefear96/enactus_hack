@@ -61,6 +61,7 @@ const LoginForm = ({ onSubmit, defaultValues = {} }: Props) => {
                     <button type="submit" className=' bg-yellowlogin w-full h-14 rounded-3xl my-10'>Войти</button>
                     <Group position="center" mb="40px">
                         <Text c="dimmed" fz="lg">Нет еще аккаунта? <Link href="/account/registration/" className=' text-blue-500' >Создать аккаунт</Link> </Text>
+                        <Link href="/account/resetpassword/" className=' text-blue-500' >Забыли пароль?</Link>
                     </Group>
                 </form>
             </div>

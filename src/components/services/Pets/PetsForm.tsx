@@ -17,7 +17,7 @@ import { Pet } from "@/utils/types";
 type Props = {
 	onSubmit(values: PetsFormValues): void;
 	defaultValues?: Partial<PetsFormValues>;
-	imageUrl?: string;
+	// imageUrl?: string;
 };
 
 const createPetFormSchema = z.object({
@@ -75,8 +75,7 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	});
 
 	const handleSubmit = (values: PetsFormValues) => {
-		console.log("worked");
-
+		// console.log(values);
 		onSubmit(values);
 		form.reset();
 	};
@@ -111,7 +110,7 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 						{...form.getInputProps("breed")}
 						label="Порода"
 					/>
-
+					<img src={form.values.image} alt="error:(" width='100px' />
 					<FileInput
 						withAsterisk
 						placeholder="Выберите файл"

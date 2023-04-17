@@ -77,3 +77,4 @@ export const getServerSideProps: GetServerSideProps<
 		},
 	};
 };
+
