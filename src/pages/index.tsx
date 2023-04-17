@@ -17,6 +17,7 @@ import Vector3 from "../../public/Vector3.png";
 import Vector4 from "../../public/Vector4.png";
 import Vector4top from "../../public/Vector4top.png";
 import feedback from "../../public/feedback.png";
+import statestitle from "../../public/statestitle.png";
 
 export default function Home() {
 	return (
@@ -42,10 +43,10 @@ export default function Home() {
 					<Link href="/services/add/pets">
 						<button
 							style={{
-								backgroundColor: "blue",
-								color: "yellow",
+								color: "blue",
+								backgroundColor: "yellow",
+								boxShadow: "10px 10px 0px 4px #988CE1",
 								borderRadius: "2rem",
-								boxShadow: "none",
 								transition: "all 0.3s ease",
 								height: "70px",
 								width: "70%",
@@ -134,7 +135,6 @@ export default function Home() {
 							borderTopLeftRadius: "117px",
 							borderBottomLeftRadius: "117px",
 							borderTopRightRadius: "117px",
-							// border: "1px solid black",
 							boxShadow:
 								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
 							background: "rgba(243, 243, 243, 0.85)",
@@ -152,15 +152,15 @@ export default function Home() {
 						<Link href="/services">
 							<button
 								style={{
-									backgroundColor: "blue",
-									color: "yellow",
+									color: "blue",
+									backgroundColor: "yellow",
+									boxShadow: "10px 10px 0px 4px #988CE1",
 									borderRadius: "2rem",
-									boxShadow: "none",
 									transition: "all 0.3s ease",
 									height: "60px",
 									width: "70%",
 									marginTop: "100px",
-									right: "0",
+									marginLeft: "100px",
 								}}
 								onMouseOver={(e) => {
 									e.currentTarget.style.backgroundColor = "blue";
@@ -189,6 +189,73 @@ export default function Home() {
 						className="mx-auto absolute top-20 right-14 "
 					/>
 				</div>
+			</div>
+
+			<div className=" max-w-screen-xl mx-auto">
+				<Image src={statestitle} alt="error" className=" mx-auto" />
+
+				<ul className="flex justify-around mt-10 text-center">
+					<li
+						className=" w-1/4  p-5"
+						style={{
+							boxShadow:
+								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+							background: "rgba(243, 243, 243, 0.85)",
+							borderRadius: "8px",
+						}}
+					>
+						<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
+							Советы для владельцев кошек
+						</h3>
+						<p>
+							“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
+							viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
+						</p>
+						<a href="#" style={{ color: "blue" }} className=" ">
+							Посмотреть подробнее
+						</a>
+					</li>
+					<li
+						className=" w-1/4 p-5"
+						style={{
+							boxShadow:
+								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+							background: "rgba(243, 243, 243, 0.85)",
+							borderRadius: "8px",
+						}}
+					>
+						<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
+							Как приучить питомца
+						</h3>
+						<p>
+							“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
+							viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
+						</p>
+						<a href="#" style={{ color: "blue" }} className=" ">
+							Посмотреть подробнее
+						</a>
+					</li>
+					<li
+						className=" w-1/4  p-5"
+						style={{
+							boxShadow:
+								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+							background: "rgba(243, 243, 243, 0.85)",
+							borderRadius: "8px",
+						}}
+					>
+						<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
+							Питание для попугая
+						</h3>
+						<p>
+							“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
+							viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
+						</p>
+						<a href="#" style={{ color: "blue" }} className=" ">
+							Посмотреть подробнее
+						</a>
+					</li>
+				</ul>
 			</div>
 		</>
 	);
