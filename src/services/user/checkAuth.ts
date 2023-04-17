@@ -7,8 +7,10 @@ import { useRouter } from 'next/router'
 const checkAuth = async () => {
 
     let refreshToken = await storageGetItem("app.refreshToken");
-    console.log(refreshToken);
-
+    // console.log(refreshToken);
+    if (!refreshToken) {
+        return
+    }
 
     try {
 
