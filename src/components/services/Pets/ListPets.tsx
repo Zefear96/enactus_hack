@@ -12,7 +12,7 @@ const ListPets = () => {
 	return (
 		<div className=" grid grid-cols-3 gap-10 w-3/4 mx-auto">
 			{data.map((item) => (
-				<ItemPet item={item} />
+				<ItemPet item={item} key={item.id} />
 			))}
 		</div>
 	);
