@@ -23,6 +23,10 @@ type Props = {
 const createPetFormSchema = z.object({
 	title: z.string().nonempty("Это поле не может быть пустым!"),
 	breed: z.string(),
+	age: z.string(),
+	address: z.string(),
+	contact: z.string(),
+	pet_name: z.string(),
 	image: (typeof window !== "undefined" ? z.instanceof(File) : z.any())
 		.refine((file) => {
 			if (!file || !(file instanceof File)) {
@@ -35,10 +39,10 @@ const createPetFormSchema = z.object({
 					"Неверный формат файла! Пожалуйста, загрузите файл в формате JPEG, PNG или GIF.",
 				);
 			}
-			const maxSize = 500000; // 500 KB
+			const maxSize = 20000000; // 20000 KB
 			if (file.size > maxSize) {
 				throw new Error(
-					"Максимальный размер файла 500 KB. Пожалуйста, загрузите файл меньшего размера.",
+					"Максимальный размер файла 20 мб. Пожалуйста, загрузите файл меньшего размера.",
 				);
 			}
 			return true;
@@ -67,6 +71,10 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 			description: "",
 			price: 0,
 			category: 0,
+			age: "",
+			pet_name: "",
+			address: "",
+			contact: "",
 			...defaultValues,
 		},
 
@@ -101,27 +109,48 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 					/>
 					<TextInput
 						withAsterisk
-						placeholder="Заголовок"
+						placeholder="Заголовок объявления"
 						{...form.getInputProps("title")}
-						label="Заголовок"
+						label="Заголовок объявления"
 					/>
 					<TextInput
 						placeholder="Порода"
 						{...form.getInputProps("breed")}
 						label="Порода"
 					/>
-					<img src={form.values.image} alt="error:(" width='100px' />
+					<TextInput
+						placeholder="Кличка"
+						{...form.getInputProps("pet_name")}
+						label="Кличка"
+					/>
+					<TextInput
+						placeholder="Возраст"
+						{...form.getInputProps("age")}
+						label="Возраст"
+					/>
+					<TextInput
+						placeholder="Адрес"
+						{...form.getInputProps("address")}
+						label="Адрес"
+					/>
+					<TextInput
+						placeholder="Контакты"
+						{...form.getInputProps("contact")}
+						label="Контакты"
+					/>
+					<img src={form.values.image} alt="error:(" width="100px" />
+					<TextInput
+						placeholder="Описание"
+						{...form.getInputProps("description")}
+						label="Описание"
+					/>
+
 					<FileInput
 						withAsterisk
 						placeholder="Выберите файл"
 						{...form.getInputProps("image")}
 						label="Выберите файл"
 						required
-					/>
-					<TextInput
-						placeholder="Описание"
-						{...form.getInputProps("description")}
-						label="Описание"
 					/>
 					{/* <NumberInput
 						withAsterisk

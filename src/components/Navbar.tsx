@@ -3,18 +3,36 @@ import logo from "../../public/logo.png";
 import geomap from "../../public/geomap.png";
 import searchIcon from "../../public/searchIcon.png";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import React, {
+	Fragment,
+	useEffect,
+	useRef,
+	useState,
+	MouseEvent,
+} from "react";
+
 import Link from "next/link";
 import { useLogout, useCheckAuth } from "@/services/user/checkAuth";
-import React from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ChangeEvent, memo } from "react";
 import { setSearchText } from "@/store/slices/petsFilters.slice";
+import { useFetchGeo } from "@/services/user/fetchGeolocation";
+import { useFetchUser } from "@/services/user/fetchUser";
 
 type MenuItem = {
 	type: string;
 	link: string;
 };
+
+interface AddressComponent {
+	long_name: string;
+	short_name: string;
+	types: string[];
+}
+
+interface GeocodeResult {
+	address_components: AddressComponent[];
+}
 
 const Navbar = () => {
 	const logout = useLogout();
@@ -74,6 +92,43 @@ const Navbar = () => {
 		dispatch(setSearchText(val));
 	};
 
+	// GEOLOCATION
+	const [city, setCity] = useState<string | null>(null);
+	const [data] = useFetchGeo();
+	// console.log(data);
+
+	async function handleGetGeo() {
+		const currentCity = await data.city.split(" ");
+		// console.log(currentCity);
+
+		if (data === null || data === undefined) setCity("Unnamed Road");
+		setCity(currentCity[1].toString());
+	}
+
+	// currentUser
+	const [currentUser, loading] = useFetchUser();
+
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent<Element>) {
+			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+				setIsMenuOpen(false);
+			}
+		}
+
+		window.addEventListener("click", handleClickOutside);
+
+		return () => {
+			window.removeEventListener("click", handleClickOutside);
+		};
+	}, []);
+
+	function toggleMenuUser() {
+		setIsMenuOpen(!isMenuOpen);
+	}
+
 	return (
 		<nav className="flex justify-between items-center max-w-screen-xl mx-auto mt-7">
 			<Link href="/">
@@ -87,8 +142,9 @@ const Navbar = () => {
 			</Link>
 
 			<div className="flex items-center space-x-10 w-11/12 justify-around">
-				<button className="flex items-center">
-					Бишкек <Image src={geomap} alt="error" className="mx-2" />
+				<button className="flex items-center" onClick={handleGetGeo}>
+					<span style={{ width: "100px" }}>{city} </span>
+					<Image src={geomap} alt="error" className="mx-2" />
 				</button>
 
 				<div className="relative">
@@ -167,40 +223,114 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			<div className="relative">
-				<Link href="/account/login">
-					<button
-						style={{
-							color: "blue",
-							backgroundColor: "yellow",
-							boxShadow: "10px 10px 0px 4px #988CE1",
-							borderRadius: "16px",
-							transition: "all 0.3s ease",
-							height: "60px",
-							width: "100px",
-							marginTop: "15px",
-						}}
-						onMouseOver={(e) => {
-							e.currentTarget.style.backgroundColor = "blue";
-							e.currentTarget.style.color = "yellow";
-							e.currentTarget.style.boxShadow = "none";
-						}}
-						onMouseOut={(e) => {
-							e.currentTarget.style.backgroundColor = "yellow";
-							e.currentTarget.style.color = "blue";
-							e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
-						}}
-					>
-						<span className="flex items-center mx-auto justify-center">
-							Войти
-						</span>
-					</button>
-				</Link>
+			{!currentUser ? (
+				<div className="relative">
+					<Link href="/account/login">
+						<button
+							style={{
+								color: "blue",
+								backgroundColor: "yellow",
+								boxShadow: "10px 10px 0px 4px #988CE1",
+								borderRadius: "16px",
+								transition: "all 0.3s ease",
+								height: "60px",
+								width: "100px",
+								// marginTop: "15px",
+							}}
+							onMouseOver={(e) => {
+								e.currentTarget.style.backgroundColor = "blue";
+								e.currentTarget.style.color = "yellow";
+								e.currentTarget.style.boxShadow = "none";
+							}}
+							onMouseOut={(e) => {
+								e.currentTarget.style.backgroundColor = "yellow";
+								e.currentTarget.style.color = "blue";
+								e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+							}}
+						>
+							<span className="flex items-center mx-auto justify-center">
+								Войти
+							</span>
+						</button>
+					</Link>
 
-				<button onClick={() => logout()}>LOGOUT</button>
-			</div>
+					{/* <button onClick={() => logout()}>LOGOUT</button> */}
+				</div>
+			) : (
+				<div className="relative" ref={menuRef}>
+					<button
+						className="bg-gray-300 rounded-full p-2 hover:bg-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 w-10 h-10"
+						onClick={toggleMenuUser}
+					>
+						{currentUser && (
+							<img
+								src="https://www.meme-arsenal.com/memes/35d872f93f0ce698a105d40e92536815.jpg"
+								// alt={currentUser.name?.slice(0, 1)}
+								className=" rounded-full"
+							/>
+						)}
+					</button>
+
+					{isMenuOpen && (
+						<div className="absolute right-0 top-full mt-2 bg-white rounded-md shadow-lg z-10">
+							<ul>
+								<Link href="account/">
+									<li className="px-4 py-2 hover:bg-primary transition-colors duration-300 cursor-pointer">
+										Мой профиль
+									</li>
+								</Link>
+								<Link href="services/add/pets">
+									<li className="px-4 py-2 hover:bg-primary transition-colors duration-300 cursor-pointer">
+										Добавить объявление
+									</li>
+								</Link>
+								<li
+									className="px-4 py-2 hover:bg-primary transition-colors duration-300 cursor-pointer"
+									onClick={() => {
+										logout();
+										setIsMenuOpen(false);
+									}}
+								>
+									Выйти
+								</li>
+							</ul>
+						</div>
+					)}
+				</div>
+			)}
 		</nav>
 	);
 };
 
 export default Navbar;
+
+// import { getSession } from "next-auth/client";
+// import { useRouter } from "next/router";
+// import { GetServerSideProps } from "next";
+
+// interface ProfileProps {
+// 	session: {
+// 		user: {
+// 			name: string;
+// 		};
+// 	};
+// }
+
+// export const getServerSideProps: GetServerSideProps<ProfileProps> = async (
+// 	context,
+// ) => {
+// 	const session = await getSession(context);
+
+// 	if (!session) {
+// 		return {
+// 			redirect: {
+// 				destination: "/login",
+// 				permanent: false,
+// 			},
+// 		};
+// 	}
+
+// 	return {
+// 		props: { session },
+// 	};
+// };

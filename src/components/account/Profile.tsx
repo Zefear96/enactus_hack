@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFetchUser } from "@/services/user/fetchUser";
 import { useLogout } from "@/services/user/checkAuth";
 import Link from "next/link";
-import { Avatar, Text, Group } from '@mantine/core';
+import { Avatar, Text, Group } from "@mantine/core";
 import Image from "next/image";
 import person_black from '../../../public/person_black.png';
 import person_white from '../../../public/person_white.png';
@@ -14,11 +14,6 @@ import logout_white from '../../../public/logout_white.png';
 import edit_black from '../../../public/edit_black.png';
 import lock_black from '../../../public/lock_black.png';
 import lock_white from '../../../public/lock_white.png';
-
-import { IconCheck, } from '@tabler/icons-react';
-import { Notification } from '@mantine/core';
-
-//нужен logout white
 
 const Profile = () => {
 	const [currentUser, { isLoading, isError }] = useFetchUser();
@@ -39,12 +34,38 @@ const Profile = () => {
 			<div className="flex justify-center items-center flex-col w-full py-5 border-primary border-r">
 				{/* bg-yellowlogin */}
 				<div className="flex flex-col items-center my-10">
-					{currentUser.profile_image ? <Avatar src={currentUser.profile_image} style={{ borderRadius: '50%', border: '1px solid #4526FF' }} size="xl" /> : currentUser.name ? <Avatar src={null} color="primary" alt={currentUser.name} style={{ borderRadius: '50%', border: '1px solid #4526FF' }} size="xl" /> : <Avatar size="xl" style={{ borderRadius: '50%', border: '1px solid #4526FF' }} />}
+					{currentUser.profile_image ? (
+						<Avatar
+							src={currentUser.profile_image}
+							style={{ borderRadius: "50%", border: "1px solid #4526FF" }}
+							size="xl"
+						/>
+					) : currentUser.name ? (
+						<Avatar
+							src={null}
+							color="primary"
+							alt={currentUser.name}
+							style={{ borderRadius: "50%", border: "1px solid #4526FF" }}
+							size="xl"
+						/>
+					) : (
+						<Avatar
+							size="xl"
+							style={{ borderRadius: "50%", border: "1px solid #4526FF" }}
+						/>
+					)}
 
-					{currentUser.name ? <Text mt='xs'>{currentUser.name}</Text> : null}
-					{currentUser.name ? <Text c="dimmed">{currentUser.email}</Text> : <Text c="dimmed" mt='xs'>{currentUser.email}</Text>}
-					<Text c="dimmed" >{currentUser.phone_number}</Text>
+					{currentUser.name ? <Text mt="xs">{currentUser.name}</Text> : null}
+					{currentUser.name ? (
+						<Text c="dimmed">{currentUser.email}</Text>
+					) : (
+						<Text c="dimmed" mt="xs">
+							{currentUser.email}
+						</Text>
+					)}
+					<Text c="dimmed">{currentUser.phone_number}</Text>
 				</div>
+
 				<div className="w-4/5 m-auto flex justify-center items-start flex-col" >
 					<button className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
 						onMouseEnter={() => setHover(true)}
