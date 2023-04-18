@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFetchUser } from "@/services/user/fetchUser";
+import { useLogout } from "@/services/user/checkAuth";
 import Link from "next/link";
 import { Avatar, Text, Group } from '@mantine/core';
 import Image from "next/image";
@@ -8,13 +9,26 @@ import person_white from '../../../public/person_white.png';
 import border_black from '../../../public/border_black.png';
 import border_white from '../../../public/border_white.png';
 import logout_black from '../../../public/logout_black.png';
-import { IconPencil } from "@tabler/icons-react";
-import { IconLock } from "@tabler/icons-react";
+import edit_white from '../../../public/edit_white.png';
+import logout_white from '../../../public/logout_white.png';
+import edit_black from '../../../public/edit_black.png';
+import lock_black from '../../../public/lock_black.png';
+import lock_white from '../../../public/lock_white.png';
+
+import { IconCheck, } from '@tabler/icons-react';
+import { Notification } from '@mantine/core';
+
 //нужен logout white
 
-
 const Profile = () => {
-	const [currentUser, { isLoading, isError }] = useFetchUser();
+	const [currentUser, { isLoading, isError, isSuccess }] = useFetchUser();
+	const logout = useLogout()
+
+	const [hover, setHover] = useState(false);
+	const [hover1, setHover1] = useState(false);
+	const [hover2, setHover2] = useState(false);
+	const [hover3, setHover3] = useState(false);
+	const [hover4, setHover4] = useState(false)
 
 	if (isLoading) return <h1>Loading ...</h1>;
 	if (isError) return <h1>Something wrong!!</h1>;
@@ -32,29 +46,47 @@ const Profile = () => {
 					<Text c="dimmed" >{currentUser.phone_number}</Text>
 				</div>
 				<div className="w-4/5 m-auto flex justify-center items-start flex-col" >
-					<button className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white">
+					<button className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						onMouseEnter={() => setHover(true)}
+						onMouseLeave={() => setHover(false)}
+					>
+						{hover ? <Image src={person_white} alt="error:(" className="mx-2" /> : <Image src={person_black} alt="error:(" className="mx-2" />}
+						<Link href="/account">Профиль</Link>
+
+					</button>
+					<button className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						onMouseEnter={() => setHover1(true)}
+						onMouseLeave={() => setHover1(false)}
+					>
 						{/* <IconPencil /> */}
-						<Image src={person_black} alt="error:(" className="mx-2" />
-						<a href="account/edit">Профиль</a>
+						{hover1 ? <Image src={edit_white} alt="error:(" className="mx-2" /> :
+							<Image src={edit_black} alt="error:(" className="mx-2" />}
+						<Link href="/account">Изменить данные</Link>
 					</button>
-					<button className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white" >
-						{/* <IconPencil /> */}
-						<Image src={person_black} alt="error:(" className="mx-2" />
-						<a href="account/edit">Изменить данные</a>
+					<button className="flex items-center text-xl py-3 my-2 rounded-md w-10/12 mx-auto hover:bg-primary  hover:text-white"
+						onMouseEnter={() => setHover2(true)}
+						onMouseLeave={() => setHover2(false)}
+					>
+						{hover2 ? <Image src={lock_white} alt="error:(" className="mx-2" /> :
+							<Image src={lock_black} alt="error:(" className="mx-2" />}
+						<Link href="/account/change_password">Изменить пароль</Link>
+
 					</button>
-					<button className="flex items-center text-xl py-3 my-2 rounded-md w-10/12 mx-auto hover:bg-primary  hover:text-white">
-						<Image src={person_black} alt="error:(" className="mx-2" />
-						<a href="account/change_password">Изменить пароль</a>
-					</button>
-					<button className="flex items-center text-xl py-3  my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white">
-						<Image src={border_black} alt="error:(" className="mx-2" />
-						<a href="/">Мои публикации</a>
+					<button className="flex items-center text-xl py-3  my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						onMouseEnter={() => setHover3(true)}
+						onMouseLeave={() => setHover3(false)}
+					>
+						{hover3 ? <Image src={border_white} alt="error:(" className="mx-2" /> : <Image src={border_black} alt="error:(" className="mx-2" />}
+						<Link href="/">Мои публикации</Link>
 					</button>
 					{/* Надо будет поменять путь на его публикации */}
 
-					<button className="flex items-center text-xl  py-3 my-3 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white">
-						{/* hover:bg-bluelogin */}
-						<Image src={logout_black} alt="error:(" className="mx-2" />
+					<button className="flex items-center text-xl  py-3 my-3 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						onMouseEnter={() => setHover4(true)}
+						onMouseLeave={() => setHover4(false)}
+						onClick={logout}
+					>
+						{hover4 ? <Image src={logout_white} alt="error:(" className="mx-2" /> : <Image src={logout_black} alt="error:(" className="mx-2" />}
 						Выйти</button>
 				</div>
 			</div>
