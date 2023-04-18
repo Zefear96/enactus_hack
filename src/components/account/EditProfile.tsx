@@ -69,6 +69,7 @@ const EditProfile = () => {
 					name: currentUser.name,
 					phone_number: currentUser.phone_number,
 					email: currentUser.email,
+					profile_image: currentUser.profile_image
 				}}
 				onSubmit={handleSubmit}
 			/>

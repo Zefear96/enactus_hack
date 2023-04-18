@@ -14,10 +14,12 @@ type CreateCommercialArg = {
 
 const createCommercial = async (arg: CreateCommercialArg) => {
     const formData = new FormData();
+    console.log(arg);
 
     Object.entries(arg).forEach(([key, value]) => {
         const stringValue = value instanceof Blob ? value : value?.toString();
         if (!stringValue) return;
+        console.log(key, stringValue, value);
 
         formData.append(key, stringValue);
     });
