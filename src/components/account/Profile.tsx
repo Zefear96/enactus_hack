@@ -21,7 +21,7 @@ import { Notification } from '@mantine/core';
 //нужен logout white
 
 const Profile = () => {
-	const [currentUser, { isLoading, isError, isSuccess }] = useFetchUser();
+	const [currentUser, { isLoading, isError }] = useFetchUser();
 	const logout = useLogout()
 
 	const [hover, setHover] = useState(false);

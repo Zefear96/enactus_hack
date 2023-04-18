@@ -135,7 +135,6 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 						required
 						variant="filled"
 						my='sm'
-
 					/>
 					<Select
 						withAsterisk
