@@ -12,7 +12,7 @@ const Confirmation = () => {
                         example@gmail.com. Пожалуйста, перейдите по ссылке
                         внутри письма, чтобы начать использовать ZooNet.</Text>
                     <Group position="center" mb="40px">
-                        <Text c="dimmed" fz="lg">Есть жалобы? <Link href="/account/registration/" className=' text-blue-500' >Свяжитесь с нами</Link> </Text>
+                        <Text c="dimmed" fz="lg">Есть жалобы? <Link href="/reviews/add/" className=' text-blue-500' >Свяжитесь с нами</Link> </Text>
                     </Group>
                 </div>
             </div>
