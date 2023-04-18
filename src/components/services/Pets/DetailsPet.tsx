@@ -29,7 +29,7 @@ type Props = {
 
 const DetailsPet = ({ item }: Props) => {
 	const [deletePet] = useDeletePet();
-	const [fetchUser] = useFetchUser();
+	const [currentUser] = useFetchUser();
 	const router = useRouter();
 
 	let [isOpen, setIsOpen] = useState(false);
@@ -62,7 +62,7 @@ const DetailsPet = ({ item }: Props) => {
 							</Menu.Target>
 
 							<Menu.Dropdown>
-								{fetchUser?.email === item.owner ? (
+								{currentUser?.email === item.owner ? (
 									<>
 										<Link href={`/services/pets/edit`}>
 											<Menu.Item icon={<IconAdjustments size={rem(14)} />}>

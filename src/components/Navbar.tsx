@@ -7,6 +7,9 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLogout, useCheckAuth } from "@/services/user/checkAuth";
 import React from "react";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { ChangeEvent, memo } from "react";
+import { setSearchText } from "@/store/slices/petsFilters.slice";
 
 type MenuItem = {
 	type: string;
@@ -61,7 +64,15 @@ const Navbar = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => setIsOpen(!isOpen);
-	const [searchTerm, setSearchTerm] = useState("");
+
+	// SEARCH
+	const dispatch = useAppDispatch();
+	const searchText = useAppSelector((state) => state.petsFilters.search);
+
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const val = e.currentTarget.value;
+		dispatch(setSearchText(val));
+	};
 
 	return (
 		<nav className="flex justify-between items-center max-w-screen-xl mx-auto mt-7">
@@ -86,6 +97,8 @@ const Navbar = () => {
 						placeholder="Найти питомца"
 						className="rounded-md pl-8 pr-3 py-2  text-gray-900 focus:outline-none relative h-14 border-gray-400 border"
 						style={{ width: "600px" }}
+						value={searchText}
+						onChange={handleChange}
 					/>
 					<button className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-primary h-full w-14 rounded-r-md">
 						<Image src={searchIcon} alt="error" className="mx-auto"></Image>
@@ -155,20 +168,6 @@ const Navbar = () => {
 			</div>
 
 			<div className="relative">
-				{/* <Link href="/account/login">
-					<button
-						className="bg-bluelogin text-yellowlogin w-24 h-12 rounded-2xl relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
-						onMouseOver={(e) => {
-							e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
-						}}
-						onMouseOut={(e) => {
-							e.currentTarget.style.boxShadow = "none";
-						}}
-					>
-						Войти
-					</button>
-				</Link> */}
-
 				<Link href="/account/login">
 					<button
 						style={{
