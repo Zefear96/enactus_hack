@@ -1,6 +1,7 @@
 import { baseAxios } from "@/utils/baseAxios";
 import { User } from "@/utils/types";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { type } from "os";
 
 type UpdateUserArg = {
     data: Partial<User>
@@ -8,8 +9,11 @@ type UpdateUserArg = {
 
 const updateUser = async (arg: UpdateUserArg) => {
     // console.log(arg.data);
-
     const formData = new FormData();
+    // arg.data.name ? formData.append('name', arg.data.name) : null;
+    // arg.data.email ? formData.append('email', arg.data.email) : null;
+    // arg.data.phone_number ? formData.append('phone_number', arg.data.phone_number) : null;
+    // typeof arg.data.profile_image === 'object' && arg.data.profile_image ? formData.append('profile_image', arg.data.profile_image) : null
 
     Object.entries(arg.data).forEach(([key, value]) => {
         const stringValue = value instanceof Blob ? value : value?.toString();
@@ -18,12 +22,6 @@ const updateUser = async (arg: UpdateUserArg) => {
 
         formData.append(key, stringValue);
     });
-
-    console.log(formData.entries());
-    //  let array = formData.entries()
-    //   for (var pair of array) {
-    //     console.log(pair[0]+ ', ' + pair[1]);
-    //   }
 
     const res = await baseAxios.patch<User>('/account/edit_profile/', formData,
         {
