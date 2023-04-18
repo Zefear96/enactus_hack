@@ -3,9 +3,9 @@ import Profile from '@/components/account/Profile';
 
 const UserProfile = () => {
     return (
-        <div>
-            <Profile />
-        </div>
+
+        <Profile />
+
     )
 }
 

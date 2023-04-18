@@ -12,7 +12,7 @@ const CommercialConfirm = () => {
                         администратор сайта выйдет на связь
                         с Вами. Спасибо за понимание.</Text>
                     <Group position="center" mb="40px">
-                        <Text c="dimmed" fz="lg">Остались вопросы? <Link href="/account/registration/" className=' text-blue-500' >Свяжитесь с нами</Link> </Text>
+                        <Text c="dimmed" fz="lg">Остались вопросы? <Link href="/reviews/add/" className=' text-blue-500' >Свяжитесь с нами</Link> </Text>
                     </Group>
                 </div>
             </div>
@@ -21,3 +21,5 @@ const CommercialConfirm = () => {
 }
 
 export default CommercialConfirm
+
+// TODO redirect на Контакты
