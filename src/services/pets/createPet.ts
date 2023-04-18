@@ -9,10 +9,13 @@ type createPetArg = {
 	description?: string;
 	price?: number;
 	category: number;
+	age?: string;
+	address?: string;
+	pet_name?: string;
+	contact?: string;
 };
 
 const createPet = async (arg: createPetArg) => {
-
 	const formData = new FormData();
 
 	Object.entries(arg).forEach(([key, value]) => {

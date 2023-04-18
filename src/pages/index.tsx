@@ -18,8 +18,20 @@ import Vector4 from "../../public/Vector4.png";
 import Vector4top from "../../public/Vector4top.png";
 import feedback from "../../public/feedback.png";
 import statestitle from "../../public/statestitle.png";
+import { useFetchUser, fetchUser } from "@/services/user/fetchUser";
+import React from "react";
 
 export default function Home() {
+	const [currentUser] = useFetchUser();
+	console.log(currentUser);
+
+	React.useEffect(() => {
+		console.log(currentUser);
+	}, [currentUser]);
+
+	const href =
+		currentUser !== null || undefined ? "/services/add/pets" : "/account/login";
+
 	return (
 		<>
 			<div className="flex max-w-screen-xl mx-auto">
@@ -40,7 +52,7 @@ export default function Home() {
 						питомцев со всех регионов страны.
 					</h2>
 
-					<Link href="/services/add/pets">
+					<Link href={href}>
 						<button
 							style={{
 								color: "blue",
