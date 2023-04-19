@@ -8,7 +8,8 @@ import { GetServerSideProps } from "next";
 import PetsFormEdit from "./PetsFormEdit";
 
 type Props = {
-	item: Pet;
+	// item: Pet;
+	petId: number
 };
 
 type PropsOnePet = {
@@ -38,9 +39,9 @@ type PropsOnePet = {
 // 	petId: number;
 // };
 
-const EditPet = ({ item }: Props) => {
+const EditPet = ({ petId }: Props) => {
 	const [editPet, { isLoading, isError }] = useEditPet();
-	const [onePet] = useFetchPet({ id: item.id });
+	const [onePet] = useFetchPet({ id: petId });
 	console.log(onePet);
 	// console.log(petId);
 
@@ -49,15 +50,14 @@ const EditPet = ({ item }: Props) => {
 	if (!onePet) return <h1>Not Found!!</h1>;
 
 	const handleSubmit = (values: PetsFormValues) => {
-		console.log('worked edit');
+		console.log(values, 'worked edit pet');
 
 		editPet({
 			id: onePet.id,
 			data: values,
 		});
-		console.log("worked");
 
-		router.push("/services/pets");
+		router.push(`/services/pets/${onePet.id}`);
 	};
 
 	if (isLoading) return <h1>Loading ...</h1>;
@@ -66,13 +66,12 @@ const EditPet = ({ item }: Props) => {
 
 	return (
 		<div>
-			<PetsForm
+			<PetsFormEdit
 				defaultValues={{
 					title: onePet.title,
 					breed: onePet.breed,
 					image: onePet.image,
 					description: onePet.description,
-					price: onePet.price,
 					category: onePet.category,
 				}}
 				onSubmit={handleSubmit}

@@ -18,10 +18,11 @@ export const editPet = async (arg: ArgPet) => {
 	// if (typeof arg.data.image === "object") {
 	//     newPost.append("image", editedPost.image);
 	//   }
+	console.log(arg);
 
 	const formData = new FormData();
 
-	Object.entries(arg).forEach(([key, value]) => {
+	Object.entries(arg.data).forEach(([key, value]) => {
 		const stringValue = value instanceof Blob ? value : value?.toString();
 		if (!stringValue) return;
 
@@ -30,7 +31,7 @@ export const editPet = async (arg: ArgPet) => {
 	});
 
 	const { data } = await baseAxios.patch<Pet>(
-		`/pets/change/${arg.id}`,
+		`/pets/change/${arg.id}/`,
 		formData,
 		{
 			headers: {

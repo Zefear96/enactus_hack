@@ -7,7 +7,7 @@ type Props = {
 };
 
 const editPage = ({ petId }: Props) => {
-	return <div>{/* <EditPet petId={petId} /> */}</div>;
+	return <div><EditPet petId={petId} /></div>;
 };
 
 export default editPage;
