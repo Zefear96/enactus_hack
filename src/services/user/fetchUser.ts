@@ -4,13 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { storageSetItem } from "@/utils/storage";
 
 export const fetchUser = async () => {
-
 	const { data } = await baseAxios.get<User>("/account/edit_profile/");
 	console.log(data);
 
-	storageSetItem('user', data);
+	storageSetItem("user", data);
 	return data;
-
 };
 
 export const useFetchUser = () => {
