@@ -137,7 +137,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
                         <Image src={phone} alt="error" />
                     </ActionIcon>
                 </Group>
-                <Link href="/account/registration">
+                <Link href="/reviews/add/" >
                     <button
                         className="bg-bluelogin text-yellowlogin w-60 mb-4 rounded-3xl h-10 relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
                         onMouseOver={(e) => {

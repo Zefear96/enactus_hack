@@ -18,12 +18,13 @@ import Vector4 from "../../public/Vector4.png";
 import Vector4top from "../../public/Vector4top.png";
 import feedback from "../../public/feedback.png";
 import statestitle from "../../public/statestitle.png";
-import { useFetchUser, fetchUser } from "@/services/user/fetchUser";
-import { checkUserInSys } from "@/services/user/checkAuth";
+import { useFetchUser } from "@/services/user/fetchUser";
 import React from "react";
 
 export default function Home() {
-	const href = checkUserInSys() ? "/services/add/pets" : "/account/login";
+	const [user] = useFetchUser()
+
+	const href = user ? "/services/add/pets" : "/account/login";
 
 	return (
 		<>
@@ -154,7 +155,7 @@ export default function Home() {
 								euismod viverra. Tincidunt ultricies porttitor netus ut dolor!!!
 							</p>
 						</div>
-						<Link href="/services">
+						<Link href="/reviews/add/">
 							<button
 								style={{
 									color: "blue",

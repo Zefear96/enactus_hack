@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFetchUser } from "@/services/user/fetchUser";
-import { useLogout } from "@/services/user/checkAuth";
+import { useLogout } from "@/services/user/logout";
 import Link from "next/link";
 import { Avatar, Text, Group } from "@mantine/core";
 import Image from "next/image";
