@@ -115,9 +115,9 @@ const Navbar = () => {
 	// currentUser
 	const [currentUser, { isLoading, isError }] = useFetchUser();
 
-	if (isLoading) return <h1>Loading ...</h1>;
-	if (isError) return;
-	if (!currentUser) return <h1>Not Found</h1>;
+	// if (isLoading) return <h1>Loading ...</h1>;
+	// if (isError) return;
+	// if (!currentUser) return <h1>Not Found</h1>;
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
