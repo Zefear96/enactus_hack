@@ -5,10 +5,8 @@ import { storageSetItem } from "@/utils/storage";
 import { useAppSelector } from "@/store/hooks";
 
 export const fetchUser = async () => {
-
 	const { data } = await baseAxios.get<User>("/account/edit_profile/");
 	return data;
-
 };
 
 export const useFetchUser = () => {
