@@ -20,6 +20,8 @@ import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
 import { checkUserInSys } from "@/services/user/checkAuth";
+import { storageGetItem } from "@/utils/storage";
+import { User } from "@/utils/types";
 
 type MenuItem = {
 	type: string;
@@ -113,15 +115,25 @@ const Navbar = () => {
 	}
 
 	// currentUser
-	const [currentUser, { isLoading, isError }] = useFetchUser();
+	// const [currentUser, { isLoading, isError }] = useFetchUser();
+	// if (isLoading) return <h1>Loading ...</h1>;
+	// if (isError) return <h1>not found</h1>;
+	// if (!currentUser) return <h1>not found</h1>;
 
-	if (isLoading) return <h1>Loading ...</h1>;
-	if (isError) return;
-	if (!currentUser) return <h1>Not Found</h1>;
+	const [currentUser, setCurrentUser] = useState<User>()
+
+	async function getCurrentUser() {
+		let someUser = await storageGetItem('user');
+		setCurrentUser(someUser)
+	}
+
+	useEffect(() => {
+		getCurrentUser()
+	}, [])
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
-	console.log(currentUser);
+	// console.log(currentUser);
 
 	const useClickOutside = (
 		menuRef: RefObject<Element>,
@@ -224,9 +236,8 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${
-														active ? "bg-primary text-white" : "text-gray-900"
-													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${active ? "bg-primary text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
