@@ -9,15 +9,17 @@ import React, {
 	useRef,
 	useState,
 	MouseEvent,
+	RefObject,
 } from "react";
 
 import Link from "next/link";
-import { useLogout, useCheckAuth } from "@/services/user/checkAuth";
+import { useLogout, useCheckAuth, checkAuth } from "@/services/user/checkAuth";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ChangeEvent, memo } from "react";
 import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
+import { checkUserInSys } from "@/services/user/checkAuth";
 
 type MenuItem = {
 	type: string;
@@ -32,6 +34,11 @@ interface AddressComponent {
 
 interface GeocodeResult {
 	address_components: AddressComponent[];
+}
+
+interface Settings {
+	name: string;
+	onClick: () => void;
 }
 
 const Navbar = () => {
@@ -106,24 +113,30 @@ const Navbar = () => {
 	}
 
 	// currentUser
-	const [currentUser, loading] = useFetchUser();
+	const [currentUser, status] = useFetchUser();
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
+	console.log(currentUser);
 
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent<Element>) {
+	const useClickOutside = (
+		menuRef: RefObject<Element>,
+		setIsMenuOpen: (state: boolean) => void,
+	): void => {
+		const handleClickOutside = (event: MouseEvent<Element>): void => {
 			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
 				setIsMenuOpen(false);
 			}
-		}
-
-		window.addEventListener("click", handleClickOutside);
-
-		return () => {
-			window.removeEventListener("click", handleClickOutside);
 		};
-	}, []);
+
+		useEffect(() => {
+			window.addEventListener("click", handleClickOutside);
+
+			return () => {
+				window.removeEventListener("click", handleClickOutside);
+			};
+		}, [menuRef, setIsMenuOpen]);
+	};
 
 	function toggleMenuUser() {
 		setIsMenuOpen(!isMenuOpen);
@@ -223,7 +236,7 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			{!currentUser ? (
+			{!checkUserInSys() ? (
 				<div className="relative">
 					<Link href="/account/login">
 						<button
@@ -253,19 +266,19 @@ const Navbar = () => {
 							</span>
 						</button>
 					</Link>
-
-					{/* <button onClick={() => logout()}>LOGOUT</button> */}
 				</div>
 			) : (
 				<div className="relative" ref={menuRef}>
 					<button
-						className="bg-gray-300 rounded-full p-2 hover:bg-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 w-10 h-10"
+						className="bg-gray-300 rounded-full p-2 hover:bg-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 w-16 h-16"
 						onClick={toggleMenuUser}
 					>
 						{currentUser && (
-							<img
-								src="https://www.meme-arsenal.com/memes/35d872f93f0ce698a105d40e92536815.jpg"
-								// alt={currentUser.name?.slice(0, 1)}
+							<Image
+								src={currentUser.profile_image ? currentUser.profile_image : ""}
+								width={100}
+								height={100}
+								alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReiyHYtDJQ0t5jCs4j_PiD5ESMvPwnvHVa3w&usqp=CAU"
 								className=" rounded-full"
 							/>
 						)}
