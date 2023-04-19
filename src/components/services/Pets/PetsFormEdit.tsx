@@ -17,37 +17,38 @@ import { Pet } from "@/utils/types";
 type Props = {
 	onSubmit(values: PetsFormValues): void;
 	defaultValues?: Partial<PetsFormValues>;
-	imageUrl?: string;
+	// imageUrl?: string;
 };
 
 const createPetFormSchema = z.object({
 	title: z.string().nonempty("Это поле не может быть пустым!"),
 	breed: z.string(),
-	image: z
-		.instanceof(File)
-		.refine((file) => {
-			if (!file) {
-				// If no file is uploaded, skip validation
+	image: z.union([
+		z.string().url().optional(),
+		(typeof window !== "undefined" ? z.instanceof(File) : z.any())
+			.refine((file) => {
+				if (!file) {
+					// If no file is uploaded, skip validation
+					return true;
+				}
+				const validTypes = ["image/jpeg", "image/png", "image/gif"];
+				if (!validTypes.includes(file.type)) {
+					throw new Error(
+						"Неверный формат файла! Пожалуйста, загрузите файл в формате JPEG, PNG или GIF."
+					);
+				}
+				const maxSize = 15000000; // 15mb
+				if (file.size > maxSize) {
+					throw new Error(
+						"Максимальный размер файла 15 MB. Пожалуйста, загрузите файл меньшего размера."
+					);
+				}
 				return true;
-			}
-			const validTypes = ["image/jpeg", "image/png", "image/gif"];
-			if (!validTypes.includes(file.type)) {
-				throw new Error(
-					"Неверный формат файла! Пожалуйста, загрузите файл в формате JPEG, PNG или GIF.",
-				);
-			}
-			const maxSize = 500000; // 500 KB
-			if (file.size > maxSize) {
-				throw new Error(
-					"Максимальный размер файла 500 KB. Пожалуйста, загрузите файл меньшего размера.",
-				);
-			}
-			return true;
-		})
-		.nullable()
-		.optional(),
+			})
+			.nullable()
+			.optional(),
+	]).optional(),
 	description: z.string(),
-	price: z.number(),
 	category: z.preprocess((val) => {
 		if (typeof val === "number") return val;
 		if (typeof val === "string") return parseInt(val);
@@ -58,7 +59,6 @@ const createPetFormSchema = z.object({
 export type PetsFormValues = z.infer<typeof createPetFormSchema>;
 
 const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
-	const [createPet] = useCreatePet();
 
 	const form = useForm<PetsFormValues>({
 		initialValues: {
@@ -66,7 +66,6 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 			breed: "",
 			image: null,
 			description: "",
-			price: 0,
 			category: 0,
 			...defaultValues,
 		},
@@ -76,7 +75,9 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 	});
 
 	const handleSubmit = (values: PetsFormValues) => {
-		console.log("worked");
+		typeof values.image === 'string' ? values.image = null : null
+
+		console.log(values, "worked editpetform");
 		onSubmit(values);
 		form.reset();
 	};
@@ -110,13 +111,14 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 						{...form.getInputProps("breed")}
 						label="Порода"
 					/>
+					<img src={form.values.image} alt="error:(" width="100px" />
 
 					<FileInput
-						withAsterisk
+						// withAsterisk
 						placeholder="Выберите файл"
 						{...form.getInputProps("image")}
 						label="Выберите файл"
-						required
+					// required
 					/>
 					<TextInput
 						placeholder="Описание"

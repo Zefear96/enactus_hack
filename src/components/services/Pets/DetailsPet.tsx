@@ -22,6 +22,8 @@ import { useDeletePet } from "@/services/pets/deletePet";
 import { useFetchUser } from "@/services/user/fetchUser";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { GetServerSideProps } from "next";
+
 
 type Props = {
 	item: Pet;
@@ -64,7 +66,7 @@ const DetailsPet = ({ item }: Props) => {
 							<Menu.Dropdown>
 								{currentUser?.email === item.owner ? (
 									<>
-										<Link href={`/services/pets/edit`}>
+										<Link href={`/services/pets/edit/${item.id}`}>
 											<Menu.Item icon={<IconAdjustments size={rem(14)} />}>
 												Редактировать
 											</Menu.Item>
@@ -168,3 +170,5 @@ const DetailsPet = ({ item }: Props) => {
 };
 
 export default DetailsPet;
+
+
