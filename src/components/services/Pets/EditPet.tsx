@@ -13,17 +13,6 @@ type Props = {
 };
 
 type PropsOnePet = {
-	// petId: number;
-	// data: {
-	// 	title: string;
-	// 	breed: string;
-	// 	image: any;
-	// 	description: string;
-	// 	price: number;
-	// 	category: number;
-	// 	id: number;
-	// 	owner: string;
-	// };
 
 	title: string;
 	breed: string;
@@ -34,10 +23,6 @@ type PropsOnePet = {
 	id: number;
 	owner: string;
 };
-
-// type PropsId = {
-// 	petId: number;
-// };
 
 const EditPet = ({ petId }: Props) => {
 	const [editPet, { isLoading, isError }] = useEditPet();
@@ -57,7 +42,7 @@ const EditPet = ({ petId }: Props) => {
 			data: values,
 		});
 
-		router.push(`/services/pets/${onePet.id}`);
+		router.push(`/services/pets/${onePet.id}/`);
 	};
 
 	if (isLoading) return <h1>Loading ...</h1>;
@@ -82,20 +67,20 @@ const EditPet = ({ petId }: Props) => {
 
 export default EditPet;
 
-// export const getServerSideProps: GetServerSideProps<
-// 	Props,
-// 	{ petId: string }
-// > = async (context) => {
-// 	const petId = context.params?.petId ? parseInt(context.params?.petId) : null;
+export const getServerSideProps: GetServerSideProps<
+	Props,
+	{ petId: string }
+> = async (context) => {
+	const petId = context.params?.petId ? parseInt(context.params?.petId) : null;
 
-// 	if (!petId) {
-// 		return {
-// 			notFound: true,
-// 		};
-// 	}
-// 	return {
-// 		props: {
-// 			petId,
-// 		},
-// 	};
-// };
+	if (!petId) {
+		return {
+			notFound: true,
+		};
+	}
+	return {
+		props: {
+			petId,
+		},
+	};
+};

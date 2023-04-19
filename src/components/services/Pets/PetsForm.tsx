@@ -139,7 +139,6 @@ const PetsForm = ({ onSubmit, defaultValues = {} }: Props) => {
 						{...form.getInputProps("contact")}
 						label="Контакты"
 					/>
-					<img src={form.values.image} alt="error:(" width="100px" />
 					<TextInput
 						placeholder="Описание"
 						{...form.getInputProps("description")}
