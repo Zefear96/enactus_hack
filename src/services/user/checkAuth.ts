@@ -5,7 +5,7 @@ import {
 	storageSetItem,
 	storageRemoveItem,
 } from "@/utils/storage";
-import { useCallback } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 export const checkAuth = async () => {
@@ -21,7 +21,7 @@ export const checkAuth = async () => {
 			{ refresh: refreshToken },
 		);
 
-		console.log(data, "refreshWorked");
+		// console.log(data, "refreshWorked");
 
 		storageSetItem("app.accessToken", data.access);
 		storageSetItem("app.refreshToken", refreshToken);
@@ -76,5 +76,16 @@ export const checkUserInSys = () => {
 		refreshToken = localStorage.getItem("app.refreshToken");
 	}
 
-	return accessToken && refreshToken;
+	return Boolean(accessToken && refreshToken);
+};
+
+export const useCheckUser = () => {
+	const [isInSystem, setIsInSystem] = useState(false);
+
+	useEffect(() => {
+		const val = checkUserInSys();
+		setIsInSystem(val);
+	}, [checkUserInSys()]);
+
+	return isInSystem;
 };

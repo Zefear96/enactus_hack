@@ -19,7 +19,7 @@ import { ChangeEvent, memo } from "react";
 import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
-import { checkUserInSys } from "@/services/user/checkAuth";
+import { useCheckUser } from "@/services/user/checkAuth";
 import { storageGetItem } from "@/utils/storage";
 import { User } from "@/utils/types";
 
@@ -46,6 +46,7 @@ interface Settings {
 const Navbar = () => {
 	const logout = useLogout();
 	const [refresh] = useCheckAuth();
+	const isInSystem = useCheckUser();
 
 	React.useEffect(() => {
 		refresh();
@@ -110,12 +111,14 @@ const Navbar = () => {
 		const currentCity = await data.city.split(" ");
 		// console.log(currentCity);
 
-		if (data === null || data === undefined) setCity("Unnamed Road");
+		if (data === null || data === undefined) {
+			setCity("Unnamed Road");
+		}
 		setCity(currentCity[1].toString());
 	}
 
 	// currentUser
-	// const [currentUser, { isLoading, isError }] = useFetchUser();
+	const [currentUser, { isLoading, isError }] = useFetchUser();
 	// if (isLoading) return <h1>Loading ...</h1>;
 	// if (isError) return <h1>not found</h1>;
 	// if (!currentUser) return <h1>not found</h1>;
@@ -247,7 +250,7 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			{!checkUserInSys() ? (
+			{!isInSystem ? (
 				<div className="relative">
 					<Link href="/account/login">
 						<button
