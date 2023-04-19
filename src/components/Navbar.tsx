@@ -120,39 +120,34 @@ const Navbar = () => {
 	// if (isError) return <h1>not found</h1>;
 	// if (!currentUser) return <h1>not found</h1>;
 
-	const [currentUser, setCurrentUser] = useState<User>()
+	const [currentUser, setCurrentUser] = useState<User>();
 
 	async function getCurrentUser() {
-		let someUser = await storageGetItem('user');
-		setCurrentUser(someUser)
+		let someUser = await storageGetItem("user");
+		setCurrentUser(someUser);
 	}
 
 	useEffect(() => {
-		getCurrentUser()
-	}, [])
+		getCurrentUser();
+	}, []);
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	// console.log(currentUser);
 
-	const useClickOutside = (
-		menuRef: RefObject<Element>,
-		setIsMenuOpen: (state: boolean) => void,
-	): void => {
-		const handleClickOutside = (event: MouseEvent<Element>): void => {
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent<Element>) {
 			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
 				setIsMenuOpen(false);
 			}
+		}
+
+		window.addEventListener("click", handleClickOutside);
+
+		return () => {
+			window.removeEventListener("click", handleClickOutside);
 		};
-
-		useEffect(() => {
-			window.addEventListener("click", handleClickOutside);
-
-			return () => {
-				window.removeEventListener("click", handleClickOutside);
-			};
-		}, [menuRef, setIsMenuOpen]);
-	};
+	}, []);
 
 	function toggleMenuUser() {
 		setIsMenuOpen(!isMenuOpen);
@@ -236,8 +231,9 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${active ? "bg-primary text-white" : "text-gray-900"
-														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${
+														active ? "bg-primary text-white" : "text-gray-900"
+													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>

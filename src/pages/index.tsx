@@ -23,22 +23,6 @@ import { checkUserInSys } from "@/services/user/checkAuth";
 import React from "react";
 
 export default function Home() {
-	// const [currentUser] = useFetchUser();
-	// console.log(currentUser);
-	console.log(checkUserInSys());
-
-	// let accessToken = null;
-
-	// if (typeof localStorage !== "undefined") {
-	// 	accessToken = localStorage.getItem("app.accessToken");
-	// }
-
-	// let refreshToken = null;
-
-	// if (typeof localStorage !== "undefined") {
-	// 	refreshToken = localStorage.getItem("app.refreshToken");
-	// }
-
 	const href = checkUserInSys() ? "/services/add/pets" : "/account/login";
 
 	return (
