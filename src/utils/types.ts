@@ -45,3 +45,11 @@ export type Commercial = {
 	is_confirmed: boolean;
 	image: string | null
 }
+
+export type Review = {
+	id: number;
+	name: string;
+	contact: string;
+	theme: string;
+	message: string
+}

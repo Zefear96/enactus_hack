@@ -1,12 +1,22 @@
 import React from 'react';
-import AddReviewForm from '@/components/reviews/AddReviewForm';
+import AddReviewForm, { ReviewFormValues } from '@/components/reviews/AddReviewForm';
+import { useCreateReview } from '@/services/reviews/createReview';
+import { useRouter } from 'next/router';
 
-const AddReviewPage = () => {
+const AddReview = () => {
+    const [createReview] = useCreateReview();
+    const router = useRouter();
+
+    const handleSubmit = (values: ReviewFormValues) => {
+        createReview(values);
+        router.push("/reviews/thanks")
+    }
+
     return (
-        <div>
-            {/* <AddReviewForm/> */}
+        <div className="flex justify-center items-center m-auto my-10 w-4/12">
+            <AddReviewForm onSubmit={handleSubmit} />
         </div>
     )
 }
 
-export default AddReviewPage
+export default AddReview

@@ -8,20 +8,15 @@ import React, {
 	useEffect,
 	useRef,
 	useState,
-	MouseEvent,
-	RefObject,
 } from "react";
 
 import Link from "next/link";
-import { useLogout, useCheckAuth, checkAuth } from "@/services/user/checkAuth";
+import { useLogout } from "@/services/user/logout";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { ChangeEvent, memo } from "react";
+import { ChangeEvent } from "react";
 import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
-import { checkUserInSys } from "@/services/user/checkAuth";
-import { storageGetItem } from "@/utils/storage";
-import { User } from "@/utils/types";
 
 type MenuItem = {
 	type: string;
@@ -43,100 +38,32 @@ interface Settings {
 	onClick: () => void;
 }
 
+
 const Navbar = () => {
 	const logout = useLogout();
-	const [refresh] = useCheckAuth();
-
-	React.useEffect(() => {
-		refresh();
-	}, []);
-
-	const lang: MenuItem[] = [
-		{
-			type: "Рус",
-			link: "/lang",
-		},
-		{
-			type: "Кырг",
-			link: "/lang",
-		},
-	];
-
-	const services: MenuItem[] = [
-		{
-			type: "Хостелы/Приюты",
-			link: "/services",
-		},
-		{
-			type: "Вет.клиники/Аптеки",
-			link: "/services",
-		},
-		{
-			type: "Акссесуары",
-			link: "/services",
-		},
-		{
-			type: "Зоомагазины",
-			link: "/services",
-		},
-		{
-			type: "Купить питомца",
-			link: "/services",
-		},
-		{
-			type: "Животные даром",
-			link: "/services/pets",
-		},
-	];
-
-	const [isOpen, setIsOpen] = useState(false);
-	const toggleMenu = () => setIsOpen(!isOpen);
 
 	// SEARCH
 	const dispatch = useAppDispatch();
 	const searchText = useAppSelector((state) => state.petsFilters.search);
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const val = e.currentTarget.value;
-		dispatch(setSearchText(val));
-	};
+	const [isOpen, setIsOpen] = useState(false);
+	const toggleMenu = () => setIsOpen(!isOpen);
+
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	// GEOLOCATION
 	const [city, setCity] = useState<string | null>(null);
 	const [data] = useFetchGeo();
+
+
 	// console.log(data);
 
-	async function handleGetGeo() {
-		const currentCity = await data.city.split(" ");
-		// console.log(currentCity);
-
-		if (data === null || data === undefined) setCity("Unnamed Road");
-		setCity(currentCity[1].toString());
-	}
-
-	// currentUser
-	// const [currentUser, { isLoading, isError }] = useFetchUser();
-	// if (isLoading) return <h1>Loading ...</h1>;
-	// if (isError) return <h1>not found</h1>;
-	// if (!currentUser) return <h1>not found</h1>;
-
-	const [currentUser, setCurrentUser] = useState<User>();
-
-	async function getCurrentUser() {
-		let someUser = await storageGetItem("user");
-		setCurrentUser(someUser);
-	}
+	// user
+	const [user, { isLoading, isError }] = useFetchUser();
 
 	useEffect(() => {
-		getCurrentUser();
-	}, []);
-
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const menuRef = useRef<HTMLDivElement>(null);
-	// console.log(currentUser);
-
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent<Element>) {
+		const handleClickOutside = (event: MouseEvent) => {
 			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
 				setIsMenuOpen(false);
 			}
@@ -149,8 +76,22 @@ const Navbar = () => {
 		};
 	}, []);
 
+
 	function toggleMenuUser() {
 		setIsMenuOpen(!isMenuOpen);
+	}
+
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const val = e.currentTarget.value;
+		dispatch(setSearchText(val));
+	};
+
+	async function handleGetGeo() {
+		const currentCity = await data.city.split(" ");
+		// console.log(currentCity);
+
+		if (data === null || data === undefined) setCity("Unnamed Road");
+		setCity(currentCity[1].toString());
 	}
 
 	return (
@@ -231,9 +172,8 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${
-														active ? "bg-primary text-white" : "text-gray-900"
-													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${active ? "bg-primary text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
@@ -247,7 +187,7 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			{!checkUserInSys() ? (
+			{!user ? (
 				<div className="relative">
 					<Link href="/account/login">
 						<button
@@ -284,9 +224,9 @@ const Navbar = () => {
 						className="bg-gray-300 rounded-full p-2 hover:bg-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 w-16 h-16"
 						onClick={toggleMenuUser}
 					>
-						{currentUser && (
+						{user && (
 							<Image
-								src={currentUser.profile_image ? currentUser.profile_image : ""}
+								src={user.profile_image ? user.profile_image : ""}
 								width={100}
 								height={100}
 								alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReiyHYtDJQ0t5jCs4j_PiD5ESMvPwnvHVa3w&usqp=CAU"
@@ -358,3 +298,41 @@ export default Navbar;
 // 		props: { session },
 // 	};
 // };
+
+const lang: MenuItem[] = [
+	{
+		type: "Рус",
+		link: "/lang",
+	},
+	{
+		type: "Кырг",
+		link: "/lang",
+	},
+];
+
+const services: MenuItem[] = [
+	{
+		type: "Хостелы/Приюты",
+		link: "/services",
+	},
+	{
+		type: "Вет.клиники/Аптеки",
+		link: "/services",
+	},
+	{
+		type: "Акссесуары",
+		link: "/services",
+	},
+	{
+		type: "Зоомагазины",
+		link: "/services",
+	},
+	{
+		type: "Купить питомца",
+		link: "/services",
+	},
+	{
+		type: "Животные даром",
+		link: "/services/pets",
+	},
+];

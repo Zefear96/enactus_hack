@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import { FooterLinks } from "@/components/Footer";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import { InitStore } from "@/store/initStore";
 
 // declare module "@mantine/modals" {
 //   export interface MantineModalsOverride {
@@ -89,6 +90,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					<Component {...pageProps} />
 					<FooterLinks data={data} />
 					{/* </ModalsProvider> */}
+					<InitStore />
 				</MantineProvider>
 			</QueryClientProvider>
 		</Provider>

@@ -1,8 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
-// import { User } from '@/utils/types';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { baseAxios } from "@/utils/baseAxios";
 import { storageSetItem } from "@/utils/storage";
-import { access } from "fs";
+import { useAppDispatch } from "@/store/hooks";
+import { updateTokens } from "@/store/slices/auth.slice";
 
 type loginUserArg = {
 	phone_number: string;
@@ -15,16 +15,25 @@ const loginUser = async (arg: loginUserArg) => {
 		arg,
 	);
 
-	// console.log(data);
-	storageSetItem("app.accessToken", data.access);
-	storageSetItem("app.refreshToken", data.refresh);
-
 	return data;
 };
 
 export const useLoginUser = () => {
+	const dispatch = useAppDispatch();
+	const queryClient = useQueryClient();
+
 	const mutation = useMutation({
 		mutationFn: loginUser,
+		onSuccess(data) {
+			dispatch(updateTokens({ accessToken: data.access, refreshToken: data.refresh }));
+		},
+		onSettled() {
+			queryClient.invalidateQueries({
+				predicate(query) {
+					return query.queryKey?.[0] === "account";
+				},
+			})
+		},
 	});
 
 	return [mutation.mutateAsync, mutation] as const;

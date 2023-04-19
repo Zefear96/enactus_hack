@@ -5,7 +5,8 @@ import {
     FocusTrap,
     TextInput,
     Group,
-    Title
+    Title,
+    Textarea,
 
 } from "@mantine/core";
 
@@ -70,13 +71,14 @@ const AddReviewForm = ({ onSubmit, defaultValues = {} }: Props) => {
                         variant="filled"
                         my='sm'
                     />
-                    <TextInput
+                    <Textarea
                         withAsterisk
                         {...form.getInputProps("message")}
                         label="Сообщение"
                         variant="filled"
                         my='sm'
-                        height='20%'
+                        minRows={4}
+                        maxRows={6}
                     />
 
                     <Group position="right" mt="md">
