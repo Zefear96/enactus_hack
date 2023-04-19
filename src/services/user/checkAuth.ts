@@ -51,6 +51,7 @@ export const useLogout = () => {
 	const logout = useCallback(() => {
 		storageRemoveItem("app.refreshToken");
 		storageRemoveItem("app.accessToken");
+		storageRemoveItem("user");
 
 		router.push("/");
 	}, []);
