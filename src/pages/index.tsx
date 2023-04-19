@@ -19,18 +19,27 @@ import Vector4top from "../../public/Vector4top.png";
 import feedback from "../../public/feedback.png";
 import statestitle from "../../public/statestitle.png";
 import { useFetchUser, fetchUser } from "@/services/user/fetchUser";
+import { checkUserInSys } from "@/services/user/checkAuth";
 import React from "react";
 
 export default function Home() {
-	const [currentUser] = useFetchUser();
-	console.log(currentUser);
+	// const [currentUser] = useFetchUser();
+	// console.log(currentUser);
+	console.log(checkUserInSys());
 
-	React.useEffect(() => {
-		console.log(currentUser);
-	}, [currentUser]);
+	// let accessToken = null;
 
-	const href =
-		currentUser !== null || undefined ? "/services/add/pets" : "/account/login";
+	// if (typeof localStorage !== "undefined") {
+	// 	accessToken = localStorage.getItem("app.accessToken");
+	// }
+
+	// let refreshToken = null;
+
+	// if (typeof localStorage !== "undefined") {
+	// 	refreshToken = localStorage.getItem("app.refreshToken");
+	// }
+
+	const href = checkUserInSys() ? "/services/add/pets" : "/account/login";
 
 	return (
 		<>
