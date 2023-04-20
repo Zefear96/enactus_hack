@@ -32,6 +32,7 @@ export type Pet = {
 	price: number;
 	category: number;
 	title: string;
+	comments: any[]
 };
 
 export type Commercial = {
@@ -43,7 +44,10 @@ export type Commercial = {
 	contact: string;
 	social_net: string;
 	is_confirmed: boolean;
-	image: string | null
+	image: string | null;
+	ratings: {
+		rating__avg: number | null
+	};
 }
 
 export type Review = {
@@ -52,4 +56,13 @@ export type Review = {
 	contact: string;
 	theme: string;
 	message: string
+}
+
+export type Comment = {
+	id: number;
+	owner: string;
+	body: string;
+	created_at: string;
+	updated_at: string;
+	post: number
 }

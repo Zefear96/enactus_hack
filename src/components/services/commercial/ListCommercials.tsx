@@ -14,7 +14,8 @@ const ListCommercials = () => {
         <div>
             <div className=" grid grid-cols-2 gap-10 w-3/4 mx-auto">
                 {data.map((item) => (
-                    <ItemCommercial item={item} key={item.id} />
+                    <Link href={`/services/commercials/${item.id}`} key={item.id}><ItemCommercial item={item} key={item.id} /></Link>
+
                 ))}
             </div>
             <div style={{
