@@ -48,49 +48,49 @@ const ItemCommercial = ({ item }: { item: Props }) => {
         typeof item.image === "string" ? item.image : URL.createObjectURL(item.image);
 
     return (
-        <Link href={`/services/commercials/${item.id}`}>
-            <Card
-                shadow="sm" padding="lg" radius="md" withBorder
-                className={classes.card}
-            >
-                <Card.Section>
-                    <img
-                        className={classes.picture}
-                        src={
-                            item.image
-                                ? imageURL
-                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
-                        }
-                        alt="error :("
-                    />
-                </Card.Section>
 
-                <Group mt="10px" mb="xs">
-                    <Text weight={700} size="36px" >{item.category}</Text>
-                    <Text weight={700} size="36px" c="#FFC800">"{item.title}"</Text>
-                </Group>
+        <Card
+            shadow="sm" padding="lg" radius="md" withBorder
+            className={classes.card}
+        >
+            <Card.Section>
+                <img
+                    className={classes.picture}
+                    src={
+                        item.image
+                            ? imageURL
+                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
+                    }
+                    alt="error :("
+                />
+            </Card.Section>
 
-                <Text mt="xs" size="sm" className='flex items-end '>
-                    <Image src={address} alt="error" style={{ marginRight: '10px' }} />
-                    {item.address}
-                </Text>
+            <Group mt="10px" mb="xs">
+                <Text weight={700} size="36px" >{item.category}</Text>
+                <Text weight={700} size="36px" c="#FFC800">"{item.title}"</Text>
+            </Group>
 
-                <Text mt="xs" size="sm" className='flex items-end '>
-                    <Image src={time} alt="error" style={{ marginRight: '10px' }} />
-                    Ежедневно 08:00-22:00
-                </Text>
-                <Text mt="xs" size="sm" className='flex items-end'>
-                    <Image src={contact} alt="error" style={{ marginRight: '10px' }} />
-                    {item.contact}
-                </Text>
-                <Text mt="xs" size="sm" className='flex items-end'>
-                    <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
-                    <a href={item.social_net}>
-                        {item.social_net}
-                    </a>
-                </Text>
-            </Card>
-        </Link>
+            <Text mt="xs" size="sm" className='flex items-end '>
+                <Image src={address} alt="error" style={{ marginRight: '10px' }} />
+                {item.address}
+            </Text>
+
+            <Text mt="xs" size="sm" className='flex items-end '>
+                <Image src={time} alt="error" style={{ marginRight: '10px' }} />
+                Ежедневно 08:00-22:00
+            </Text>
+            <Text mt="xs" size="sm" className='flex items-end'>
+                <Image src={contact} alt="error" style={{ marginRight: '10px' }} />
+                {item.contact}
+            </Text>
+            <Text mt="xs" size="sm" className='flex items-end'>
+                <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
+                <a href={item.social_net}>
+                    {item.social_net}
+                </a>
+            </Text>
+        </Card>
+
     )
 }
 

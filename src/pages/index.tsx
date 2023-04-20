@@ -20,11 +20,15 @@ import feedback from "../../public/feedback.png";
 import statestitle from "../../public/statestitle.png";
 import { useFetchUser } from "@/services/user/fetchUser";
 import React from "react";
+import { useFetchReviews } from "@/services/reviews/fetchReviews";
 
 export default function Home() {
 	const [user] = useFetchUser()
+	const [reviews] = useFetchReviews();
 
 	const href = user ? "/services/add/pets" : "/account/login";
+
+	if (!reviews) return <h1>Еще нет отзывов</h1>
 
 	return (
 		<>
@@ -149,11 +153,14 @@ export default function Home() {
 						}}
 					>
 						<div className="feedblack-text mt-20 w-2/3 mx-auto">
-							<h3 style={{ borderBottom: "1px solid gray" }}>Luisa12_</h3>
-							<p>
-								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi
-								euismod viverra. Tincidunt ultricies porttitor netus ut dolor!!!
-							</p>
+							{reviews.map((item) => (
+								<div key={item.id}>
+									<h3 style={{ borderBottom: "1px solid gray" }}>{item.name}</h3>
+									<p>
+										{item.message}
+									</p>
+								</div>
+							))}
 						</div>
 						<Link href="/reviews/add/">
 							<button

@@ -6,14 +6,20 @@ import {
 	Menu,
 	ActionIcon,
 	Image,
-	SimpleGrid,
 	rem,
+	Accordion,
+	useMantineTheme,
+	createStyles,
+	TextInput,
 } from "@mantine/core";
 import {
 	IconDots,
 	IconAdjustments,
 	IconTrash,
 	IconFlag,
+	IconMessage,
+	IconSend,
+
 } from "@tabler/icons-react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -23,18 +29,66 @@ import { useFetchUser } from "@/services/user/fetchUser";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
-
+import { useCreateComment } from "@/services/pets/comments/createComment";
+import CommentItem from './Comments/CommentItem';
 
 type Props = {
 	item: Pet;
 };
 
+type OneComment = {
+	body: string;
+	post: number;
+}
+
+const useStyles = createStyles((theme) => ({
+	body: {
+		paddingLeft: rem(54),
+		paddingTop: theme.spacing.sm,
+		fontSize: theme.fontSizes.sm,
+	},
+	comment: {
+		padding: `${theme.spacing.lg} ${theme.spacing.xl}`,
+	},
+}));
+
 const DetailsPet = ({ item }: Props) => {
 	const [deletePet] = useDeletePet();
 	const [currentUser] = useFetchUser();
 	const router = useRouter();
+	const [oneComment, setOneComment] = useState<OneComment>({ body: '', post: item.id });
+
+	const [createComment] = useCreateComment();
 
 	let [isOpen, setIsOpen] = useState(false);
+	const theme = useMantineTheme();
+	const getColor = (color: string) => theme.colors[color][theme.colorScheme === 'dark' ? 5 : 7];
+	const { classes } = useStyles();
+
+	const sendComment = () => {
+		console.log(oneComment);
+
+		createComment(oneComment);
+		setOneComment({
+			...oneComment,
+			body: '',
+		});
+
+	}
+
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(e.currentTarget.value)
+		setOneComment({
+			...oneComment,
+			body: e.currentTarget.value,
+		});
+	};
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			// 👇 Get input value
+			sendComment()
+		}
+	};
 
 	function closeModal() {
 		setIsOpen(false);
@@ -109,6 +163,35 @@ const DetailsPet = ({ item }: Props) => {
 						alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
 					/>
 				</Card.Section>
+				<Accordion variant="contained" mt='md'>
+					<Accordion.Item value="comments">
+						<Accordion.Control icon={<IconMessage size={rem(20)} color='#988CE1' />}>
+							Comments
+						</Accordion.Control>
+						<Accordion.Panel>
+							{
+								item.comments.map((elem) => (
+									<CommentItem key={elem.id} item={elem} />
+								))
+							}
+							<div className="flex justify-between mt-3">
+								<div className='w-11/12'>
+									<TextInput
+										withAsterisk
+										placeholder="Оставьте свой комментарий"
+										onChange={handleOnChange}
+										onKeyDown={handleKeyDown}
+										value={oneComment.body}
+										required
+									/>
+								</div>
+								<ActionIcon onClick={sendComment}>
+									<IconSend size={rem(20)} color='#988CE1' />
+								</ActionIcon>
+							</div>
+						</Accordion.Panel>
+					</Accordion.Item>
+				</Accordion>
 			</Card>
 
 			{/* Modal */}
