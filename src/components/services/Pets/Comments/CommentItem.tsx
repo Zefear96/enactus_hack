@@ -17,7 +17,8 @@ type Props = {
     body: string;
     created_at: string;
     updated_at: string;
-    post: number
+    post: number;
+    profile_image: string | null
 }
 
 type EditedComment = {
@@ -83,7 +84,7 @@ const CommentItem = ({ item }: { item: Props }) => {
             <Paper withBorder radius="md" shadow="xs" my="sm" className={classes.comment} >
                 <div className="flex justify-between">
                     <Group>
-                        <Avatar src={null} alt={item.owner} radius="xl" />
+                        <Avatar src={item.profile_image} alt={item.owner} radius="xl" />
                         <div>
                             <Text size="sm">{item.owner}</Text>
                             <Text size="xs" color="dimmed">
