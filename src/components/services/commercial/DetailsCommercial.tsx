@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Text, Group, createStyles } from "@mantine/core";
+import React, { useState } from 'react';
+import { Card, Text, Group, createStyles, Rating } from "@mantine/core";
 import Image from "next/image";
 import contact from '../../../../public/contact.png';
 import address from '../../../../public/address.png';
@@ -7,6 +7,7 @@ import time from '../../../../public/time.png';
 import globe from '../../../../public/globe.png';
 import { Commercial } from '@/utils/types';
 import Link from "next/link";
+import { usePutRating } from '@/services/commercials/putRating';
 
 type Props = {
     item: Commercial;
@@ -39,6 +40,9 @@ const useStyles = createStyles((theme) => ({
 
 const DetailsCommercial = ({ item }: Props) => {
     const { classes } = useStyles();
+    const [value, setValue] = useState(0);
+    const [ratingOpen, setRatingOpen] = useState(false)
+    const [putRating] = usePutRating();
 
     return (
         <div className={classes.mainDetail}>
@@ -62,6 +66,13 @@ const DetailsCommercial = ({ item }: Props) => {
                     <Text weight={700} size="36px" >{item.category}</Text>
                     <Text weight={700} size="36px" c="#FFC800">"{item.title}"</Text>
                 </Group>
+                <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly defaultValue={0} />
+                <button className=' text-bluelogin' onClick={() => setRatingOpen(true)}>Поставить оценку</button>
+                {ratingOpen ? (<div className='flex mt-2'><Rating onChange={setValue} />
+                    <button className=' text-bluelogin ml-2 text-xs' onClick={() => {
+                        putRating({ id: item.id, rating: value });
+                        setRatingOpen(false)
+                    }}>Оценить</button></div>) : null}
                 <Text mt="xs" size="sm" className='flex items-end'>
                     {item.description}
                 </Text>
