@@ -17,7 +17,7 @@ export const fetchOneCommercial = async (arg: ArgCommercial) => {
 export const useFetchOneCommercial = (arg: ArgCommercial) => {
     const query = useQuery({
         queryFn: () => fetchOneCommercial(arg),
-        queryKey: ["commercials"],
+        queryKey: ["commercial"],
         initialData: null,
     })
     return [query.data, query] as const;

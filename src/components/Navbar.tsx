@@ -312,7 +312,7 @@ const lang: MenuItem[] = [
 const services: MenuItem[] = [
 	{
 		type: "Хостелы/Приюты",
-		link: "/services",
+		link: "/services/commercials",
 	},
 	{
 		type: "Вет.клиники/Аптеки",
