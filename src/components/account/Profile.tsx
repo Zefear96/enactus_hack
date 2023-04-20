@@ -116,7 +116,6 @@ const Profile = () => {
 						)}
 						<Link href="/account/collection">Мои публикации</Link>
 					</button>
-					{/* Надо будет поменять путь на его публикации */}
 
 					<button
 						className="flex items-center text-xl  py-3 my-3 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"

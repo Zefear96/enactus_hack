@@ -45,7 +45,7 @@ const ListPets = () => {
 	return (
 		<>
 			<div
-				className=" grid grid-cols-3 gap-10 w-3/4 mx-auto"
+				className=" grid grid-cols-3 gap-10 w-3/4 mx-auto my-10"
 				style={{ height: "700px" }}
 			>
 				{pets.results.map((item) => (

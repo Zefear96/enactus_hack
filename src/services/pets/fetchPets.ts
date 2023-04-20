@@ -19,9 +19,12 @@ export type FetchPetsArg = {
 };
 
 export const fetchPets = async (arg?: FetchPetsArg) => {
+	console.log(arg);
+
 	const { data } = await baseAxios.get<FetchPetsResponse>("/pets/get_pets/", {
 		params: arg,
 	});
+	console.log(data);
 
 	return data;
 };
