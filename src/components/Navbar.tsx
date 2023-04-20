@@ -3,12 +3,7 @@ import logo from "../../public/logo.png";
 import geomap from "../../public/geomap.png";
 import searchIcon from "../../public/searchIcon.png";
 import { Menu, Transition } from "@headlessui/react";
-import React, {
-	Fragment,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import { useLogout } from "@/services/user/logout";
@@ -38,7 +33,6 @@ interface Settings {
 	onClick: () => void;
 }
 
-
 const Navbar = () => {
 	const logout = useLogout();
 
@@ -56,7 +50,6 @@ const Navbar = () => {
 	const [city, setCity] = useState<string | null>(null);
 	const [data] = useFetchGeo();
 
-
 	// console.log(data);
 
 	// user
@@ -67,7 +60,7 @@ const Navbar = () => {
 			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
 				setIsMenuOpen(false);
 			}
-		}
+		};
 
 		window.addEventListener("click", handleClickOutside);
 
@@ -75,7 +68,6 @@ const Navbar = () => {
 			window.removeEventListener("click", handleClickOutside);
 		};
 	}, []);
-
 
 	function toggleMenuUser() {
 		setIsMenuOpen(!isMenuOpen);
@@ -172,8 +164,9 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${active ? "bg-primary text-white" : "text-gray-900"
-														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${
+														active ? "bg-primary text-white" : "text-gray-900"
+													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
@@ -238,12 +231,12 @@ const Navbar = () => {
 					{isMenuOpen && (
 						<div className="absolute right-0 top-full mt-2 bg-white rounded-md shadow-lg z-10">
 							<ul>
-								<Link href="account/">
+								<Link href="/account/">
 									<li className="px-4 py-2 hover:bg-primary transition-colors duration-300 cursor-pointer">
 										Мой профиль
 									</li>
 								</Link>
-								<Link href="services/add/pets">
+								<Link href="/services/add/pets">
 									<li className="px-4 py-2 hover:bg-primary transition-colors duration-300 cursor-pointer">
 										Добавить объявление
 									</li>

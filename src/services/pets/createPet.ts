@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pet } from "@/utils/types";
 import { baseAxios } from "@/utils/baseAxios";
 
@@ -35,8 +35,22 @@ const createPet = async (arg: createPetArg) => {
 };
 
 export const useCreatePet = () => {
+	const queryClient = useQueryClient();
+
 	const mutation = useMutation({
 		mutationFn: createPet,
+		onSettled() {
+			queryClient.invalidateQueries(["pets"]);
+		},
+
+		// onSuccess: (data) => {
+		// 	queryClient.setQueryData("pets", (existingData) => {
+		// 		if (existingData && existingData.length > 0) {
+		// 			return [...existingData, data];
+		// 		}
+		// 		return [data];
+		// 	});
+		// },
 	});
 
 	return [mutation.mutateAsync, mutation] as const;
