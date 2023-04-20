@@ -104,6 +104,8 @@ const DetailsPet = ({ item }: Props) => {
 		router.push("/services/pets");
 	}
 
+	// console.log(item.comments);
+
 	return (
 		<>
 			<Card withBorder shadow="sm" radius="md" className=" mx-auto my-8 w-1/2">
