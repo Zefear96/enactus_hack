@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from "next/link";
-import { Card, Text, Group, createStyles } from "@mantine/core";
+import { Card, Text, Group, createStyles, Rating } from "@mantine/core";
 import Image from "next/image";
 import contact from '../../../../public/contact.png';
 import address from '../../../../public/address.png';
@@ -17,6 +17,9 @@ type Props = {
     social_net: string;
     image: any;
     is_confirmed: boolean;
+    ratings: {
+        rating__avg: number | null
+    }
 }
 
 //mantine 
@@ -43,33 +46,32 @@ const ItemCommercial = ({ item }: { item: Props }) => {
     const { classes } = useStyles();
     console.log(item);
 
-
     const imageURL =
         typeof item.image === "string" ? item.image : URL.createObjectURL(item.image);
 
     return (
-        <Link href={`/services/commercials/${item.id}`}>
-            <Card
-                shadow="sm" padding="lg" radius="md" withBorder
-                className={classes.card}
-            >
-                <Card.Section>
-                    <img
-                        className={classes.picture}
-                        src={
-                            item.image
-                                ? imageURL
-                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
-                        }
-                        alt="error :("
-                    />
-                </Card.Section>
 
+        <Card
+            shadow="sm" padding="lg" radius="md" withBorder
+            className={classes.card}
+        >
+            <Card.Section>
+                <img
+                    className={classes.picture}
+                    src={
+                        item.image
+                            ? imageURL
+                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
+                    }
+                    alt="error :("
+                />
+            </Card.Section>
+            <Link href={`/services/commercials/${item.id}`} key={item.id}>
                 <Group mt="10px" mb="xs">
                     <Text weight={700} size="36px" >{item.category}</Text>
                     <Text weight={700} size="36px" c="#FFC800">"{item.title}"</Text>
                 </Group>
-
+                <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly />
                 <Text mt="xs" size="sm" className='flex items-end '>
                     <Image src={address} alt="error" style={{ marginRight: '10px' }} />
                     {item.address}
@@ -83,14 +85,14 @@ const ItemCommercial = ({ item }: { item: Props }) => {
                     <Image src={contact} alt="error" style={{ marginRight: '10px' }} />
                     {item.contact}
                 </Text>
-                <Text mt="xs" size="sm" className='flex items-end'>
-                    <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
-                    <a href={item.social_net}>
-                        {item.social_net}
-                    </a>
-                </Text>
-            </Card>
-        </Link>
+            </Link>
+            <Text mt="xs" size="sm" className='flex items-end'>
+                <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
+                <Link href={item.social_net} target="_blank" >
+                    {item.address}
+                </Link>
+            </Text>
+        </Card>
     )
 }
 

@@ -26,7 +26,7 @@ export type User = {
 export type Pet = {
 	id: number;
 	owner: string;
-	comments: [];
+	comments: any[];
 	title: string;
 	pet_name: string;
 	age: number;
@@ -49,12 +49,24 @@ export type Commercial = {
 	social_net: string;
 	is_confirmed: boolean;
 	image: string | null;
-};
+	ratings: {
+		rating__avg: number | null
+	};
+}
 
 export type Review = {
 	id: number;
 	name: string;
 	contact: string;
 	theme: string;
-	message: string;
-};
+	message: string
+}
+
+export type Comment = {
+	id: number;
+	owner: string;
+	body: string;
+	created_at: string;
+	updated_at: string;
+	post: number
+}

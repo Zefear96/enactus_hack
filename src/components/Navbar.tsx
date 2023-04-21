@@ -12,6 +12,7 @@ import { ChangeEvent } from "react";
 import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
+import person_white from '../../public/person_white.png'
 
 type MenuItem = {
 	type: string;
@@ -218,10 +219,10 @@ const Navbar = () => {
 					>
 						{user && (
 							<Image
-								src={user.profile_image ? user.profile_image : ""}
+								src={user.profile_image ? user.profile_image : person_white}
 								width={100}
 								height={100}
-								alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReiyHYtDJQ0t5jCs4j_PiD5ESMvPwnvHVa3w&usqp=CAU"
+								alt='error'
 								className=" rounded-full"
 							/>
 						)}
@@ -274,7 +275,7 @@ const lang: MenuItem[] = [
 const services: MenuItem[] = [
 	{
 		type: "Хостелы/Приюты",
-		link: "/services",
+		link: "/services/commercials",
 	},
 	{
 		type: "Вет.клиники/Аптеки",
