@@ -23,31 +23,33 @@ type Props = {
 const createPetFormSchema = z.object({
 	title: z.string().nonempty("Это поле не может быть пустым!"),
 	breed: z.string(),
-	image: z.union([
-		z.string().url().optional(),
-		(typeof window !== "undefined" ? z.instanceof(File) : z.any())
-			.refine((file) => {
-				if (!file) {
-					// If no file is uploaded, skip validation
+	image: z
+		.union([
+			z.string().url().optional(),
+			(typeof window !== "undefined" ? z.instanceof(File) : z.any())
+				.refine((file) => {
+					if (!file) {
+						// If no file is uploaded, skip validation
+						return true;
+					}
+					const validTypes = ["image/jpeg", "image/png", "image/gif"];
+					if (!validTypes.includes(file.type)) {
+						throw new Error(
+							"Неверный формат файла! Пожалуйста, загрузите файл в формате JPEG, PNG или GIF.",
+						);
+					}
+					const maxSize = 15000000; // 15mb
+					if (file.size > maxSize) {
+						throw new Error(
+							"Максимальный размер файла 15 MB. Пожалуйста, загрузите файл меньшего размера.",
+						);
+					}
 					return true;
-				}
-				const validTypes = ["image/jpeg", "image/png", "image/gif"];
-				if (!validTypes.includes(file.type)) {
-					throw new Error(
-						"Неверный формат файла! Пожалуйста, загрузите файл в формате JPEG, PNG или GIF."
-					);
-				}
-				const maxSize = 15000000; // 15mb
-				if (file.size > maxSize) {
-					throw new Error(
-						"Максимальный размер файла 15 MB. Пожалуйста, загрузите файл меньшего размера."
-					);
-				}
-				return true;
-			})
-			.nullable()
-			.optional(),
-	]).optional(),
+				})
+				.nullable()
+				.optional(),
+		])
+		.optional(),
 	description: z.string(),
 	category: z.preprocess((val) => {
 		if (typeof val === "number") return val;
@@ -59,7 +61,6 @@ const createPetFormSchema = z.object({
 export type PetsFormValues = z.infer<typeof createPetFormSchema>;
 
 const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
-
 	const form = useForm<PetsFormValues>({
 		initialValues: {
 			title: "",
@@ -75,7 +76,7 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 	});
 
 	const handleSubmit = (values: PetsFormValues) => {
-		typeof values.image === 'string' ? values.image = null : null
+		typeof values.image === "string" ? (values.image = null) : null;
 
 		console.log(values, "worked editpetform");
 		onSubmit(values);
@@ -118,7 +119,7 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 						placeholder="Выберите файл"
 						{...form.getInputProps("image")}
 						label="Выберите файл"
-					// required
+						// required
 					/>
 					<TextInput
 						placeholder="Описание"

@@ -101,7 +101,7 @@ const DetailsPet = ({ item }: Props) => {
 	function handleDelete() {
 		deletePet(item);
 		closeModal();
-		router.push("/services/pets");
+		router.push("/account/collection");
 	}
 
 	// console.log(item.comments);
@@ -255,5 +255,3 @@ const DetailsPet = ({ item }: Props) => {
 };
 
 export default DetailsPet;
-
-

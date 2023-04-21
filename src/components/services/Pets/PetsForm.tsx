@@ -28,6 +28,7 @@ const createPetFormSchema = z.object({
 	contact: z.string(),
 	pet_name: z.string(),
 	image: (typeof window !== "undefined" ? z.instanceof(File) : z.any())
+		.transform((val) => val || null) // замена пустых значений на null
 		.refine((file) => {
 			if (!file || !(file instanceof File)) {
 				// If no file is uploaded, skip validation

@@ -26,13 +26,17 @@ export type User = {
 export type Pet = {
 	id: number;
 	owner: string;
+	comments: any[];
+	title: string;
+	pet_name: string;
+	age: number;
+	address: string;
+	contact: string;
 	breed: string;
-	image: string | null;
+	image: string;
 	description: string;
 	price: number;
 	category: number;
-	title: string;
-	comments: any[]
 };
 
 export type Commercial = {
