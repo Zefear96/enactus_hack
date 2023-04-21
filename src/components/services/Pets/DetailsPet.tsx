@@ -24,7 +24,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 
-
 type Props = {
 	item: Pet;
 };
@@ -47,7 +46,7 @@ const DetailsPet = ({ item }: Props) => {
 	function handleDelete() {
 		deletePet(item);
 		closeModal();
-		router.push("/services/pets");
+		router.push("/account/collection");
 	}
 
 	return (
@@ -170,5 +169,3 @@ const DetailsPet = ({ item }: Props) => {
 };
 
 export default DetailsPet;
-
-

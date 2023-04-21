@@ -49,10 +49,9 @@ const Navbar = () => {
 	// GEOLOCATION
 	const [city, setCity] = useState<string | null>(null);
 	const [data] = useFetchGeo();
-
 	// console.log(data);
 
-	// user
+	// USER
 	const [user, { isLoading, isError }] = useFetchUser();
 
 	useEffect(() => {
@@ -260,37 +259,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// import { getSession } from "next-auth/client";
-// import { useRouter } from "next/router";
-// import { GetServerSideProps } from "next";
-
-// interface ProfileProps {
-// 	session: {
-// 		user: {
-// 			name: string;
-// 		};
-// 	};
-// }
-
-// export const getServerSideProps: GetServerSideProps<ProfileProps> = async (
-// 	context,
-// ) => {
-// 	const session = await getSession(context);
-
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: "/login",
-// 				permanent: false,
-// 			},
-// 		};
-// 	}
-
-// 	return {
-// 		props: { session },
-// 	};
-// };
 
 const lang: MenuItem[] = [
 	{

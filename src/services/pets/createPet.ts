@@ -20,9 +20,16 @@ const createPet = async (arg: createPetArg) => {
 
 	Object.entries(arg).forEach(([key, value]) => {
 		const stringValue = value instanceof Blob ? value : value?.toString();
+
+		// if (key === "image") {
+		// 	formData.append(key, value ?? null); // добавляем null если value является null или undefined
+		// 	return;
+		// }
+
 		if (!stringValue) return;
 
 		formData.append(key, stringValue);
+		console.log(formData);
 	});
 
 	const { data } = await baseAxios.post<Pet>("/pets/create_pets/", formData, {

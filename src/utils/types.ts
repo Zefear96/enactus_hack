@@ -26,12 +26,17 @@ export type User = {
 export type Pet = {
 	id: number;
 	owner: string;
+	comments: [];
+	title: string;
+	pet_name: string;
+	age: number;
+	address: string;
+	contact: string;
 	breed: string;
-	image: string | null;
+	image: string;
 	description: string;
 	price: number;
 	category: number;
-	title: string;
 };
 
 export type Commercial = {
@@ -43,13 +48,13 @@ export type Commercial = {
 	contact: string;
 	social_net: string;
 	is_confirmed: boolean;
-	image: string | null
-}
+	image: string | null;
+};
 
 export type Review = {
 	id: number;
 	name: string;
 	contact: string;
 	theme: string;
-	message: string
-}
+	message: string;
+};
