@@ -5,7 +5,6 @@ import searchIcon from "../../public/searchIcon.png";
 import { Menu, Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
-import Link from "next/link";
 import { useLogout } from "@/services/user/logout";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ChangeEvent } from "react";
@@ -13,6 +12,9 @@ import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
 import person_white from '../../public/person_white.png'
+import { IconHeart } from "@tabler/icons-react";
+import { rem } from "@mantine/core";
+import Link from "next/link";
 
 type MenuItem = {
 	type: string;
@@ -134,7 +136,6 @@ const Navbar = () => {
 						</svg>
 					</div>
 				</div>
-
 				<div className="flex mx-auto justify-center">
 					<Menu as="div" className="relative inline-block text-left mx-auto">
 						<div>
@@ -164,9 +165,8 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${
-														active ? "bg-primary text-white" : "text-gray-900"
-													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${active ? "bg-primary text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
@@ -178,6 +178,10 @@ const Navbar = () => {
 						</Transition>
 					</Menu>
 				</div>
+
+				<Link href={"/favorites"} style={{ margin: '0', width: '40px' }}>
+					<IconHeart className=" cursor-pointer" size='2rem' color="#4526FF" />
+				</Link>
 			</div>
 
 			{!user ? (

@@ -136,12 +136,12 @@ export function FooterLinks({ data }: FooterLinksProps) {
                 </Group>
                 <Link href="/reviews/add/" >
                     <button
-                        className="bg-bluelogin text-yellowlogin w-60 mb-4 rounded-3xl h-10 relative z-[1] hover:bg-yellowlogin hover:text-bluelogin"
+                        className="bg-yellowlogin text-bluelogin w-60 mb-4 rounded-3xl h-10 relative z-[1] hover:bg-bluelogin hover:text-yellowlogin"
                         onMouseOver={(e) => {
-                            e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+                            e.currentTarget.style.boxShadow = "none";
                         }}
                         onMouseOut={(e) => {
-                            e.currentTarget.style.boxShadow = "none";
+                            e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
                         }}
                     >
                         Напишите нам
