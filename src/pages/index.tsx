@@ -89,187 +89,194 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="our-mission max-w-screen-xl mx-auto">
-				<Image src={mission} alt="error" className=" mt-20 mx-auto" />
-				<Image src={logocentr} alt="error" className=" mx-auto" />
-				<h2 className=" w-3/4  mx-auto text-center">
-					<span className=" text-bluelogin font-bold text-2xl ">
-						Наша миссия
-					</span>
-					- помочь животным найти добрые руки! Мы хотим объединить
-					питомники/приюты/частных заводчиков и людей ищущих на одной платформе,
-					чтобы все животные имели шанс найти своего доброго и любящего хозяина.
-				</h2>
+			<section id="aboutus">
+				<div className="our-mission max-w-screen-xl mx-auto">
+					<Image src={mission} alt="error" className=" mt-20 mx-auto" />
+					<Image src={logocentr} alt="error" className=" mx-auto" />
+					<h2 className=" w-3/4  mx-auto text-center">
+						<span className=" text-bluelogin font-bold text-2xl ">
+							Наша миссия
+						</span>
+						- помочь животным найти добрые руки! Мы хотим объединить
+						питомники/приюты/частных заводчиков и людей ищущих на одной платформе,
+						чтобы все животные имели шанс найти своего доброго и любящего хозяина.
+					</h2>
 
-				<div className="">
+					<div className="">
+						<ul className="flex justify-around mt-10 text-center">
+							<li className="w-1/3 ">
+								<Image src={li1} alt="error" className="mx-auto" />
+								<h3>Объявления</h3>
+								<p>
+									На сайте можно разместить неограниченное количество объявлений о
+									продаже животных
+								</p>
+							</li>
+							<li className="w-1/3 ">
+								<Image src={li2} alt="error" className="mx-auto" />
+								<h3>Легкие покупки</h3>
+								<p>
+									Клиент покупает у продавца питомца напрямую, связавшись через
+									чат или контактный номер и нет дополнительных комиссий от сайта
+									Zoo.Net
+								</p>
+							</li>
+							<li className="w-1/3 ">
+								<Image src={li3} alt="error" className="mx-auto" />
+								<h3>Помощь</h3>
+								<p>
+									Мы помогаем бездомным животным найти добрых и заботливых хозяев.
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section id="feedbackblock">
+				<div className="feedback max-w-screen-xl mx-auto flex mt-20 relative">
+					<Image
+						src={feedback}
+						alt="error"
+						className="mx-auto absolute right-1/2 z-10"
+					/>
+					<div className=" w-1/2 relative">
+						<Image src={Vector3} alt="error" className=" left-0" />
+						<div
+							className=" absolute top-1/3 right-0"
+							style={{
+								borderTopLeftRadius: "117px",
+								borderBottomLeftRadius: "117px",
+								borderTopRightRadius: "117px",
+								boxShadow:
+									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+								background: "rgba(243, 243, 243, 0.85)",
+								height: "280px",
+								width: "430px",
+							}}
+						>
+							<div className="feedblack-text mt-20 w-2/3 mx-auto">
+								{reviews.map((item) => (
+									<div key={item.id}>
+										<h3 style={{ borderBottom: "1px solid gray" }}>{item.name}</h3>
+										<p>
+											{item.message}
+										</p>
+									</div>
+								))}
+							</div>
+							<Link href="/reviews/add/">
+								<button
+									style={{
+										color: "blue",
+										backgroundColor: "yellow",
+										boxShadow: "10px 10px 0px 4px #988CE1",
+										borderRadius: "2rem",
+										transition: "all 0.3s ease",
+										height: "60px",
+										width: "70%",
+										marginTop: "100px",
+										marginLeft: "100px",
+									}}
+									onMouseOver={(e) => {
+										e.currentTarget.style.backgroundColor = "blue";
+										e.currentTarget.style.color = "yellow";
+										e.currentTarget.style.boxShadow = "none";
+									}}
+									onMouseOut={(e) => {
+										e.currentTarget.style.backgroundColor = "yellow";
+										e.currentTarget.style.color = "blue";
+										e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+									}}
+								>
+									<span className="flex items-center mx-auto justify-center">
+										Оставить отзыв
+									</span>
+								</button>
+							</Link>
+						</div>
+					</div>
+
+					<div className="w-1/2 relative ">
+						<Image src={Vector4} alt="error" className=" absolute right-0" />
+						<Image
+							src={Vector4top}
+							alt="error"
+							className="mx-auto absolute top-20 right-14 "
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section id="articles">
+				<div className=" max-w-screen-xl mx-auto">
+					<Image src={statestitle} alt="error" className=" mx-auto" />
+
 					<ul className="flex justify-around mt-10 text-center">
-						<li className="w-1/3 ">
-							<Image src={li1} alt="error" className="mx-auto" />
-							<h3>Объявления</h3>
+						<li
+							className=" w-1/4  p-5"
+							style={{
+								boxShadow:
+									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+								background: "rgba(243, 243, 243, 0.85)",
+								borderRadius: "8px",
+							}}
+						>
+							<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
+								Советы для владельцев кошек
+							</h3>
 							<p>
-								На сайте можно разместить неограниченное количество объявлений о
-								продаже животных
+								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
+								viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
 							</p>
+							<a href="#" style={{ color: "blue" }} className=" ">
+								Посмотреть подробнее
+							</a>
 						</li>
-						<li className="w-1/3 ">
-							<Image src={li2} alt="error" className="mx-auto" />
-							<h3>Легкие покупки</h3>
+						<li
+							className=" w-1/4 p-5"
+							style={{
+								boxShadow:
+									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+								background: "rgba(243, 243, 243, 0.85)",
+								borderRadius: "8px",
+							}}
+						>
+							<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
+								Как приучить питомца
+							</h3>
 							<p>
-								Клиент покупает у продавца питомца напрямую, связавшись через
-								чат или контактный номер и нет дополнительных комиссий от сайта
-								Zoo.Net
+								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
+								viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
 							</p>
+							<a href="#" style={{ color: "blue" }} className=" ">
+								Посмотреть подробнее
+							</a>
 						</li>
-						<li className="w-1/3 ">
-							<Image src={li3} alt="error" className="mx-auto" />
-							<h3>Помощь</h3>
+						<li
+							className=" w-1/4  p-5"
+							style={{
+								boxShadow:
+									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+								background: "rgba(243, 243, 243, 0.85)",
+								borderRadius: "8px",
+							}}
+						>
+							<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
+								Питание для попугая
+							</h3>
 							<p>
-								Мы помогаем бездомным животным найти добрых и заботливых хозяев.
+								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
+								viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
 							</p>
+							<a href="#" style={{ color: "blue" }} className=" ">
+								Посмотреть подробнее
+							</a>
 						</li>
 					</ul>
 				</div>
-			</div>
-
-			<div className="feedback max-w-screen-xl mx-auto flex mt-20 relative">
-				<Image
-					src={feedback}
-					alt="error"
-					className="mx-auto absolute right-1/2 z-10"
-				/>
-				<div className=" w-1/2 relative">
-					<Image src={Vector3} alt="error" className=" left-0" />
-					<div
-						className=" absolute top-1/3 right-0"
-						style={{
-							borderTopLeftRadius: "117px",
-							borderBottomLeftRadius: "117px",
-							borderTopRightRadius: "117px",
-							boxShadow:
-								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
-							background: "rgba(243, 243, 243, 0.85)",
-							height: "280px",
-							width: "430px",
-						}}
-					>
-						<div className="feedblack-text mt-20 w-2/3 mx-auto">
-							{reviews.map((item) => (
-								<div key={item.id}>
-									<h3 style={{ borderBottom: "1px solid gray" }}>{item.name}</h3>
-									<p>
-										{item.message}
-									</p>
-								</div>
-							))}
-						</div>
-						<Link href="/reviews/add/">
-							<button
-								style={{
-									color: "blue",
-									backgroundColor: "yellow",
-									boxShadow: "10px 10px 0px 4px #988CE1",
-									borderRadius: "2rem",
-									transition: "all 0.3s ease",
-									height: "60px",
-									width: "70%",
-									marginTop: "100px",
-									marginLeft: "100px",
-								}}
-								onMouseOver={(e) => {
-									e.currentTarget.style.backgroundColor = "blue";
-									e.currentTarget.style.color = "yellow";
-									e.currentTarget.style.boxShadow = "none";
-								}}
-								onMouseOut={(e) => {
-									e.currentTarget.style.backgroundColor = "yellow";
-									e.currentTarget.style.color = "blue";
-									e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
-								}}
-							>
-								<span className="flex items-center mx-auto justify-center">
-									Оставить отзыв
-								</span>
-							</button>
-						</Link>
-					</div>
-				</div>
-
-				<div className="w-1/2 relative ">
-					<Image src={Vector4} alt="error" className=" absolute right-0" />
-					<Image
-						src={Vector4top}
-						alt="error"
-						className="mx-auto absolute top-20 right-14 "
-					/>
-				</div>
-			</div>
-
-			<div className=" max-w-screen-xl mx-auto">
-				<Image src={statestitle} alt="error" className=" mx-auto" />
-
-				<ul className="flex justify-around mt-10 text-center">
-					<li
-						className=" w-1/4  p-5"
-						style={{
-							boxShadow:
-								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
-							background: "rgba(243, 243, 243, 0.85)",
-							borderRadius: "8px",
-						}}
-					>
-						<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
-							Советы для владельцев кошек
-						</h3>
-						<p>
-							“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
-							viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
-						</p>
-						<a href="#" style={{ color: "blue" }} className=" ">
-							Посмотреть подробнее
-						</a>
-					</li>
-					<li
-						className=" w-1/4 p-5"
-						style={{
-							boxShadow:
-								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
-							background: "rgba(243, 243, 243, 0.85)",
-							borderRadius: "8px",
-						}}
-					>
-						<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
-							Как приучить питомца
-						</h3>
-						<p>
-							“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
-							viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
-						</p>
-						<a href="#" style={{ color: "blue" }} className=" ">
-							Посмотреть подробнее
-						</a>
-					</li>
-					<li
-						className=" w-1/4  p-5"
-						style={{
-							boxShadow:
-								"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
-							background: "rgba(243, 243, 243, 0.85)",
-							borderRadius: "8px",
-						}}
-					>
-						<h3 style={{ borderBottom: "1px solid gray" }} className=" m-5">
-							Питание для попугая
-						</h3>
-						<p>
-							“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
-							viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
-						</p>
-						<a href="#" style={{ color: "blue" }} className=" ">
-							Посмотреть подробнее
-						</a>
-					</li>
-				</ul>
-			</div>
+			</section>
+			{/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46812.400530386025!2d74.6002732!3d42.8353657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb61f8eba31d5%3A0xa84c40ec477ce475!2sAtaturk%20Park!5e0!3m2!1sru!2skg!4v1682146242953!5m2!1sru!2skg" width="400" height="300" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>		 */}
 		</>
 	);
 }

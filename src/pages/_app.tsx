@@ -57,16 +57,20 @@ export default function App({ Component, pageProps }: AppProps) {
 					link: "/",
 				},
 				{
-					label: "Оплата",
-					link: "/",
+					label: "О нас",
+					link: "#aboutus",
 				},
 				{
 					label: "Реклама",
 					link: "/",
 				},
 				{
-					label: "Вопросы",
-					link: "/",
+					label: "Отзывы",
+					link: "#feedbackblock",
+				},
+				{
+					label: "Полезные статьи",
+					link: "#articles",
 				},
 			],
 		},
