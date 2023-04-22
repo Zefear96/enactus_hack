@@ -18,6 +18,9 @@ import { useFetchPets } from "@/services/pets/fetchPets";
 import { useEditPet } from "@/services/pets/editPet";
 import HeaderMenu from "./HeaderMenu";
 import { useFetchCategories } from "@/services/pets/fetchCategories";
+import Image from "next/image";
+import no_results_img from "../../../../public/no_results_img.png";
+import no_results_text from "../../../../public/no_results_text.png";
 
 type CategoryObj = {
 	id: number;
@@ -68,51 +71,55 @@ const ListPets = () => {
 		<>
 			<HeaderMenu />
 
-			<div>
-				<Menu as="div" className="relative inline-block text-left mx-auto">
-					<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
-						{selectedCategory?.title}
-						<svg
-							className="fill-current h-4 w-4 mx-4"
-							// xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 20 20"
+			<div className="main-block-config my-5">
+				<div className="left-block-filter w-1/2 ">
+					<Menu as="div" className="relative inline-block text-left mx-auto">
+						<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-lg font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 mx-5">
+							{selectedCategory?.title}
+							<svg
+								className="fill-current h-4 w-4 mx-4"
+								// xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 20 20"
+							>
+								<path d="M10 12l-6-6h12z" />
+							</svg>
+						</Menu.Button>
+						<Transition
+							as={Fragment}
+							enter="transition ease-out duration-100"
+							enterFrom="transform opacity-0 scale-95"
+							enterTo="transform opacity-100 scale-100"
+							leave="transition ease-in duration-75"
+							leaveFrom="transform opacity-100 scale-100"
+							leaveTo="transform opacity-0 scale-95"
 						>
-							<path d="M10 12l-6-6h12z" />
-						</svg>
-					</Menu.Button>
-					<Transition
-						as={Fragment}
-						enter="transition ease-out duration-100"
-						enterFrom="transform opacity-0 scale-95"
-						enterTo="transform opacity-100 scale-100"
-						leave="transition ease-in duration-75"
-						leaveFrom="transform opacity-100 scale-100"
-						leaveTo="transform opacity-0 scale-95"
+							<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+								{categories?.map((item) => (
+									<div className="px-1 py-1" key={item.id}>
+										<Menu.Item>
+											{({ active }) => (
+												<button
+													className={`${
+														active ? "bg-primary text-white" : "text-gray-900"
+													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													onClick={() => handleSelectChange(item)}
+												>
+													{item.title}
+												</button>
+											)}
+										</Menu.Item>
+									</div>
+								))}
+							</Menu.Items>
+						</Transition>
+					</Menu>
+					<button
+						className=" text-lg mx-5"
+						onClick={() => setSelectedCategory(initCategory)}
 					>
-						<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-							{categories?.map((item) => (
-								<div className="px-1 py-1" key={item.id}>
-									<Menu.Item>
-										{({ active }) => (
-											<button
-												className={`${
-													active ? "bg-primary text-white" : "text-gray-900"
-												} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-												onClick={() => handleSelectChange(item)}
-											>
-												{item.title}
-											</button>
-										)}
-									</Menu.Item>
-								</div>
-							))}
-						</Menu.Items>
-					</Transition>
-				</Menu>
-
-				<button onClick={() => setSelectedCategory(initCategory)}>
-					Сбросить фильтр
-				</button>
+						Сбросить фильтр
+					</button>
+				</div>
 			</div>
 
 			{/* LIST PETS */}
@@ -135,12 +142,10 @@ const ListPets = () => {
 							)
 							.map((item) => <ItemPet item={item} key={item.id} />) ?? []
 					) : (
-						<>
-							<img
-								src="https://media.istockphoto.com/id/612722464/photo/cat-hold-blue-frame-with-blank-empty-white-paper.jpg?s=612x612&w=0&k=20&c=237qke9f35zSR7ha-XYM_T9ZL6iSkit-Jd8DjJq0cvM="
-								alt="No results found"
-							/>
-						</>
+						<div className=" flex items-center">
+							<Image src={no_results_text} alt="error" />
+							<Image src={no_results_img} alt="error" />
+						</div>
 					)
 				) : pets
 						?.filter((item) => item.category === selectedCategory.id)
@@ -158,13 +163,10 @@ const ListPets = () => {
 						)
 						?.map((item) => <ItemPet item={item} key={item.id} />)
 				) : (
-					<>
-						<img
-							src="https://media.istockphoto.com/id/612722464/photo/cat-hold-blue-frame-with-blank-empty-white-paper.jpg?s=612x612&w=0&k=20&c=237qke9f35zSR7ha-XYM_T9ZL6iSkit-Jd8DjJq0cvM="
-							alt="No results found"
-							className="col-start-2"
-						/>
-					</>
+					<div className=" flex items-center">
+						<Image src={no_results_text} alt="error" />
+						<Image src={no_results_img} alt="error" />
+					</div>
 				)}
 			</div>
 
