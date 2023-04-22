@@ -12,7 +12,9 @@ import { useQuery } from "@tanstack/react-query";
 
 export type FetchPetsArg = {
 	// _sort?: keyof Results;
-	ordering?: "asc" | "desc";
+	ordering?: `${keyof Pet | `-${keyof Pet}`}${
+		| `,${keyof Pet | `-${keyof Pet}`}`
+		| ""}`;
 	search?: string;
 	page?: any;
 	_limit: number;
