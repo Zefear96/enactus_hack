@@ -3,7 +3,7 @@ import FavList from '@/components/favorites/FavList';
 
 const FavoritesPage = () => {
     return (
-        <div>
+        <div style={{ width: "90%" }} className="mx-auto my-5">
             <FavList />
         </div>
     )
