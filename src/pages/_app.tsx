@@ -8,8 +8,9 @@ import { ModalsProvider } from "@mantine/modals";
 import Navbar from "@/components/Navbar";
 import { FooterLinks } from "@/components/Footer";
 import { Provider } from "react-redux";
-import { store } from "../store/store";
+import { persistor, store } from "../store/store";
 import { InitStore } from "@/store/initStore";
+import { PersistGate } from 'redux-persist/integration/react'
 
 // declare module "@mantine/modals" {
 //   export interface MantineModalsOverride {
@@ -78,25 +79,27 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<Provider store={store}>
-			<QueryClientProvider client={queryClient}>
-				<MantineProvider
-					withGlobalStyles
-					withNormalizeCSS
-					withCSSVariables
-					emotionCache={myCache}
-					theme={{
-						/** Put your mantine theme override here */
-						colorScheme: "light",
-					}}
-				>
-					{/* <ModalsProvider modals={modals}> */}
-					<Navbar />
-					<Component {...pageProps} />
-					<FooterLinks data={data} />
-					{/* </ModalsProvider> */}
-					<InitStore />
-				</MantineProvider>
-			</QueryClientProvider>
+			<PersistGate loading={null} persistor={persistor}>
+				<QueryClientProvider client={queryClient}>
+					<MantineProvider
+						withGlobalStyles
+						withNormalizeCSS
+						withCSSVariables
+						emotionCache={myCache}
+						theme={{
+							/** Put your mantine theme override here */
+							colorScheme: "light",
+						}}
+					>
+						{/* <ModalsProvider modals={modals}> */}
+						<Navbar />
+						<Component {...pageProps} />
+						<FooterLinks data={data} />
+						{/* </ModalsProvider> */}
+						<InitStore />
+					</MantineProvider>
+				</QueryClientProvider>
+			</PersistGate>
 		</Provider>
 	);
 }

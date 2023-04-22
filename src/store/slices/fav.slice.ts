@@ -1,45 +1,36 @@
-import { storageGetItem, storageSetItem } from "@/utils/storage";
-import { createAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pet } from "@/utils/types";
 
-export const loadFromLocalStorage = createAsyncThunk("favSlice/loadFromLocalStorage", async () => {
-    let favList = await storageGetItem("favList");
-
-    // if (!favList) {
-    //     await storageSetItem("favList", []);
-
-    // };
-
-    return favList
-});
-
 type FavListState = {
-    data: Pet[] | null
+    data: Pet[]
 }
 
 const initialState: FavListState = {
-    data: null
+    data: []
 }
 
 export const favSlice = createSlice({
     name: 'favSlice',
     initialState,
     reducers: {
-        addToFav: (state, action) => {
-            state.data = action.payload.data
+        // addToFav: (state, action: PayloadAction<Pet>) => {
+        //     state.data.push(action.payload);
+        // },
+        // deleteFromFav: (state, action: PayloadAction<Pet["id"]>) => {
+        //     state.data = state.data.filter(item => item.id != action.payload);
+        // },
+        toggleFav(state, action: PayloadAction<Pet>) {
+            let favToFind = state.data.find(item => item.id === action.payload.id);
+
+            if (!favToFind) {
+                state.data.push(action.payload);
+            } else {
+                state.data = state.data.filter(item => item.id != action.payload.id)
+            }
         },
-        deleteFromFav: (state, action) => {
-            state.data = action.payload.data
+        cleanMyFav(state) {
+            state.data = []
         },
-        cleanMyFav: (state, action) => {
-            state.data = null
-        }
-    },
-    extraReducers: builder => {
-        builder.addCase(loadFromLocalStorage.fulfilled, (state, action) => {
-            state.data = action.payload.data ?? null
-        })
     }
 })
-
-export const { addToFav, deleteFromFav, cleanMyFav } = favSlice.actions
+export const { toggleFav, cleanMyFav } = favSlice.actions
