@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
+    "@googlemaps/js-api-loader": "^1.15.1",
     "@headlessui/react": "^1.7.14",
     "@mantine/core": "^6.0.7",
     "@mantine/ds": "^6.0.7",
