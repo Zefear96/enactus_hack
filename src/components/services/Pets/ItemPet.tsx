@@ -2,14 +2,11 @@ import React from "react";
 import { Card, Text } from "@mantine/core";
 import { Pet } from "@/utils/types";
 import Link from "next/link";
-import { Phone } from "tabler-icons-react";
-import { useEditPet } from "@/services/pets/editPet";
+import { useFetchCategories } from "@/services/pets/fetchCategories";
+
 import phone_blue from "../../../../public/phone_blue.png";
 import address_blue from "../../../../public/address_blue.png";
 import Image from "next/image";
-import { maxHeaderSize } from "http";
-import { IconMapPin, IconPhone } from "@tabler/icons-react";
-import { useFetchCategories } from "@/services/pets/fetchCategories";
 
 type Props = {
 	item: Pet;
