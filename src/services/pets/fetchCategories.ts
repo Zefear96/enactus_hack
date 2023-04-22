@@ -2,25 +2,25 @@ import { baseAxios } from "@/utils/baseAxios";
 import { storageGetItem } from "@/utils/storage";
 import { useQuery } from "@tanstack/react-query";
 
-interface Categories {
+interface FetchCategories {
 	id: number;
 	title: string;
 }
 
-type FetchPetsCategories = {
-	count: number;
-	next: string;
-	previous: null;
-	results: Categories[] | null;
-};
+// type FetchPetsCategories = {
+// 	count: number;
+// 	next: string;
+// 	previous: null;
+// 	results: Categories[] | null;
+// };
 
 export const fetchCategories = async () => {
-	const { data } = await baseAxios.get<FetchPetsCategories>(
+	const { data } = await baseAxios.get<FetchCategories[]>(
 		"/pets/get_categories/",
 	);
 
 	// console.log(data.results);
-	return data.results;
+	return data;
 };
 
 export const useFetchCategories = () => {
