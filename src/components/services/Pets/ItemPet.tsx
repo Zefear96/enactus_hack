@@ -7,6 +7,7 @@ import { useFetchCategories } from "@/services/pets/fetchCategories";
 import phone_blue from "../../../../public/phone_blue.png";
 import address_blue from "../../../../public/address_blue.png";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 
 type Props = {
 	item: Pet;

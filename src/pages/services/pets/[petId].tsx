@@ -18,7 +18,7 @@ const PetDetailsPage = ({ petId }: Props) => {
 
 	return (
 		<div>
-			<DetailsPet item={data} />
+			<DetailsPet pet={data} />
 			{/* <EditPet petId={petId} /> */}
 		</div>
 	);

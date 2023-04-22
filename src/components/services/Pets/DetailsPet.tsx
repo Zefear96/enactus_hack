@@ -26,20 +26,21 @@ import { useDeletePet } from "@/services/pets/deletePet";
 import { useFetchUser } from "@/services/user/fetchUser";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
 import { useCreateComment } from "@/services/pets/comments/createComment";
 import CommentItem from "./Comments/CommentItem";
 import { useFetchCategories } from "@/services/pets/fetchCategories";
+import { toggleFav } from "@/store/slices/fav.slice";
+import { useAppDispatch, useIsInFav } from "@/store/hooks";
 
 import Image from "next/image";
 import phone_blue from "../../../../public/phone_blue.png";
 import address_blue from "../../../../public/address_blue.png";
 import like from "../../../../public/like_empty.png";
-import like_filled from "../../../../public/like_filled.png";
 import arrow_back from "../../../../public/arrow_back.png";
+import red_heart from '../../../../public/red_heart.png';
 
 type Props = {
-	item: Pet;
+	pet: Pet;
 };
 
 type OneComment = {
@@ -58,17 +59,21 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-const DetailsPet = ({ item }: Props) => {
+const DetailsPet = ({ pet }: Props) => {
 	const [deletePet] = useDeletePet();
 	const [currentUser] = useFetchUser();
 	const [categories] = useFetchCategories();
 
+	const isInFav = useIsInFav(pet.id);
+
 	const router = useRouter();
+	const dispatch = useAppDispatch();
+
 	const [oneComment, setOneComment] = useState<OneComment>({
 		body: "",
-		post: item.id,
+		post: pet.id,
 	});
-	console.log(item);
+	console.log(pet);
 
 	const [createComment] = useCreateComment();
 
@@ -77,6 +82,10 @@ const DetailsPet = ({ item }: Props) => {
 	const getColor = (color: string) =>
 		theme.colors[color][theme.colorScheme === "dark" ? 5 : 7];
 	const { classes } = useStyles();
+
+	function addTofavList() {
+		dispatch(toggleFav(pet));
+	};
 
 	const sendComment = () => {
 		console.log(oneComment);
@@ -111,7 +120,7 @@ const DetailsPet = ({ item }: Props) => {
 	}
 
 	function handleDelete() {
-		deletePet(item);
+		deletePet(pet);
 		closeModal();
 		router.push("/account/collection");
 	}
@@ -128,7 +137,7 @@ const DetailsPet = ({ item }: Props) => {
 			<div className="flex max-w-screen-xl mx-auto my-10 flex-wrap justify-center">
 				<div className=" relative" style={{ width: "40%" }}>
 					<Image
-						src={item.image}
+						src={pet.image}
 						height={1000}
 						width={1000}
 						alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
@@ -147,12 +156,12 @@ const DetailsPet = ({ item }: Props) => {
 								<span
 									style={{ color: "rgba(69, 38, 255, 1)", fontWeight: "bold" }}
 								>
-									{item.title}
+									{pet.title}
 								</span>
 							</Text>
 							<Menu withinPortal position="bottom-end" shadow="sm">
 								<div className=" flex">
-									<Image src={like} alt="error" className=" cursor-pointer" />
+									<Image src={isInFav ? red_heart : like} alt="error" className=" cursor-pointer" onClick={addTofavList} />
 									<Menu.Target>
 										<ActionIcon className="mx-5">
 											<IconDots size="2rem" />
@@ -161,9 +170,9 @@ const DetailsPet = ({ item }: Props) => {
 								</div>
 
 								<Menu.Dropdown>
-									{currentUser?.email === item.owner ? (
+									{currentUser?.email === pet.owner ? (
 										<>
-											<Link href={`/services/pets/edit/${item.id}`}>
+											<Link href={`/services/pets/edit/${pet.id}`}>
 												<Menu.Item icon={<IconAdjustments size={rem(14)} />}>
 													Редактировать
 												</Menu.Item>
@@ -191,42 +200,42 @@ const DetailsPet = ({ item }: Props) => {
 						<span style={{ color: "rgba(69, 38, 255, 1)", fontWeight: "bold" }}>
 							Возраст:{" "}
 						</span>
-						{item.age}
+						{pet.age}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" c="black">
 						<span style={{ color: "rgba(69, 38, 255, 1)", fontWeight: "bold" }}>
 							Категория животных:{" "}
 						</span>
 						{categories?.map((cat) =>
-							cat.id === item.category ? cat.title : "",
+							cat.id === pet.category ? cat.title : "",
 						)}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" c="black">
 						<span style={{ color: "rgba(69, 38, 255, 1)", fontWeight: "bold" }}>
 							Порода:{" "}
 						</span>
-						{item.breed}
+						{pet.breed}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" c="black">
 						<span style={{ color: "rgba(69, 38, 255, 1)", fontWeight: "bold" }}>
 							Кличка:{" "}
 						</span>
-						{item.pet_name}
+						{pet.pet_name}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" c="black">
 						<span style={{ color: "rgba(69, 38, 255, 1)", fontWeight: "bold" }}>
 							Описание:{" "}
 						</span>
-						{item.description}
+						{pet.description}
 					</Text>
 
 					<Text mt="md" color="dimmed" size="md" className="flex" c="black">
 						<Image src={address_blue} alt="error" className=" me-3" />
-						{item.address}
+						{pet.address}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" className="flex" c="black">
 						<Image src={phone_blue} alt="error" className=" me-3" />
-						{item.contact}
+						{pet.contact}
 					</Text>
 
 					<Card.Section mt="sm"></Card.Section>
@@ -244,7 +253,7 @@ const DetailsPet = ({ item }: Props) => {
 								Оставить коментарии
 							</Accordion.Control>
 							<Accordion.Panel>
-								{item.comments.map((elem) => (
+								{pet.comments.map((elem) => (
 									<CommentItem key={elem.id} item={elem} />
 								))}
 								<div className="flex justify-between mt-3">
