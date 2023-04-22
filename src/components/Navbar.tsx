@@ -12,7 +12,7 @@ import { ChangeEvent } from "react";
 import { setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
-import person_white from '../../public/person_white.png'
+import person_white from "../../public/person_white.png";
 
 type MenuItem = {
 	type: string;
@@ -222,7 +222,7 @@ const Navbar = () => {
 								src={user.profile_image ? user.profile_image : person_white}
 								width={100}
 								height={100}
-								alt='error'
+								alt="error"
 								className=" rounded-full"
 							/>
 						)}
