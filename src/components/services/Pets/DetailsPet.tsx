@@ -18,6 +18,7 @@ import {
 	IconFlag,
 	IconMessage,
 	IconSend,
+	IconHeart
 } from "@tabler/icons-react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -35,9 +36,7 @@ import { useAppDispatch, useIsInFav } from "@/store/hooks";
 import Image from "next/image";
 import phone_blue from "../../../../public/phone_blue.png";
 import address_blue from "../../../../public/address_blue.png";
-import like from "../../../../public/like_empty.png";
 import arrow_back from "../../../../public/arrow_back.png";
-import red_heart from '../../../../public/red_heart.png';
 
 type Props = {
 	pet: Pet;
@@ -161,7 +160,9 @@ const DetailsPet = ({ pet }: Props) => {
 							</Text>
 							<Menu withinPortal position="bottom-end" shadow="sm">
 								<div className=" flex">
-									<Image src={isInFav ? red_heart : like} alt="error" className=" cursor-pointer" onClick={addTofavList} />
+									<ActionIcon onClick={addTofavList} >
+										{isInFav ? <IconHeart fill="#4526FF" className=" cursor-pointer" size={rem(14)} /> : <IconHeart className=" cursor-pointer" size={rem(14)} color="#4526FF" />}
+									</ActionIcon>
 									<Menu.Target>
 										<ActionIcon className="mx-5">
 											<IconDots size="2rem" />
