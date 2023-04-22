@@ -112,9 +112,8 @@ const ListPets = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${
-														active ? "bg-primary text-white" : "text-gray-900"
-													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${active ? "bg-primary text-white" : "text-gray-900"
+														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 													onClick={() => handleSelectChange(item)}
 												>
 													{item.title}
@@ -187,7 +186,7 @@ const ListPets = () => {
 			{/* LIST PETS */}
 			<div
 				className=" grid grid-cols-3 gap-10 w-3/4 mx-auto my-10"
-				// style={{ height: "1100px" }}
+			// style={{ height: "1100px" }}
 			>
 				{/* {selectedCategory.title === "Категории"
 					? pets.results.map((item) => <ItemPet item={item} key={item.id} />)
@@ -210,13 +209,13 @@ const ListPets = () => {
 						</div>
 					)
 				) : pets
-						?.filter((item) => item.category === selectedCategory.id)
-						?.slice(
-							(petsFilters.page - 1) * petsFilters._limit,
-							petsFilters.page * petsFilters._limit,
-						)
-						?.map((item) => <ItemPet item={item} key={item.id} />).length ??
-				  0 > 0 ? (
+					?.filter((item) => item.category === selectedCategory.id)
+					?.slice(
+						(petsFilters.page - 1) * petsFilters._limit,
+						petsFilters.page * petsFilters._limit,
+					)
+					?.map((item) => <ItemPet item={item} key={item.id} />).length ??
+					0 > 0 ? (
 					pets
 						?.filter((item) => item.category === selectedCategory.id)
 						?.slice(
