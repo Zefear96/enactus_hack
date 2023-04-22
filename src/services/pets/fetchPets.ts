@@ -12,9 +12,10 @@ import { useQuery } from "@tanstack/react-query";
 
 export type FetchPetsArg = {
 	// _sort?: keyof Results;
-	ordering?: `${keyof Pet | `-${keyof Pet}`}${
-		| `,${keyof Pet | `-${keyof Pet}`}`
-		| ""}`;
+	// ordering?: `${keyof Pet | `-${keyof Pet}`}${
+	// 	| `,${keyof Pet | `-${keyof Pet}`}`
+	// 	| ""}`;
+	ordering?: keyof Pet;
 	search?: string;
 	page?: any;
 	_limit: number;
