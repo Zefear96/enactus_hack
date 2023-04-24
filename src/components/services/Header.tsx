@@ -2,6 +2,9 @@ import { useState } from "react";
 import ListCommercials from "./commercial/ListCommercials";
 import Image from "next/image";
 import ListPets from "./Pets/ListPets";
+import ListClinics from "./commercial/ListClinics";
+import ListHostels from './commercial/ListHostels';
+import ListZoo from "./commercial/ListZoo";
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(" ");
@@ -13,17 +16,17 @@ export default function Header() {
 	const tabs = [
 		{
 			label: "Хостелы/Приюты",
-			content: <ListCommercials />,
+			content: <ListHostels />,
 			img: "/home.png",
 		},
 		{
 			label: "Вет.клиники/Аптеки",
-			content: <p>"Вет.клиники/Аптеки"</p>,
+			content: <ListClinics />,
 			img: "/healer.png",
 		},
 		{
-			label: "Акссесуары",
-			content: <p>"Акссесуары"</p>,
+			label: "Зоомагазины",
+			content: <ListZoo />,
 			img: "/accessory.png",
 		},
 		{
@@ -39,11 +42,10 @@ export default function Header() {
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
-						className={`${
-							activeTab === index
-								? " bg-yellowlogin text-bluelogin"
-								: "bg-white text-gray-700"
-						} flex-1 py-4 px-6 font-medium text-md focus:outline-none border border-bluelogin rounded-lg sm: w-40 `}
+						className={`${activeTab === index
+							? " bg-yellowlogin text-bluelogin"
+							: "bg-white text-gray-700"
+							} flex-1 py-4 px-6 font-medium text-md focus:outline-none border border-bluelogin rounded-lg sm: w-40 `}
 						onClick={() => setActiveTab(index)}
 					>
 						<Image

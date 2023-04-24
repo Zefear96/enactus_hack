@@ -26,7 +26,6 @@ type Props = {
 
 const commercialFormSchema = z.object({
 	title: z.string().nonempty("Это поле не может быть пустым!"),
-	category: z.string().nonempty("Это поле не может быть пустым"),
 	description: z.string().nonempty("Это поле не может быть пустым"),
 	address: z.string().nonempty("Это поле не может быть пустым"),
 	contact: z.string().nonempty("Это поле не может быть пустым"),
@@ -51,7 +50,12 @@ const commercialFormSchema = z.object({
 			}
 			return true;
 		})
-		.nullable()
+		.nullable(),
+	category: z.preprocess((val) => {
+		if (typeof val === "number") return val;
+		if (typeof val === "string") return parseInt(val);
+		return null;
+	}, z.number().finite()),
 
 })
 
@@ -61,7 +65,7 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 	const form = useForm<CommercialFormValues>({
 		initialValues: {
 			title: "",
-			category: "",
+			category: 0,
 			description: "",
 			address: "",
 			contact: "",
@@ -93,11 +97,16 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 						variant="filled"
 						my='sm'
 					/>
-					<TextInput
+					<Select
 						withAsterisk
-						{...form.getInputProps("category")}
 						label="Категория"
-						variant="filled"
+						placeholder="Выберите категорию"
+						data={[
+							{ value: "1", label: "Хостелы/Приюты" },
+							{ value: "2", label: "Вет.клиники/Аптеки" },
+							{ value: "3", label: "Зоомагазины" },
+						]}
+						{...form.getInputProps("category")}
 						my='sm'
 					/>
 					<TextInput

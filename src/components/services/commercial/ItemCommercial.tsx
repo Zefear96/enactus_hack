@@ -11,7 +11,7 @@ import styles from './styles/itemCommStyles.module.css';
 type Props = {
     id: number;
     title: string;
-    category: string;
+    category: number;
     description: string;
     address: string;
     contact: string;
@@ -49,7 +49,7 @@ const ItemCommercial = ({ item }: { item: Props }) => {
             </Card.Section>
             <Link href={`/services/commercials/${item.id}`} key={item.id}>
                 <Group mt="10px" mb="xs">
-                    <Title weight={700} className={styles.titles}>{item.category}</Title>
+                    <Title weight={700} className={styles.titles}>{item.category === 1 ? "Приют" : item.category === 2 ? 'Клиника/Аптека' : item.category === 3 ? 'Зоомагазин' : ''}</Title>
                     <Title weight={700} className={styles.titles} c="#FFC800">"{item.title}"</Title>
                 </Group>
                 <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly />

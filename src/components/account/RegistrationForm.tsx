@@ -5,6 +5,29 @@ import { FocusTrap, TextInput, Group, Text, Title, PasswordInput } from "@mantin
 import Link from 'next/link';
 import { IconLock } from '@tabler/icons-react';
 import styles from './styles/regStyles.module.css'
+import { useRouter } from 'next/router';
+
+export const kg = {
+    title: "Каттоо",
+    email: 'Эл. почта',
+    phone: 'Телефон номуру',
+    pass: 'Сырсөз',
+    pass2: 'Подтвердите пароль',
+    send: 'Отправить',
+    account: 'У вас есть аккаунт?',
+    login: 'Войти'
+}
+
+export const ru = {
+    title: "Регистрация",
+    email: 'Эл. почта',
+    phone: 'Номер телефона',
+    pass: 'Пароль',
+    pass2: 'Подтвердите пароль',
+    send: 'Отправить',
+    account: 'У вас есть аккаунт?',
+    login: 'Войти'
+}
 
 type Props = {
     onSubmit(values: RegistrationFormValues): void;
