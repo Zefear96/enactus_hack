@@ -4,8 +4,7 @@ import { useForm, zodResolver } from "@mantine/form";
 import { FocusTrap, TextInput, Group, Text, PasswordInput, Title } from "@mantine/core";
 import { IconLock } from '@tabler/icons-react';
 import Link from 'next/link';
-
-
+import styles from './styles/logStyles.module.css'
 
 type Props = {
     onSubmit(values: LoginFormValues): void;
@@ -36,7 +35,7 @@ const LoginForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
     return (
         <FocusTrap active>
-            <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
+            <div className={`${styles.main} bg-greybase w-2/5 rounded-3xl`} style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
                 <form onSubmit={form.onSubmit(handleSubmit)} className="w-4/5 mx-auto my-5">
                     <Title ta="center" fw={700} my="40px">Войти</Title>
                     <TextInput
@@ -60,7 +59,7 @@ const LoginForm = ({ onSubmit, defaultValues = {} }: Props) => {
                     />
                     <button type="submit" className=' bg-yellowlogin w-full h-14 rounded-3xl my-10'>Войти</button>
                     <Group position="center" mb="40px">
-                        <Text c="dimmed" fz="lg">Нет еще аккаунта? <Link href="/account/registration/" className=' text-blue-500' >Создать аккаунт</Link> </Text>
+                        <Text c="dimmed" fz="lg" className={styles.texts}>Нет еще аккаунта? <Link href="/account/registration/" className=' text-blue-500' >Создать аккаунт</Link> </Text>
                         <Link href="/account/resetpassword/" className=' text-blue-500' >Забыли пароль?</Link>
                     </Group>
                 </form>

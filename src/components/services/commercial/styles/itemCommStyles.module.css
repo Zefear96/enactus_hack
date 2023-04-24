@@ -1,0 +1,43 @@
+.picture {
+    object-fit: contain;
+    border-bottom: 1px solid #CCCCFF !important;
+    height: auto !important;
+}
+
+.card {
+    margin: auto;
+    border-radius: 10px;
+    border-color: #CCCCFF !important;
+    box-shadow: -4px 0px 4px rgba(117, 117, 117, 0.1), 4px 0px 4px rgba(117, 117, 117, 0.1), 0px 4px 4px rgba(117, 117, 117, 0.1);
+}
+
+.block_text {
+    display: flex;
+    align-items: flex-end;
+}
+
+@media all and (max-width: 1024px) {
+    .titles {
+        font-size: 24px !important;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .titles {
+        font-size: 16px !important;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .card {
+        width: 100%;
+    }
+
+    .titles {
+        font-size: 16px !important;
+    }
+
+    .block_text {
+        font-size: 13px !important;
+    }
+}

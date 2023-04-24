@@ -12,7 +12,7 @@ const ListCommercials = () => {
 
     return (
         <div>
-            <div className=" grid grid-cols-2 gap-10 w-3/4 mx-auto">
+            <div className=" flex justify-between flex-wrap w-3/4 mx-auto my-7">
                 {data.map((item) => (
                     <ItemCommercial item={item} key={item.id} />
                 ))}

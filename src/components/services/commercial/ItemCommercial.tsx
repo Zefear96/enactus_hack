@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Link from "next/link";
-import { Card, Text, Group, createStyles, Rating } from "@mantine/core";
+import { Card, Text, Group, Rating, Title } from "@mantine/core";
 import Image from "next/image";
 import contact from '../../../../public/contact.png';
 import address from '../../../../public/address.png';
 import time from '../../../../public/time.png';
 import globe from '../../../../public/globe.png';
+import styles from './styles/itemCommStyles.module.css';
 
 type Props = {
     id: number;
@@ -22,28 +23,8 @@ type Props = {
     }
 }
 
-//mantine 
-const useStyles = createStyles((theme) => ({
-
-    card: {
-        margin: '2rem auto',
-        borderRadius: '10px',
-        borderColor: '#CCCCFF !important',
-        boxShadow: '-4px 0px 4px rgba(117, 117, 117, 0.1), 4px 0px 4px rgba(117, 117, 117, 0.1), 0px 4px 4px rgba(117, 117, 117, 0.1);',
-    },
-    picture: {
-        objectFit: 'contain',
-        height: '300px',
-        width: '600px',
-        // borderColor: '#CCCCFF !important',
-        borderBottom: '1px solid #CCCCFF',
-        // borderRadius: '8px 8px 0px 0px'
-    }
-
-}));
 
 const ItemCommercial = ({ item }: { item: Props }) => {
-    const { classes } = useStyles();
     console.log(item);
 
     const imageURL =
@@ -53,11 +34,11 @@ const ItemCommercial = ({ item }: { item: Props }) => {
 
         <Card
             shadow="sm" padding="lg" radius="md" withBorder
-            className={classes.card}
+            className={styles.card}
         >
             <Card.Section>
                 <img
-                    className={classes.picture}
+                    className={styles.picture}
                     src={
                         item.image
                             ? imageURL
@@ -68,25 +49,25 @@ const ItemCommercial = ({ item }: { item: Props }) => {
             </Card.Section>
             <Link href={`/services/commercials/${item.id}`} key={item.id}>
                 <Group mt="10px" mb="xs">
-                    <Text weight={700} size="36px" >{item.category}</Text>
-                    <Text weight={700} size="36px" c="#FFC800">"{item.title}"</Text>
+                    <Title weight={700} className={styles.titles}>{item.category}</Title>
+                    <Title weight={700} className={styles.titles} c="#FFC800">"{item.title}"</Title>
                 </Group>
                 <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly />
-                <Text mt="xs" size="sm" className='flex items-end '>
+                <Text mt="xs" size="sm" className={styles.block_text}>
                     <Image src={address} alt="error" style={{ marginRight: '10px' }} />
                     {item.address}
                 </Text>
 
-                <Text mt="xs" size="sm" className='flex items-end '>
+                <Text mt="xs" size="sm" className={styles.block_text}>
                     <Image src={time} alt="error" style={{ marginRight: '10px' }} />
                     Ежедневно 08:00-22:00
                 </Text>
-                <Text mt="xs" size="sm" className='flex items-end'>
+                <Text mt="xs" size="sm" className={styles.block_text}>
                     <Image src={contact} alt="error" style={{ marginRight: '10px' }} />
                     {item.contact}
                 </Text>
             </Link>
-            <Text mt="xs" size="sm" className='flex items-end'>
+            <Text mt="xs" size="sm" className={styles.block_text}>
                 <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
                 <Link href={item.social_net} target="_blank" >
                     {item.address}
