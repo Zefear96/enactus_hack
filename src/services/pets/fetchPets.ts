@@ -1,5 +1,4 @@
 import { baseAxios } from "@/utils/baseAxios";
-import { storageGetItem } from "@/utils/storage";
 import { Pet } from "@/utils/types";
 import { useQuery } from "@tanstack/react-query";
 

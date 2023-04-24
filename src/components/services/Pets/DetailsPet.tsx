@@ -18,7 +18,7 @@ import {
 	IconFlag,
 	IconMessage,
 	IconSend,
-	IconHeart
+	IconHeart,
 } from "@tabler/icons-react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -84,7 +84,7 @@ const DetailsPet = ({ pet }: Props) => {
 
 	function addTofavList() {
 		dispatch(toggleFav(pet));
-	};
+	}
 
 	const sendComment = () => {
 		console.log(oneComment);
@@ -128,11 +128,9 @@ const DetailsPet = ({ pet }: Props) => {
 
 	return (
 		<div className="flex max-w-screen-xl mx-auto my-14 flex-wrap ">
-			<Link href={"/services/pets"}>
-				<button className=" mx-5">
-					<Image src={arrow_back} alt="error" />
-				</button>
-			</Link>
+			<button className=" mx-5" onClick={() => router.back()}>
+				<Image src={arrow_back} alt="error" />
+			</button>
 			<div className="flex max-w-screen-xl mx-auto my-10 flex-wrap justify-center">
 				<div className=" relative" style={{ width: "40%" }}>
 					<Image
@@ -160,8 +158,20 @@ const DetailsPet = ({ pet }: Props) => {
 							</Text>
 							<Menu withinPortal position="bottom-end" shadow="sm">
 								<div className=" flex">
-									<ActionIcon onClick={addTofavList} >
-										{isInFav ? <IconHeart fill="#4526FF" className=" cursor-pointer" size={rem(14)} /> : <IconHeart className=" cursor-pointer" size={rem(14)} color="#4526FF" />}
+									<ActionIcon onClick={addTofavList}>
+										{isInFav ? (
+											<IconHeart
+												fill="#4526FF"
+												className=" cursor-pointer"
+												size={rem(14)}
+											/>
+										) : (
+											<IconHeart
+												className=" cursor-pointer"
+												size={rem(14)}
+												color="#4526FF"
+											/>
+										)}
 									</ActionIcon>
 									<Menu.Target>
 										<ActionIcon className="mx-5">
