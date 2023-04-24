@@ -42,7 +42,7 @@ export type Pet = {
 export type Commercial = {
 	id: number;
 	title: string;
-	category: string;
+	category: number;
 	description: string;
 	address: string;
 	contact: string;

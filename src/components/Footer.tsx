@@ -1,6 +1,4 @@
-import { createStyles, Text, Container, ActionIcon, Group, rem, Center } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
+import { createStyles, Text, ActionIcon, Group, rem, } from '@mantine/core';
 import Link from 'next/link';
 import Image from "next/image";
 import logo from "../../public/logo.png";
@@ -9,6 +7,8 @@ import arcticons_telegram from '../../public/arcticons_telegram.png';
 import phone from '../../public/phone.png';
 import instagram from '../../public/instagram.png';
 import styles from './footerStyles.module.css';
+import { useRouter } from 'next/router';
+
 
 const useStyles = createStyles((theme) => ({
 
