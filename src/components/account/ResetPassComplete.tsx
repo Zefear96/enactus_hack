@@ -4,7 +4,7 @@ import z from 'zod';
 import { Title, TextInput, FocusTrap, Loader, PasswordInput } from "@mantine/core";
 import { useResetPassComplete } from '@/services/user/resetPassComplete';
 import { IconLock } from '@tabler/icons-react';
-
+import styles from './styles/resetPassStyles.module.css';
 
 type Props = {
     defaultValues?: Partial<ResetPassCompleteFormValues>;
@@ -47,12 +47,12 @@ const ResetPassComplete = ({ defaultValues = {} }: Props) => {
 
     return (
         <div className='flex justify-center items-center m-auto my-10'>
-            <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
+            <div className={`${styles.main} bg-greybase w-2/5 rounded-3xl`} style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
                 <FocusTrap active>
                     <form onSubmit={form.onSubmit(handleSubmit)}>
 
                         <div className="w-4/5 mx-auto my-5">
-                            <Title ta="center" fw={700} my="40px">Новый пароль</Title>
+                            <Title ta="center" fw={700} my="40px" className={styles.title}>Новый пароль</Title>
                             <TextInput
                                 className="border-b"
                                 variant="unstyled"

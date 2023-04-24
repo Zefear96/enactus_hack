@@ -6,7 +6,7 @@ import { IconLock } from '@tabler/icons-react';
 import { useChangePassword } from '@/services/user/changePass';
 import { useRouter } from "next/router";
 import Link from 'next/link';
-
+import styles from './styles/changePassStyles.module.css';
 
 type Props = {
     defaultValues?: Partial<ChangePassFormValues>
@@ -50,7 +50,7 @@ const ChangePassword = ({ defaultValues = {} }: Props) => {
 
     return (
         <div className='flex justify-center items-center m-auto my-10'>
-            <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
+            <div className={`${styles.main} bg-greybase w-2/5 rounded-3xl`} style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
                 <FocusTrap active>
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <div className="w-4/5 mx-auto my-5">

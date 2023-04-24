@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Text, Group, createStyles, Rating } from "@mantine/core";
+import { Card, Text, Group, Rating, Title } from "@mantine/core";
 import Image from "next/image";
 import contact from '../../../../public/contact.png';
 import address from '../../../../public/address.png';
@@ -8,51 +8,28 @@ import globe from '../../../../public/globe.png';
 import { Commercial } from '@/utils/types';
 import Link from "next/link";
 import { usePutRating } from '@/services/commercials/putRating';
+import styles from './styles/detailCommStyles.module.css';
 
 type Props = {
     item: Commercial;
 };
 
-//mantine 
-const useStyles = createStyles((theme) => ({
-
-    card: {
-        margin: 'auto',
-        borderRadius: '10px',
-        borderColor: '#CCCCFF !important',
-        boxShadow: '-4px 0px 4px rgba(117, 117, 117, 0.1), 4px 0px 4px rgba(117, 117, 117, 0.1), 0px 4px 4px rgba(117, 117, 117, 0.1);',
-        width: '41%'
-    },
-    picture: {
-        objectFit: 'contain',
-        height: '300px',
-        borderBottom: '1px solid #CCCCFF',
-    },
-    mainDetail: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '2.5rem 0'
-    }
-
-}));
-
 const DetailsCommercial = ({ item }: Props) => {
-    const { classes } = useStyles();
+
     const [value, setValue] = useState(0);
     const [ratingOpen, setRatingOpen] = useState(false)
     const [putRating] = usePutRating();
 
     return (
-        <div className={classes.mainDetail}>
+        <div className={styles.mainDetail}>
             <Card
                 shadow="sm" padding="lg" radius="md" withBorder
-                className={classes.card}
+                className={styles.card}
             >
+
                 <Card.Section>
                     <img
-                        className={classes.picture}
+                        className={styles.picture}
                         src={
                             item.image
                                 ? item.image
@@ -60,14 +37,14 @@ const DetailsCommercial = ({ item }: Props) => {
                         }
                         alt="error :("
                     />
-                </Card.Section>
+                </Card.Section >
 
                 <Group mt="10px" mb="xs">
-                    <Text weight={700} size="36px" >{item.category}</Text>
-                    <Text weight={700} size="36px" c="#FFC800">"{item.title}"</Text>
+                    <Title weight={700} className={styles.titles} >{item.category}</Title>
+                    <Title weight={700} c="#FFC800" className={styles.titles}>"{item.title}"</Title>
                 </Group>
                 <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly defaultValue={0} />
-                <button className=' text-bluelogin' onClick={() => setRatingOpen(true)}>Поставить оценку</button>
+                <button className={`  text-bluelogin ${styles.rating_btn}`} onClick={() => setRatingOpen(true)}>Поставить оценку</button>
                 {ratingOpen ? (<div className='flex mt-2'><Rating onChange={setValue} />
                     <button className=' text-bluelogin ml-2 text-xs' onClick={() => {
                         putRating({ id: item.id, rating: value });

@@ -4,6 +4,7 @@ import { useForm, zodResolver } from "@mantine/form";
 import { FocusTrap, TextInput, Group, Text, Title, PasswordInput } from "@mantine/core";
 import Link from 'next/link';
 import { IconLock } from '@tabler/icons-react';
+import styles from './styles/regStyles.module.css'
 
 type Props = {
     onSubmit(values: RegistrationFormValues): void;
@@ -44,7 +45,7 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
 
     return (
         <FocusTrap active>
-            <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
+            <div className={`${styles.main} bg-greybase w-2/5 rounded-3xl`} style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
 
                 <form onSubmit={form.onSubmit(handleSubmit)} className="w-4/5 mx-auto my-5">
                     <Title ta="center" fw={700} my="40px">Регистрация</Title>

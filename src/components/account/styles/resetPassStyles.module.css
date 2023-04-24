@@ -1,0 +1,24 @@
+@media all and (max-width: 768px) {
+    .main {
+        width: 60%;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .main {
+        width: 80%;
+    }
+
+    /* 
+    .texts {
+        font-size: 11px !important;
+    } */
+
+    .title {
+        font-size: 30px !important;
+    }
+
+    .text {
+        font-size: 15px !important;
+    }
+}

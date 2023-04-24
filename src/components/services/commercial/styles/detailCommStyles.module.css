@@ -1,0 +1,47 @@
+.mainDetail {
+    width: 100%;
+    margin: 2.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.picture {
+    object-fit: contain;
+    border-bottom: 1px solid #CCCCFF !important;
+    height: auto !important;
+}
+
+.card {
+    margin: auto;
+    border-radius: 10px;
+    border-color: #CCCCFF !important;
+    box-shadow: -4px 0px 4px rgba(117, 117, 117, 0.1), 4px 0px 4px rgba(117, 117, 117, 0.1), 0px 4px 4px rgba(117, 117, 117, 0.1);
+    width: 41%;
+}
+
+@media all and (max-width: 1024px) {
+    .titles {
+        font-size: 29px !important;
+    }
+
+    .rating_btn {
+        font-size: 70% !important;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .titles {
+        font-size: 20px !important;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .card {
+        width: 80%;
+    }
+
+    .titles {
+        font-size: 15px !important;
+    }
+}
