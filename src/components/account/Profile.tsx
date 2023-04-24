@@ -14,6 +14,7 @@ import logout_white from "../../../public/logout_white.png";
 import edit_black from "../../../public/edit_black.png";
 import lock_black from "../../../public/lock_black.png";
 import lock_white from "../../../public/lock_white.png";
+import styles from './styles/profileStyles.module.css';
 
 const Profile = () => {
 	const [currentUser, { isLoading, isError }] = useFetchUser();
@@ -30,7 +31,7 @@ const Profile = () => {
 	if (!currentUser) return <h1>Not Found</h1>; //чтобы тайпскрипт знал, что нужно остановиться и null не будет
 
 	return (
-		<div className="flex m-10 w-1/4">
+		<div className="flex w-1/4 md:w-1/3">
 			<div className="flex justify-start items-center flex-col w-full py-5 border-primary border-r">
 				{/* bg-yellowlogin */}
 				<div className="flex flex-col items-center my-10">
@@ -66,67 +67,67 @@ const Profile = () => {
 					<Text c="dimmed">{currentUser.phone_number}</Text>
 				</div>
 
-				<div className="w-4/5 mx-auto flex justify-center items-start flex-col">
+				<div className="w-full mx-auto flex justify-center items-start flex-col">
 					<button
-						className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover(true)}
 						onMouseLeave={() => setHover(false)}
 					>
 						{hover ? (
-							<Image src={person_white} alt="error:(" className="mx-2" />
+							<Image src={person_white} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						) : (
-							<Image src={person_black} alt="error:(" className="mx-2" />
+							<Image src={person_black} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						)}
 						<Link href="/account">Профиль</Link>
 					</button>
 					<button
-						className="flex items-center text-xl py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover1(true)}
 						onMouseLeave={() => setHover1(false)}
 					>
 						{/* <IconPencil /> */}
 						{hover1 ? (
-							<Image src={edit_white} alt="error:(" className="mx-2" />
+							<Image src={edit_white} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						) : (
-							<Image src={edit_black} alt="error:(" className="mx-2" />
+							<Image src={edit_black} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						)}
-						<Link href="/account">Изменить данные</Link>
+						<Link href="/account/edit">Изменить данные</Link>
 					</button>
 					<button
-						className="flex items-center text-xl py-3 my-2 rounded-md w-10/12 mx-auto hover:bg-primary  hover:text-white"
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover2(true)}
 						onMouseLeave={() => setHover2(false)}
 					>
 						{hover2 ? (
-							<Image src={lock_white} alt="error:(" className="mx-2" />
+							<Image src={lock_white} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						) : (
-							<Image src={lock_black} alt="error:(" className="mx-2" />
+							<Image src={lock_black} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						)}
 						<Link href="/account/change_password">Изменить пароль</Link>
 					</button>
 					<button
-						className="flex items-center text-xl py-3  my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover3(true)}
 						onMouseLeave={() => setHover3(false)}
 					>
 						{hover3 ? (
-							<Image src={border_white} alt="error:(" className="mx-2" />
+							<Image src={border_white} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						) : (
-							<Image src={border_black} alt="error:(" className="mx-2" />
+							<Image src={border_black} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						)}
 						<Link href="/account/collection">Мои публикации</Link>
 					</button>
 
 					<button
-						className="flex items-center text-xl  py-3 my-3 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white"
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover4(true)}
 						onMouseLeave={() => setHover4(false)}
 						onClick={logout}
 					>
 						{hover4 ? (
-							<Image src={logout_white} alt="error:(" className="mx-2" />
+							<Image src={logout_white} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						) : (
-							<Image src={logout_black} alt="error:(" className="mx-2" />
+							<Image src={logout_black} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						)}
 						Выйти
 					</button>

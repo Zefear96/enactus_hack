@@ -46,7 +46,7 @@ const DetailsCommercial = ({ item }: Props) => {
                 <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly defaultValue={0} />
                 <button className={`  text-bluelogin ${styles.rating_btn}`} onClick={() => setRatingOpen(true)}>Поставить оценку</button>
                 {ratingOpen ? (<div className='flex mt-2'><Rating onChange={setValue} />
-                    <button className=' text-bluelogin ml-2 text-xs' onClick={() => {
+                    <button className={` text-bluelogin ml-2 text-xs ${styles.rating_btn}`} onClick={() => {
                         putRating({ id: item.id, rating: value });
                         setRatingOpen(false)
                     }}>Оценить</button></div>) : null}

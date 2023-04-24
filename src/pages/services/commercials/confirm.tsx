@@ -5,7 +5,7 @@ import Link from 'next/link';
 const CommercialConfirm = () => {
     return (
         <div className='flex justify-center items-center m-auto my-10'>
-            <div className=" bg-greybase w-2/5 rounded-3xl" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
+            <div className=" bg-greybase w-2/5 rounded-3xl lg:w-3/5 md:w-4/5" style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
                 <div className="w-4/5 mx-auto my-5">
                     <Text ta="center" fw={500} fz="lg" my="70px">Для проверки информации модератором
                         требуется время. После проверки,

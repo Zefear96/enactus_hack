@@ -1,0 +1,16 @@
+@media all and (max-width: 1024px) {
+    .profile_btn {
+        width: 95%;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .profile_btn {
+        width: 95%;
+    }
+
+    .btn_icon {
+        width: 23px;
+        height: 23px;
+    }
+}

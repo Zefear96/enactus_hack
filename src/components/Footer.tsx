@@ -8,6 +8,7 @@ import arcticons_vk from '../../public/arcticons_vk.png';
 import arcticons_telegram from '../../public/arcticons_telegram.png';
 import phone from '../../public/phone.png';
 import instagram from '../../public/instagram.png';
+import styles from './footerStyles.module.css';
 
 const useStyles = createStyles((theme) => ({
 
@@ -105,7 +106,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
     });
 
     return (
-        <footer className='flex justify-between items-center max-w-screen-xl mx-auto my-7'>
+        <footer className={`flex justify-between items-center max-w-screen-xl mx-auto my-7 ${styles.main_footer}`}>
             <Link href="/">
                 <Image
                     src={logo}
@@ -117,8 +118,8 @@ export function FooterLinks({ data }: FooterLinksProps) {
             </Link>
             <div className={classes.groups}>{groups}</div>
             {/* style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' }} */}
-            <div className={`w-40 flex flex-col items-center`}>
-                <Text ta='center' className={`${classes.title} w-60 `}>Свяжитесь с нами!</Text>
+            <div className={`w-1/5 flex flex-col items-center ${styles.connect}`}>
+                <Text ta='center' className={`${classes.title}`}>Свяжитесь с нами!</Text>
                 <Group spacing={0} className={classes.social} position="right" noWrap mt='xs' mb='xs'>
                     <ActionIcon size="lg">
                         {/* <IconBrandTwitter size="1.05rem" stroke={1.5} /> */}
@@ -134,9 +135,10 @@ export function FooterLinks({ data }: FooterLinksProps) {
                         <Image src={phone} alt="error" />
                     </ActionIcon>
                 </Group>
-                <Link href="/reviews/add/" >
+                <Link href="/reviews/add/" className='w-4/5 m-auto'>
                     <button
-                        className="bg-yellowlogin text-bluelogin w-60 mb-4 rounded-3xl h-10 relative z-[1] hover:bg-bluelogin hover:text-yellowlogin"
+                        className="bg-yellowlogin text-bluelogin mb-4 rounded-3xl h-10 hover:bg-bluelogin hover:text-yellowlogin w-full"
+                        style={{ boxShadow: '10px 10px 0px 4px #988CE1' }}
                         onMouseOver={(e) => {
                             e.currentTarget.style.boxShadow = "none";
                         }}
@@ -147,9 +149,8 @@ export function FooterLinks({ data }: FooterLinksProps) {
                         Напишите нам
                     </button>
                 </Link>
-                <Text ta='center' className='w-60'>Если у вас есть вопросы?</Text>
+                <Text ta='center'>Если у вас есть вопросы?</Text>
             </div>
-
         </footer>
     );
 }
