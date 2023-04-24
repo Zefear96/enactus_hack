@@ -8,10 +8,10 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useLogout } from "@/services/user/logout";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ChangeEvent } from "react";
-import { setSearchText } from "@/store/slices/petsFilters.slice";
+import { setPage, setSearchText } from "@/store/slices/petsFilters.slice";
 import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
-import person_white from '../../public/person_white.png'
+import person_white from "../../public/person_white.png";
 import { IconHeart } from "@tabler/icons-react";
 import { rem } from "@mantine/core";
 import Link from "next/link";
@@ -77,6 +77,7 @@ const Navbar = () => {
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const val = e.currentTarget.value;
+		dispatch(setPage(1));
 		dispatch(setSearchText(val));
 	};
 
@@ -100,24 +101,26 @@ const Navbar = () => {
 				/>
 			</Link>
 
-			<div className="flex items-center space-x-10 w-11/12 justify-around">
+			<div className="flex items-center w-11/12 justify-around">
 				<button className="flex items-center" onClick={handleGetGeo}>
 					<span style={{ width: "100px" }}>{city} </span>
 					<Image src={geomap} alt="error" className="mx-2" />
 				</button>
 
-				<div className="relative">
-					<input
-						type="text"
-						placeholder="Найти питомца"
-						className="rounded-md pl-8 pr-3 py-2  text-gray-900 focus:outline-none relative h-14 border-gray-400 border"
-						style={{ width: "600px" }}
-						value={searchText}
-						onChange={handleChange}
-					/>
-					<button className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-primary h-full w-14 rounded-r-md">
-						<Image src={searchIcon} alt="error" className="mx-auto"></Image>
-					</button>
+				<div className=" w-3/4">
+					<div className="relative">
+						<input
+							type="text"
+							placeholder="Найти питомца"
+							className="rounded-md pl-8 pr-3 py-2  text-gray-900 focus:outline-none relative h-14 border-gray-400 border w-full"
+							// style={{ width: "600px" }}
+							value={searchText}
+							onChange={handleChange}
+						/>
+						<button className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-primary h-full w-14 rounded-r-md">
+							<Image src={searchIcon} alt="error" className="mx-auto"></Image>
+						</button>
+					</div>
 				</div>
 
 				<div className="relative inline-flex">
@@ -139,13 +142,9 @@ const Navbar = () => {
 				<div className="flex mx-auto justify-center">
 					<Menu as="div" className="relative inline-block text-left mx-auto">
 						<div>
-							<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+							<Menu.Button className=" inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 								Услуги
-								<svg
-									className="fill-current h-4 w-4 mx-4"
-									// xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 20 20"
-								>
+								<svg className="fill-current h-4 w-4 mx-4" viewBox="0 0 20 20">
 									<path d="M10 12l-6-6h12z" />
 								</svg>
 							</Menu.Button>
@@ -165,8 +164,9 @@ const Navbar = () => {
 										<Menu.Item>
 											{({ active }) => (
 												<button
-													className={`${active ? "bg-primary text-white" : "text-gray-900"
-														} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													className={`${
+														active ? "bg-primary text-white" : "text-gray-900"
+													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
 												>
 													<Link href={item.link}>{item.type}</Link>
 												</button>
@@ -179,8 +179,8 @@ const Navbar = () => {
 					</Menu>
 				</div>
 
-				<Link href={"/favorites"} style={{ margin: '0', width: '40px' }}>
-					<IconHeart className=" cursor-pointer" size='2rem' color="#4526FF" />
+				<Link href={"/favorites"} style={{ margin: "0", width: "40px" }}>
+					<IconHeart className=" cursor-pointer" size="2rem" color="#4526FF" />
 				</Link>
 			</div>
 
@@ -226,7 +226,7 @@ const Navbar = () => {
 								src={user.profile_image ? user.profile_image : person_white}
 								width={100}
 								height={100}
-								alt='error'
+								alt="error"
 								className=" rounded-full"
 							/>
 						)}
@@ -279,26 +279,26 @@ const lang: MenuItem[] = [
 const services: MenuItem[] = [
 	{
 		type: "Хостелы/Приюты",
-		link: "/services/commercials",
+		link: "/services/",
 	},
 	{
 		type: "Вет.клиники/Аптеки",
-		link: "/services",
+		link: "/services/",
 	},
 	{
 		type: "Акссесуары",
-		link: "/services",
+		link: "/services/",
 	},
 	{
 		type: "Зоомагазины",
-		link: "/services",
+		link: "/services/",
 	},
 	{
 		type: "Купить питомца",
-		link: "/services",
+		link: "/services/",
 	},
 	{
 		type: "Животные даром",
-		link: "/services/pets",
+		link: "/services/pets/",
 	},
 ];

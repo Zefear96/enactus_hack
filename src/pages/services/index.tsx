@@ -6,7 +6,6 @@ const ListServices = () => {
 	return (
 		<div>
 			<Header />
-			<ListPets />
 		</div>
 	);
 };

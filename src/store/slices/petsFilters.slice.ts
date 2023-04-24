@@ -2,7 +2,6 @@ import { FetchPetsArg } from "@/services/pets/fetchPets";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: FetchPetsArg = {
-	// _sort: "created_at",
 	ordering: "title",
 	search: "",
 	page: 1,
