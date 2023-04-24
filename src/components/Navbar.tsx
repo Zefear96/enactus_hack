@@ -13,7 +13,6 @@ import { useFetchGeo } from "@/services/user/fetchGeolocation";
 import { useFetchUser } from "@/services/user/fetchUser";
 import person_white from "../../public/person_white.png";
 import { IconHeart } from "@tabler/icons-react";
-import { rem } from "@mantine/core";
 import Link from "next/link";
 
 type MenuItem = {
@@ -97,11 +96,11 @@ const Navbar = () => {
 					alt="error"
 					width={110}
 					height={120}
-					className="mx-auto"
+					className="mx-5"
 				/>
 			</Link>
 
-			<div className="flex items-center w-11/12 justify-around">
+			<div className="flex items-center xl:w-11/12 lg:w-3/4 justify-around">
 				<button className="flex items-center" onClick={handleGetGeo}>
 					<span style={{ width: "100px" }}>{city} </span>
 					<Image src={geomap} alt="error" className="mx-2" />
@@ -124,7 +123,7 @@ const Navbar = () => {
 				</div>
 
 				<div className="relative inline-flex">
-					<select className="block appearance-none w-full hover:border-gray-500 px-4 py-2 pr-8 rounded cursor-pointer leading-tight focus:outline-none focus:shadow-outline">
+					<select className="block appearance-none hover:border-gray-500 px-4 py-2 pr-8 rounded cursor-pointer leading-tight focus:outline-none focus:shadow-outline">
 						<option>Рус</option>
 						<option>Кырг</option>
 						<option>Англ</option>
@@ -142,7 +141,7 @@ const Navbar = () => {
 				<div className="flex mx-auto justify-center">
 					<Menu as="div" className="relative inline-block text-left mx-auto">
 						<div>
-							<Menu.Button className=" inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+							<Menu.Button className=" inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-md font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 								Услуги
 								<svg className="fill-current h-4 w-4 mx-4" viewBox="0 0 20 20">
 									<path d="M10 12l-6-6h12z" />
@@ -179,13 +178,13 @@ const Navbar = () => {
 					</Menu>
 				</div>
 
-				<Link href={"/favorites"} style={{ margin: "0", width: "40px" }}>
+				<Link href={"/favorites"} className=" w-10 mr-10">
 					<IconHeart className=" cursor-pointer" size="2rem" color="#4526FF" />
 				</Link>
 			</div>
 
 			{!user ? (
-				<div className="relative">
+				<div className="relative right-4">
 					<Link href="/account/login">
 						<button
 							style={{
@@ -279,26 +278,26 @@ const lang: MenuItem[] = [
 const services: MenuItem[] = [
 	{
 		type: "Хостелы/Приюты",
-		link: "/services/",
+		link: "/services",
 	},
 	{
 		type: "Вет.клиники/Аптеки",
-		link: "/services/",
+		link: "/services",
 	},
 	{
 		type: "Акссесуары",
-		link: "/services/",
+		link: "/services",
 	},
 	{
 		type: "Зоомагазины",
-		link: "/services/",
+		link: "/services",
 	},
 	{
 		type: "Купить питомца",
-		link: "/services/",
+		link: "/services",
 	},
 	{
 		type: "Животные даром",
-		link: "/services/pets/",
+		link: "/services/pets",
 	},
 ];
