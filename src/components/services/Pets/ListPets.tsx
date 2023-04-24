@@ -74,10 +74,10 @@ const ListPets = () => {
 		<>
 			<HeaderMenu />
 
-			<div className="main-block-config my-5 flex">
+			<div className="main-block-config my-5 flex max-sm:flex-col max-sm:w-full max-sm:items-center">
 				<div className="left-block-filter w-1/2 ">
 					<Menu as="div" className="relative inline-block text-left mx-auto">
-						<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-lg font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 mx-5">
+						<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 py-2 text-lg font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
 							{selectedCategory?.title}
 							<svg
 								className="fill-current h-4 w-4 mx-4"
@@ -96,7 +96,7 @@ const ListPets = () => {
 							leaveFrom="transform opacity-100 scale-100"
 							leaveTo="transform opacity-0 scale-95"
 						>
-							<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+							<Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 ">
 								{categories?.map((item) => (
 									<div className="px-1 py-1" key={item.id}>
 										<Menu.Item>
@@ -104,7 +104,7 @@ const ListPets = () => {
 												<button
 													className={`${
 														active ? "bg-primary text-white" : "text-gray-900"
-													} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+													} group flex w-full items-center rounded-md px-2 py-2`}
 													onClick={() => handleSelectChange(item)}
 												>
 													{item.title}
@@ -117,15 +117,15 @@ const ListPets = () => {
 						</Transition>
 					</Menu>
 					<button
-						className=" text-lg mx-5"
+						className=" text-lg"
 						onClick={() => setSelectedCategory(initCategory)}
 					>
 						Сбросить фильтр
 					</button>
 				</div>
 
-				<div className="right-block-filter w-1/2">
-					<div className=" flex justify-end">
+				<div className="right-block-filter w-1/2 max-sm:w-full ">
+					<div className=" flex justify-end max-sm:justify-center">
 						<Menu as="div" className="relative inline-block text-left ">
 							<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-lg font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 mx-5">
 								Сортировать по:
@@ -176,7 +176,7 @@ const ListPets = () => {
 
 			{/* LIST PETS */}
 			<div
-				className=" grid grid-cols-3 gap-10 w-3/4 mx-auto my-10"
+				className=" grid lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-10 w-3/4 mx-auto my-10"
 				// style={{ height: "1100px" }}
 			>
 				{/* {selectedCategory.title === "Категории"
