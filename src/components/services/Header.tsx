@@ -35,7 +35,7 @@ export default function Header() {
 
 	return (
 		<div className="w-full max-w-screen-xl mx-auto my-10">
-			<div className="flex">
+			<div className="flex flex-wrap sm: justify-center mx-auto">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
@@ -43,7 +43,7 @@ export default function Header() {
 							activeTab === index
 								? " bg-yellowlogin text-bluelogin"
 								: "bg-white text-gray-700"
-						} flex-1 py-4 px-6 font-medium text-md focus:outline-none border border-bluelogin rounded-lg`}
+						} flex-1 py-4 px-6 font-medium text-md focus:outline-none border border-bluelogin rounded-lg sm: w-40 `}
 						onClick={() => setActiveTab(index)}
 					>
 						<Image
