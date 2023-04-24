@@ -1,7 +1,27 @@
+@media all and (max-width: 1024px) {
+    .main {
+        width: 55%;
+    }
+
+    .text {
+        font-size: large !important;
+    }
+}
+
+
 @media all and (max-width: 768px) {
     .main {
-        width: 60%;
+        width: 65%;
     }
+
+    .instr_text {
+        font-size: 14px !important;
+    }
+
+    .text {
+        font-size: medium !important;
+    }
+
 }
 
 @media all and (max-width: 320px) {

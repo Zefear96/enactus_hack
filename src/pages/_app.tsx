@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			links: [
 				{
 					label: "Контакты",
-					link: "/",
+					link: "/reviews/add",
 				},
 				{
 					label: "О нас",
@@ -63,7 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				},
 				{
 					label: "Реклама",
-					link: "/",
+					link: "/services/add/commercial",
 				},
 				{
 					label: "Отзывы",

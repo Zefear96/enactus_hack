@@ -1,0 +1,5 @@
+@media all and (max-width: 768px) {
+    .title {
+        font-size: xx-large !important;
+    }
+}

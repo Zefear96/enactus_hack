@@ -17,6 +17,7 @@ import mbank from '../../../../public/mbank.png';
 import optima from '../../../../public/optima.png';
 import balance from '../../../../public/balance.png';
 import Image from "next/image";
+import styles from './styles/addCommStyles.module.css';
 
 type Props = {
 	onSubmit(values: CommercialFormValues): void;

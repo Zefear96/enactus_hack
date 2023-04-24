@@ -9,7 +9,7 @@ import {
     Textarea,
 
 } from "@mantine/core";
-
+import styles from './addReviewStyles.module.css';
 
 type Props = {
     onSubmit(values: ReviewFormValues): void;
@@ -49,7 +49,7 @@ const AddReviewForm = ({ onSubmit, defaultValues = {} }: Props) => {
         <div className="w-full">
             <FocusTrap active>
                 <form onSubmit={form.onSubmit(handleSubmit)} >
-                    <Title ta="center" fw={700} my="30px">Обратная связь</Title>
+                    <Title ta="center" fw={700} my="30px" className={styles.title}>Обратная связь</Title>
                     <TextInput
                         withAsterisk
                         {...form.getInputProps("name")}

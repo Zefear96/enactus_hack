@@ -43,7 +43,7 @@ const FavList = () => {
             </button>
             {favList.length !== 0 ? (
                 <div className='flex justify-center flex-col'>
-                    <div className=" grid grid-cols-3 gap-10 w-full mx-auto my-10">
+                    <div className=" grid lg:grid-cols-3 gap-10 w-full mx-auto my-10 md:grid-cols-2 max-sm:grid-cols-1">
                         {currentData().map(item => <ItemPet key={item.id} item={item} />)}
                     </div>
                     <button onClick={cleanMyFavList} className="bg-yellowlogin text-bluelogin w-60 mb-4 mx-auto rounded-3xl h-10 hover:bg-bluelogin hover:text-yellowlogin"

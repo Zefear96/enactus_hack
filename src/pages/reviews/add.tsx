@@ -13,7 +13,7 @@ const AddReview = () => {
     }
 
     return (
-        <div className="flex justify-center items-center m-auto my-10 w-4/12">
+        <div className="flex justify-center items-center m-auto my-10 w-4/12 md:w-6/12">
             <AddReviewForm onSubmit={handleSubmit} />
         </div>
     )

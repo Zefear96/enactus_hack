@@ -49,7 +49,7 @@ const ResetPassword = ({ defaultValues = {} }: Props) => {
 
                         <div className="w-4/5 mx-auto my-5">
                             <Title ta="center" fw={700} my="40px" className={styles.title}>Сброс пароля</Title>
-                            <Text ta="center" fw={500} fz="lg" my="50px" className={styles.text}>Введите вашу электронную почту,
+                            <Text ta="center" fw={500} my="50px" className={styles.text}>Введите вашу электронную почту,
                                 и мы вам отправим инструкцию по
                                 восстановлению пароля.</Text>
                             <TextInput
@@ -63,7 +63,7 @@ const ResetPassword = ({ defaultValues = {} }: Props) => {
                             />
                             {emailsend ?
                                 <div className='border-r border-l border-red-400 h-20 flex justify-center items-center '>
-                                    <Text c="dimmed" ta='center'>На вашу почту было отправлено письмо
+                                    <Text c="dimmed" ta='center' className={styles.instr_text}>На вашу почту было отправлено письмо
                                         с инструкцией.
                                         Перейдите, чтобы ввести код <Link href="/account/resetpassComplete/" className=' text-blue-500'>по этой ссылке</Link></Text>
                                 </div>
@@ -72,7 +72,7 @@ const ResetPassword = ({ defaultValues = {} }: Props) => {
                                 >Сбросить пароль</button>}
 
                             <Group position="center" mb="40px">
-                                <Text c="dimmed" fz="lg">Вспомнили пароль? <Link href="/account/login/" className=' text-blue-500' >Войти</Link> </Text>
+                                <Text c="dimmed" fz="lg" className={styles.text}>Вспомнили пароль? <Link href="/account/login/" className=' text-blue-500' >Войти</Link> </Text>
                             </Group>
                         </div>
                     </form>
