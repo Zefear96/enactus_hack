@@ -71,9 +71,9 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
             <div className={`${styles.main} bg-greybase w-2/5 rounded-3xl`} style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
 
                 <form onSubmit={form.onSubmit(handleSubmit)} className="w-4/5 mx-auto my-5">
-                    <Title ta="center" fw={700} my="40px">Регистрация</Title>
+                    <Title ta="center" fw={700} my="40px" className={styles.title}>Регистрация</Title>
                     <TextInput
-                        className="border-b"
+                        className={`${styles.inputs} border-b`}
                         variant="unstyled"
                         size="lg"
                         my="10px"
@@ -82,7 +82,7 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
                         {...form.getInputProps('email')}
                     />
                     <TextInput
-                        className="border-b"
+                        className={`${styles.inputs} border-b`}
                         variant="unstyled"
                         size="lg"
                         my="10px"
@@ -92,7 +92,7 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
                         {...form.getInputProps('phone_number')}
                     />
                     <PasswordInput
-                        className=" placeholder-blackplaceholder border-b"
+                        className={`${styles.inputs} border-b placeholder-blackplaceholder`}
                         variant="unstyled"
                         size="lg"
                         my="10px"
@@ -102,7 +102,7 @@ const RegistrationForm = ({ onSubmit, defaultValues = {} }: Props) => {
                         icon={<IconLock size={16} />}
                     />
                     <PasswordInput
-                        className="border-b placeholder-blackplaceholder"
+                        className={`${styles.inputs} border-b placeholder-blackplaceholder`}
                         variant="unstyled"
                         size="lg"
                         my="10px"

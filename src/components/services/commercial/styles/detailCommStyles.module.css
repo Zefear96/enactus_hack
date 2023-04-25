@@ -35,6 +35,10 @@
     .titles {
         font-size: 20px !important;
     }
+
+    .card {
+        width: 80%;
+    }
 }
 
 @media all and (max-width: 320px) {
@@ -44,5 +48,9 @@
 
     .titles {
         font-size: 15px !important;
+    }
+
+    .text {
+        font-size: 11px !important;
     }
 }

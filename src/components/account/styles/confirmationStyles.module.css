@@ -19,4 +19,13 @@
         width: 80%;
     }
 
+    .title {
+        font-size: 25px !important;
+    }
+
+    .text {
+        font-size: small !important;
+        text-align: center;
+    }
+
 }

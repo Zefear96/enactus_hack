@@ -8,6 +8,13 @@
     }
 }
 
-@media all and (max-width: 768px) {
-    .main {}
+@media all and (max-width: 320px) {
+    .title {
+        font-size: 23px !important;
+    }
+
+    .text {
+        font-size: 10px !important;
+        text-align: center;
+    }
 }

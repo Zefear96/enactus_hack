@@ -89,7 +89,7 @@ const AddCommercialForm = ({ onSubmit, defaultValues = {} }: Props) => {
 		<div className="w-full">
 			<FocusTrap active>
 				<form onSubmit={form.onSubmit(handleSubmit)} >
-					<Title ta="center" fw={700} my="30px">Подать рекламу</Title>
+					<Title ta="center" fw={700} my="30px" className={styles.title}>Подать рекламу</Title>
 					<TextInput
 						withAsterisk
 						{...form.getInputProps("title")}
