@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Card, Text, Group, Rating, Title } from "@mantine/core";
+import { Card, Text, Group, Rating, Title, Loader } from "@mantine/core";
 import Image from "next/image";
 import contact from "../../../../public/contact.png";
 import address from "../../../../public/address.png";
@@ -25,6 +25,7 @@ type Props = {
 
 const ItemCommercial = ({ item }: { item: Props }) => {
 	console.log(item);
+	const [loading, setLoading] = React.useState(true);
 
 	const imageURL =
 		typeof item.image === "string"
@@ -40,6 +41,13 @@ const ItemCommercial = ({ item }: { item: Props }) => {
 			className={styles.card}
 		>
 			<Card.Section>
+				{loading && (
+					<Loader
+						color="violet"
+						variant="dots"
+						style={{ height: "300px", margin: "auto", scale: "1.5" }}
+					/>
+				)}
 				<Image
 					className={styles.picture}
 					src={
@@ -51,6 +59,7 @@ const ItemCommercial = ({ item }: { item: Props }) => {
 					width={1000}
 					height={1000}
 					style={{ width: "100%", height: "100%" }}
+					onLoad={() => setLoading(false)}
 				/>
 			</Card.Section>
 			<Link href={`/services/commercials/${item.id}`} key={item.id}>

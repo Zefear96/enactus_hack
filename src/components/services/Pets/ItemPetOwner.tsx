@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text } from "@mantine/core";
+import { Card, Text, Loader } from "@mantine/core";
 import { Pet } from "@/utils/types";
 import Link from "next/link";
 import { useFetchCategories } from "@/services/pets/fetchCategories";
@@ -15,6 +15,7 @@ type Props = {
 const ItemPet = ({ item }: { item: Pet }) => {
 	// console.log(item);
 	const [categories] = useFetchCategories();
+	const [loading, setLoading] = React.useState(true);
 
 	return (
 		<Link href={`/services/pets/${item.id}`}>
@@ -22,7 +23,6 @@ const ItemPet = ({ item }: { item: Pet }) => {
 				// style={{ width: "300px" }}
 
 				className=" mx-auto flex w-full rounded-lg max-sm:flex-col max-lg:flex-col"
-
 				style={{
 					background: "#F3F3F3",
 					borderRadius: "8px",
@@ -33,6 +33,13 @@ const ItemPet = ({ item }: { item: Pet }) => {
 				}}
 			>
 				<div className=" relative w-1/3">
+					{loading && (
+						<Loader
+							color="violet"
+							variant="dots"
+							style={{ height: "300px", margin: "auto", scale: "1.5" }}
+						/>
+					)}
 					<Image
 						src={item.image}
 						alt="error"
@@ -46,6 +53,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 							borderTopLeftRadius: "8px",
 							borderBottomLeftRadius: "8px",
 						}}
+						onLoad={() => setLoading(false)}
 					/>
 				</div>
 
