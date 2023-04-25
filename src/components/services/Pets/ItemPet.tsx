@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text } from "@mantine/core";
+import { Card, Text, Loader } from "@mantine/core";
 import { Pet } from "@/utils/types";
 import Link from "next/link";
 import { useFetchCategories } from "@/services/pets/fetchCategories";
@@ -17,10 +17,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 	// console.log(item);
 	const [categories] = useFetchCategories();
 
-	// const imageUrl =
-	// 	typeof item.image === "string"
-	// 		? item.image
-	// 		: URL.createObjectURL(item.image);
+	const [loading, setLoading] = React.useState(true);
 
 	return (
 		<Link href={`/services/pets/${item.id}`}>
@@ -34,6 +31,14 @@ const ItemPet = ({ item }: { item: Pet }) => {
 				}}
 			>
 				<Card.Section>
+					{loading && (
+						<Loader
+							color="violet"
+							variant="dots"
+							style={{ height: "300px", margin: "auto", scale: "1.5" }}
+						/>
+					)}
+
 					<Image
 						src={item.image}
 						alt="error"
@@ -45,6 +50,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 							height: "300px",
 							width: "100%",
 						}}
+						onLoad={() => setLoading(false)}
 					/>
 				</Card.Section>
 
