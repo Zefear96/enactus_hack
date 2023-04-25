@@ -50,7 +50,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 
 				<div className=" h-16">
 					<Text weight={700} size="xl" mt="md">
-						{item.title.substring(0, 20) + "..."}
+						{item.title.substring(0, 30) + " ..."}
 					</Text>
 				</div>
 				<Text size="md" mt="md" c="black">
