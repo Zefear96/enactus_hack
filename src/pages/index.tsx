@@ -21,19 +21,21 @@ import statestitle from "../../public/statestitle.png";
 import { useFetchUser } from "@/services/user/fetchUser";
 import React from "react";
 import { useFetchReviews } from "@/services/reviews/fetchReviews";
+import footprints_left from "../../public/footprints_left.png";
+import footprints_right from "../../public/footprints_right.png";
 
 export default function Home() {
-	const [user] = useFetchUser()
+	const [user] = useFetchUser();
 	const [reviews] = useFetchReviews();
 
 	const href = user ? "/services/add/pets" : "/account/login";
 
-	if (!reviews) return <h1>Еще нет отзывов</h1>
+	if (!reviews) return <h1>Еще нет отзывов</h1>;
 
 	return (
 		<>
 			<div className="flex max-w-screen-xl mx-auto">
-				<div className=" relative w-1/2 mx-auto">
+				<div className=" left-block-head relative w-1/2 mx-auto">
 					<Image src={Vector1} alt="error" className=" relative mx-auto	" />
 					<Image src={planet} alt="error" className=" absolute top-2/4 " />
 					<Image
@@ -77,9 +79,14 @@ export default function Home() {
 							</span>
 						</button>
 					</Link>
+					<Image
+						src={footprints_left}
+						alt="error"
+						className=" absolute top-2/3 right-0 z-[-1]"
+					/>
 				</div>
 
-				<div className=" mx-auto w-1/2">
+				<div className="right-block-head mx-auto w-1/2">
 					<Image
 						src={Vector2}
 						alt="error"
@@ -87,6 +94,11 @@ export default function Home() {
 					/>
 					<Image src={dog} alt="error" className=" absolute z-2" />
 				</div>
+				<Image
+					src={footprints_right}
+					alt="error"
+					className=" absolute top-2/3 right-28 z-[-1]"
+				/>
 			</div>
 
 			<section id="aboutus">
@@ -98,8 +110,9 @@ export default function Home() {
 							Наша миссия
 						</span>
 						- помочь животным найти добрые руки! Мы хотим объединить
-						питомники/приюты/частных заводчиков и людей ищущих на одной платформе,
-						чтобы все животные имели шанс найти своего доброго и любящего хозяина.
+						питомники/приюты/частных заводчиков и людей ищущих на одной
+						платформе, чтобы все животные имели шанс найти своего доброго и
+						любящего хозяина.
 					</h2>
 
 					<div className="">
@@ -108,8 +121,8 @@ export default function Home() {
 								<Image src={li1} alt="error" className="mx-auto" />
 								<h3>Объявления</h3>
 								<p>
-									На сайте можно разместить неограниченное количество объявлений о
-									продаже животных
+									На сайте можно разместить неограниченное количество объявлений
+									о продаже животных
 								</p>
 							</li>
 							<li className="w-1/3 ">
@@ -117,15 +130,16 @@ export default function Home() {
 								<h3>Легкие покупки</h3>
 								<p>
 									Клиент покупает у продавца питомца напрямую, связавшись через
-									чат или контактный номер и нет дополнительных комиссий от сайта
-									Zoo.Net
+									чат или контактный номер и нет дополнительных комиссий от
+									сайта Zoo.Net
 								</p>
 							</li>
 							<li className="w-1/3 ">
 								<Image src={li3} alt="error" className="mx-auto" />
 								<h3>Помощь</h3>
 								<p>
-									Мы помогаем бездомным животным найти добрых и заботливых хозяев.
+									Мы помогаем бездомным животным найти добрых и заботливых
+									хозяев.
 								</p>
 							</li>
 						</ul>
@@ -158,10 +172,10 @@ export default function Home() {
 							<div className="feedblack-text mt-20 w-2/3 mx-auto">
 								{reviews.map((item) => (
 									<div key={item.id}>
-										<h3 style={{ borderBottom: "1px solid gray" }}>{item.name}</h3>
-										<p>
-											{item.message}
-										</p>
+										<h3 style={{ borderBottom: "1px solid gray" }}>
+											{item.name}
+										</h3>
+										<p>{item.message}</p>
 									</div>
 								))}
 							</div>
@@ -186,7 +200,8 @@ export default function Home() {
 									onMouseOut={(e) => {
 										e.currentTarget.style.backgroundColor = "yellow";
 										e.currentTarget.style.color = "blue";
-										e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+										e.currentTarget.style.boxShadow =
+											"10px 10px 0px 4px #988CE1";
 									}}
 								>
 									<span className="flex items-center mx-auto justify-center">
@@ -226,8 +241,9 @@ export default function Home() {
 								Советы для владельцев кошек
 							</h3>
 							<p>
-								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
-								viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
+								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi
+								euismod viverra. Tincidunt ultricies porttitor netus ut dolor.
+								Quis e
 							</p>
 							<a href="#" style={{ color: "blue" }} className=" ">
 								Посмотреть подробнее
@@ -246,8 +262,9 @@ export default function Home() {
 								Как приучить питомца
 							</h3>
 							<p>
-								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
-								viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
+								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi
+								euismod viverra. Tincidunt ultricies porttitor netus ut dolor.
+								Quis e
 							</p>
 							<a href="#" style={{ color: "blue" }} className=" ">
 								Посмотреть подробнее
@@ -266,8 +283,9 @@ export default function Home() {
 								Питание для попугая
 							</h3>
 							<p>
-								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi euismod
-								viverra. Tincidunt ultricies porttitor netus ut dolor. Quis e
+								“Lorem ipsum dolor sit amet consectetur. Bibendum et nisi
+								euismod viverra. Tincidunt ultricies porttitor netus ut dolor.
+								Quis e
 							</p>
 							<a href="#" style={{ color: "blue" }} className=" ">
 								Посмотреть подробнее

@@ -175,16 +175,7 @@ const ListPets = () => {
 			</div>
 
 			{/* LIST PETS */}
-			<div
-				className=" grid lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-10 w-3/4 mx-auto my-10"
-				// style={{ height: "1100px" }}
-			>
-				{/* {selectedCategory.title === "Категории"
-					? pets.results.map((item) => <ItemPet item={item} key={item.id} />)
-					: pets.results
-							.filter((item) => item.category === selectedCategory.id)
-							.map((item) => <ItemPet item={item} key={item.id} />)} */}
-
+			<div className=" grid lg:grid-cols-2 min-md:grid-cols-2 max-sm:grid-cols-1 gap-10 w-3/4 mx-auto my-10 max-sm:w-full">
 				{selectedCategory.title === "Категории" ? (
 					pets?.length ?? 0 > 0 ? (
 						pets

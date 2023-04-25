@@ -27,7 +27,6 @@ const ItemPet = ({ item }: { item: Pet }) => {
 			<Card
 				shadow="sm"
 				padding="xl"
-				// style={{ width: "300px" }}
 				className=" mx-auto"
 				style={{
 					background: "#FFD437",
@@ -35,17 +34,11 @@ const ItemPet = ({ item }: { item: Pet }) => {
 				}}
 			>
 				<Card.Section>
-					{/* <Image
-						src={item.image}
-						height={300}
-						alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
-						style={{ objectFit: "cover", objectPosition: "center" }}
-					/> */}
 					<Image
 						src={item.image}
 						alt="error"
-						width={400}
-						height={300}
+						width={1000}
+						height={1000}
 						style={{
 							objectFit: "cover",
 							objectPosition: "center",
@@ -55,9 +48,11 @@ const ItemPet = ({ item }: { item: Pet }) => {
 					/>
 				</Card.Section>
 
-				<Text weight={700} size="xl" mt="md">
-					{item.title}
-				</Text>
+				<div className=" h-16">
+					<Text weight={700} size="xl" mt="md">
+						{item.title.substring(0, 30) + " ..."}
+					</Text>
+				</div>
 				<Text size="md" mt="md" c="black">
 					<span style={{ color: "rgba(69, 38, 255, 1)" }}>Возраст: </span>
 					{item.age}
@@ -74,12 +69,24 @@ const ItemPet = ({ item }: { item: Pet }) => {
 					<span style={{ color: "rgba(69, 38, 255, 1)" }}>Порода: </span>
 					{item.breed}
 				</Text>
-				<Text mt="md" color="dimmed" size="md" className="flex" c="black">
-					<Image src={address_blue} alt="error" className=" me-3" />
+				<Text
+					mt="md"
+					color="dimmed"
+					size="md"
+					className="flex items-center"
+					c="black"
+				>
+					<Image src={address_blue} alt="error" className=" me-3 h-full" />
 					{item.address}
 				</Text>
-				<Text mt="md" color="dimmed" size="md" className="flex" c="black">
-					<Image src={phone_blue} alt="error" className=" me-3" />
+				<Text
+					mt="md"
+					color="dimmed"
+					size="md"
+					className="flex items-center"
+					c="black"
+				>
+					<Image src={phone_blue} alt="error" className=" me-3 h-full" />
 					{item.contact}
 				</Text>
 			</Card>
