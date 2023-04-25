@@ -20,7 +20,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 		<Link href={`/services/pets/${item.id}`}>
 			<div
 				// style={{ width: "300px" }}
-				className=" mx-auto flex w-full rounded-lg"
+				className=" mx-auto flex w-full rounded-lg max-lg:flex-col"
 				style={{
 					background: "#F3F3F3",
 					borderRadius: "8px",
@@ -68,11 +68,11 @@ const ItemPet = ({ item }: { item: Pet }) => {
 						{item.breed}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" className="flex" c="black">
-						<Image src={address_blue} alt="error" className=" me-3" />
+						<Image src={address_blue} alt="error" className=" me-3 h-full" />
 						{item.address}
 					</Text>
 					<Text mt="md" color="dimmed" size="md" className="flex" c="black">
-						<Image src={phone_blue} alt="error" className=" me-3" />
+						<Image src={phone_blue} alt="error" className=" me-3 h-full" />
 						{item.contact}
 					</Text>
 					<Link href={`/services/pets/edit/${item.id}`}>
