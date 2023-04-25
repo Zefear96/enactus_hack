@@ -63,7 +63,7 @@ const EditProfile = () => {
 	if (currentUser.name === null) { currentUser.name = '' }
 
 	return (
-		<div className="flex w-2/4 mx-auto my-10">
+		<div className="flex w-2/4 mx-auto my-10 max-sm:w-full max-sm:my-5">
 			<ProfileForm
 				defaultValues={{
 					name: currentUser.name,

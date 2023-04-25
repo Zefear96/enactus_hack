@@ -54,8 +54,8 @@ const ListPetsOwner = () => {
 	}
 
 	return (
-		<div className="flex-col w-3/4 mx-auto my-10">
-			<div className=" grid grid-cols-1 gap-10 w-3/4 mx-auto ">
+		<div className="flex-col w-3/4 mx-auto my-10 max-sm:w-full">
+			<div className=" grid grid-cols-1 gap-10 w-3/4 mx-auto max-sm:w-full">
 				{ownerList.map((item) => (
 					<ItemPetOwner item={item} key={item.id} />
 				))}

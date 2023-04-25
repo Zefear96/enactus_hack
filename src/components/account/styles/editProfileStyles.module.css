@@ -1,0 +1,12 @@
+@media all and (max-width: 1024px) {}
+
+@media all and (max-width: 768px) {}
+
+
+@media all and (max-width: 320px) {
+    .title {
+        margin: 0 !important;
+        font-size: 28px !important;
+    }
+
+}

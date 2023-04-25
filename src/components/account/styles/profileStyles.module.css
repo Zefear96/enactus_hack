@@ -14,3 +14,15 @@
         height: 23px;
     }
 }
+
+
+@media all and (max-width: 320px) {
+    .profile_btn {
+        width: 95%;
+    }
+
+    .btn_icon {
+        width: 23px;
+        height: 23px;
+    }
+}

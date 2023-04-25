@@ -31,10 +31,10 @@ const Profile = () => {
 	if (!currentUser) return <h1>Not Found</h1>; //чтобы тайпскрипт знал, что нужно остановиться и null не будет
 
 	return (
-		<div className="flex w-1/4 md:w-1/3">
-			<div className="flex justify-start items-center flex-col w-full py-5 border-primary border-r">
+		<div className="flex w-1/4 md:w-1/3 max-sm:w-full">
+			<div className="flex justify-start items-center flex-col w-full py-5 border-primary border-r max-sm:border-none">
 				{/* bg-yellowlogin */}
-				<div className="flex flex-col items-center my-10">
+				<div className="flex flex-col items-center my-10 max-sm:my-5">
 					{currentUser.profile_image ? (
 						<Avatar
 							src={currentUser.profile_image}
@@ -67,9 +67,9 @@ const Profile = () => {
 					<Text c="dimmed">{currentUser.phone_number}</Text>
 				</div>
 
-				<div className="w-full mx-auto flex justify-center items-start flex-col">
+				<div className="w-full mx-auto flex justify-center items-start flex-col max-sm:w-8/12">
 					<button
-						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg max-sm:text-base max-sm:py-1 py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover(true)}
 						onMouseLeave={() => setHover(false)}
 					>
@@ -81,7 +81,7 @@ const Profile = () => {
 						<Link href="/account">Профиль</Link>
 					</button>
 					<button
-						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg max-sm:text-base py-3 max-sm:py-1 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover1(true)}
 						onMouseLeave={() => setHover1(false)}
 					>
@@ -94,7 +94,7 @@ const Profile = () => {
 						<Link href="/account/edit">Изменить данные</Link>
 					</button>
 					<button
-						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg max-sm:text-base max-sm:py-1 py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover2(true)}
 						onMouseLeave={() => setHover2(false)}
 					>
@@ -106,7 +106,7 @@ const Profile = () => {
 						<Link href="/account/change_password">Изменить пароль</Link>
 					</button>
 					<button
-						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg max-sm:text-base max-sm:py-1 py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover3(true)}
 						onMouseLeave={() => setHover3(false)}
 					>
@@ -119,7 +119,7 @@ const Profile = () => {
 					</button>
 
 					<button
-						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
+						className={`${styles.profile_btn} flex items-center text-xl lg:text-lg md:text-lg max-sm:text-base max-sm:py-1 py-3 my-2 w-10/12 rounded-md mx-auto hover:bg-primary  hover:text-white`}
 						onMouseEnter={() => setHover4(true)}
 						onMouseLeave={() => setHover4(false)}
 						onClick={logout}

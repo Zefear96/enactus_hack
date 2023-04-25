@@ -54,7 +54,7 @@ const ChangePassword = ({ defaultValues = {} }: Props) => {
                 <FocusTrap active>
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <div className="w-4/5 mx-auto my-5">
-                            <Title ta="center" fw={700} my="40px">Изменить пароль</Title>
+                            <Title ta="center" fw={700} my="40px" className={styles.title}>Изменить пароль</Title>
                             <PasswordInput
                                 className=" placeholder-blackplaceholder border-b"
                                 variant="unstyled"
@@ -79,7 +79,7 @@ const ChangePassword = ({ defaultValues = {} }: Props) => {
                             <button type="submit" className=' bg-yellowlogin w-full h-14 rounded-3xl my-10'
                             >Изменить</button>
                             <Group position="center" mb="40px">
-                                <Link href="/account/resetpassword/" className=' text-blue-500' >Забыли пароль?</Link>
+                                <Link href="/account/resetpassword/" className={`${styles.texts}  text-blue-500`} >Забыли пароль?</Link>
                             </Group>
                         </div>
                     </form>
