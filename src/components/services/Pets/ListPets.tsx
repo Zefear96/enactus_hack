@@ -194,7 +194,7 @@ const ListPets = () => {
 							)
 							.map((item) => <ItemPet item={item} key={item.id} />) ?? []
 					) : (
-						<div className=" flex items-center">
+						<div className=" flex items-center flex-wrap">
 							<Image src={no_results_text} alt="error" />
 							<Image src={no_results_img} alt="error" />
 						</div>
@@ -215,7 +215,7 @@ const ListPets = () => {
 						)
 						?.map((item) => <ItemPet item={item} key={item.id} />)
 				) : (
-					<div className=" flex items-center">
+					<div className=" flex items-center flex-wrap">
 						<Image src={no_results_text} alt="error" />
 						<Image src={no_results_img} alt="error" />
 					</div>
