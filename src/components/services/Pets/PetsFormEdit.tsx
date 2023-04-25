@@ -1,18 +1,15 @@
 import React from "react";
-import z, { object } from "zod";
+import z from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 import {
 	FocusTrap,
 	TextInput,
 	Group,
 	Button,
-	Text,
 	Select,
-	NumberInput,
 	FileInput,
 } from "@mantine/core";
-import { useCreatePet } from "@/services/pets/createPet";
-import { Pet } from "@/utils/types";
+import Image from "next/image";
 
 type Props = {
 	onSubmit(values: PetsFormValues): void;
@@ -84,7 +81,7 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 	};
 
 	return (
-		<div>
+		<div className=" my-10">
 			<FocusTrap active>
 				<form className=" w-1/3 mx-auto" onSubmit={form.onSubmit(handleSubmit)}>
 					<Select
@@ -112,7 +109,13 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 						{...form.getInputProps("breed")}
 						label="Порода"
 					/>
-					<img src={form.values.image} alt="error:(" width="100px" />
+					<Image
+						src={form.values.image}
+						alt="error:("
+						width={200}
+						height={200}
+						className=" mx-auto"
+					/>
 
 					<FileInput
 						// withAsterisk
@@ -135,7 +138,12 @@ const PetsFormEdit = ({ onSubmit, defaultValues = {} }: Props) => {
 					/> */}
 
 					<Group position="right" mt="md">
-						<Button type="submit">Отправить</Button>
+						<button
+							type="submit"
+							className=" bg-yellowlogin rounded-lg w-full h-10 text-bluelogin"
+						>
+							Отправить
+						</button>
 					</Group>
 				</form>
 			</FocusTrap>

@@ -30,7 +30,7 @@ const ListPetsOwner = () => {
 		if (pets) {
 			setOwnerList(pets.filter((pet) => pet.owner === currentUser?.email));
 		}
-	}, []);
+	}, [currentUser?.email, pets]);
 
 	// setOwnerList(pets?.filter((pet) => pet.owner === currentUser?.email));
 	console.log(ownerList);
