@@ -308,7 +308,7 @@ const Navbar = () => {
 			</Group>
 
 			{!user ? (
-				<div className="relative right-4">
+				<div className="relative right-4 ">
 					<Link href="/account/login">
 						<button
 							style={{
@@ -332,7 +332,7 @@ const Navbar = () => {
 								e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
 							}}
 						>
-							<span className="flex items-center mx-auto justify-center">
+							<span className="flex items-center mx-auto justify-center ">
 								Войти
 							</span>
 						</button>
