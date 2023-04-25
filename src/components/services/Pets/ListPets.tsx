@@ -75,7 +75,7 @@ const ListPets = () => {
 			<HeaderMenu />
 
 			<div className="main-block-config my-5 flex max-sm:flex-col max-sm:w-full max-sm:items-center">
-				<div className="left-block-filter w-1/2 ">
+				<div className="left-block-filter w-1/2 max-sm:flex max-sm:w-full">
 					<Menu as="div" className="relative inline-block text-left mx-auto">
 						<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 py-2 text-lg font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ">
 							{selectedCategory?.title}
@@ -125,7 +125,7 @@ const ListPets = () => {
 				</div>
 
 				<div className="right-block-filter w-1/2 max-sm:w-full ">
-					<div className=" flex justify-end max-sm:justify-center">
+					<div className=" flex justify-end max-sm:justify-start">
 						<Menu as="div" className="relative inline-block text-left ">
 							<Menu.Button className="inline-flex justify-center items-center rounded-md bg-opacity-20 px-4 py-2 text-lg font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 mx-5">
 								Сортировать по:
@@ -194,7 +194,7 @@ const ListPets = () => {
 							)
 							.map((item) => <ItemPet item={item} key={item.id} />) ?? []
 					) : (
-						<div className=" flex items-center">
+						<div className=" flex items-center flex-wrap">
 							<Image src={no_results_text} alt="error" />
 							<Image src={no_results_img} alt="error" />
 						</div>
@@ -215,7 +215,7 @@ const ListPets = () => {
 						)
 						?.map((item) => <ItemPet item={item} key={item.id} />)
 				) : (
-					<div className=" flex items-center">
+					<div className=" flex items-center flex-wrap">
 						<Image src={no_results_text} alt="error" />
 						<Image src={no_results_img} alt="error" />
 					</div>
