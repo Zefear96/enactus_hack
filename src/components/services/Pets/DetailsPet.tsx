@@ -10,6 +10,7 @@ import {
 	useMantineTheme,
 	createStyles,
 	TextInput,
+	Loader,
 } from "@mantine/core";
 import {
 	IconDots,
@@ -62,6 +63,7 @@ const DetailsPet = ({ pet }: Props) => {
 	const [deletePet] = useDeletePet();
 	const [currentUser] = useFetchUser();
 	const [categories] = useFetchCategories();
+	const [loading, setLoading] = useState(true);
 
 	const isInFav = useIsInFav(pet.id);
 
@@ -133,6 +135,14 @@ const DetailsPet = ({ pet }: Props) => {
 			</button>
 			<div className="flex max-w-screen-xl mx-auto my-10 flex-wrap justify-center">
 				<div className=" relative" style={{ width: "40%" }}>
+					{loading && (
+						<Loader
+							color="violet"
+							variant="dots"
+							style={{ height: "300px", margin: "auto", scale: "1.5" }}
+						/>
+					)}
+
 					<Image
 						src={pet.image}
 						height={1000}
@@ -144,6 +154,7 @@ const DetailsPet = ({ pet }: Props) => {
 							objectPosition: "center",
 						}}
 						className="  shadow-neon border rounded-lg"
+						onLoad={() => setLoading(false)}
 					/>
 				</div>
 				<Card radius="md" className=" mx-10 w-1/2">
