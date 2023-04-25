@@ -23,6 +23,7 @@ import React from "react";
 import { useFetchReviews } from "@/services/reviews/fetchReviews";
 import footprints_left from "../../public/footprints_left.png";
 import footprints_right from "../../public/footprints_right.png";
+import footprints_left_bottom from "../../public/footprints_left_bottom.png";
 
 export default function Home() {
 	const [user] = useFetchUser();
@@ -35,8 +36,8 @@ export default function Home() {
 	return (
 		<>
 			<div className="flex max-w-screen-xl mx-auto">
-				<div className=" left-block-head relative w-1/2 mx-auto">
-					<Image src={Vector1} alt="error" className=" relative mx-auto	" />
+				<div className=" left-block-head relative w-1/2 mx-auto ">
+					<Image src={Vector1} alt="error" className=" relative mx-auto" />
 					<Image src={planet} alt="error" className=" absolute top-2/4 " />
 					<Image
 						src={zoonet}
@@ -74,7 +75,7 @@ export default function Home() {
 								e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
 							}}
 						>
-							<span className="flex items-center mx-auto justify-center">
+							<span className="flex items-center mx-auto justify-center ">
 								Добавить объявление <ArrowNarrowRight className="mx-2" />
 							</span>
 						</button>
@@ -90,14 +91,18 @@ export default function Home() {
 					<Image
 						src={Vector2}
 						alt="error"
-						className=" absolute top-1/4 z-[-1]"
+						className=" absolute top-1/4 z-[-1] max-lg:w-1/2 max-xl:w-1/2"
 					/>
-					<Image src={dog} alt="error" className=" absolute z-2" />
+					<Image
+						src={dog}
+						alt="error"
+						className=" absolute z-2 max-lg:w-1/2 max-xl:w-1/2"
+					/>
 				</div>
 				<Image
 					src={footprints_right}
 					alt="error"
-					className=" absolute top-2/3 right-28 z-[-1]"
+					className=" absolute top-1/2 right-14 z-[-1] max-lg:w-1/2 min-xl:w-1/2 xl:right-14 lg:right-1 "
 				/>
 			</div>
 
@@ -155,6 +160,11 @@ export default function Home() {
 						className="mx-auto absolute right-1/2 z-10"
 					/>
 					<div className=" w-1/2 relative">
+						<Image
+							src={footprints_left_bottom}
+							alt="error"
+							className=" absolute left-0"
+						/>
 						<Image src={Vector3} alt="error" className=" left-0" />
 						<div
 							className=" absolute top-1/3 right-0"
