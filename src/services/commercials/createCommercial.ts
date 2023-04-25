@@ -4,7 +4,7 @@ import { Commercial } from "@/utils/types";
 
 type CreateCommercialArg = {
     title: string;
-    category: string;
+    category: number;
     description: string;
     address: string;
     contact: string;
@@ -37,6 +37,7 @@ export const useCreateCommercial = () => {
 
     const mutation = useMutation({
         mutationFn: createCommercial,
+
     })
 
     return [mutation.mutateAsync, mutation] as const

@@ -3,3 +3,9 @@
         font-size: xx-large !important;
     }
 }
+
+@media all and (max-width: 320px) {
+    .title {
+        font-size: 28px !important;
+    }
+}

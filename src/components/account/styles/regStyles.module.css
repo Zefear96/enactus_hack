@@ -8,4 +8,9 @@
     .main {
         width: 80%;
     }
+
+    .title {
+        font-size: 28px !important;
+    }
+
 }

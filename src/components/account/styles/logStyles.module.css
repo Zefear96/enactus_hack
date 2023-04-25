@@ -12,4 +12,8 @@
     .texts {
         font-size: 11px !important;
     }
+
+    .title {
+        font-size: 28px !important;
+    }
 }

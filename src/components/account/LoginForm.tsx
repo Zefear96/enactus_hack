@@ -37,7 +37,7 @@ const LoginForm = ({ onSubmit, defaultValues = {} }: Props) => {
         <FocusTrap active>
             <div className={`${styles.main} bg-greybase w-2/5 rounded-3xl`} style={{ boxShadow: 'inset -4px 0px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 0px 4px 4px rgba(117, 117, 117, 0.1)' }}>
                 <form onSubmit={form.onSubmit(handleSubmit)} className="w-4/5 mx-auto my-5">
-                    <Title ta="center" fw={700} my="40px">Войти</Title>
+                    <Title ta="center" fw={700} my="40px" className={styles.title}>Войти</Title>
                     <TextInput
                         className="border-b"
                         variant="unstyled"

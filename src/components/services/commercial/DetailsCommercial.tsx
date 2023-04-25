@@ -50,24 +50,24 @@ const DetailsCommercial = ({ item }: Props) => {
                         putRating({ id: item.id, rating: value });
                         setRatingOpen(false)
                     }}>Оценить</button></div>) : null}
-                <Text mt="xs" size="sm" className='flex items-end'>
+                <Text mt="xs" size="sm" className={` ${styles.text} flex items-end`}>
                     {item.description}
                 </Text>
 
-                <Text mt="xs" size="sm" className='flex items-end '>
+                <Text mt="xs" size="sm" className={` ${styles.text} flex items-end`}>
                     <Image src={address} alt="error" style={{ marginRight: '10px' }} />
                     {item.address}
                 </Text>
 
-                <Text mt="xs" size="sm" className='flex items-end '>
+                <Text mt="xs" size="sm" className={` ${styles.text} flex items-end`}>
                     <Image src={time} alt="error" style={{ marginRight: '10px' }} />
                     Ежедневно 08:00-22:00
                 </Text>
-                <Text mt="xs" size="sm" className='flex items-end'>
+                <Text mt="xs" size="sm" className={` ${styles.text} flex items-end`}>
                     <Image src={contact} alt="error" style={{ marginRight: '10px' }} />
                     {item.contact}
                 </Text>
-                <Text mt="xs" size="sm" className='flex items-end'>
+                <Text mt="xs" size="sm" className={` ${styles.text} flex items-end`}>
                     <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
                     <a href={item.social_net}>
                         {item.social_net}
