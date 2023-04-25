@@ -4,7 +4,7 @@ import Profile from "@/components/account/Profile";
 
 const EditPage = () => {
 	return (
-		<div className="flex w-11/12 m-auto">
+		<div className="flex w-11/12 m-auto max-sm:flex-col">
 			<Profile />
 			<EditProfile />
 		</div>

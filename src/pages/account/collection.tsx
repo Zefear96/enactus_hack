@@ -4,7 +4,7 @@ import ListPetsOwner from "@/components/services/Pets/ListPetsOwner";
 
 const ListOwner = () => {
 	return (
-		<div className="flex w-11/12 m-auto">
+		<div className="flex w-11/12 m-auto max-sm:flex-col">
 			<Profile />
 			<ListPetsOwner />
 		</div>

@@ -4,6 +4,7 @@ import { useForm, zodResolver } from "@mantine/form";
 import { FocusTrap, FileInput, TextInput, Group, Button, Text, Title, Avatar } from "@mantine/core";
 import { IconPencil } from '@tabler/icons-react';
 import { useFetchUser } from "@/services/user/fetchUser";
+import styles from './styles/editProfileStyles.module.css'
 
 type Props = {
     onSubmit(values: ProfileFormValues): void;
@@ -70,7 +71,7 @@ const ProfileForm = ({ onSubmit, defaultValues = {} }: Props) => {
     return (
         <FocusTrap active>
             <form onSubmit={form.onSubmit(handleSubmit)} className="m-auto w-11/12">
-                <Title ta="center" fw={700} my="40px" fz='30px'>Изменить данные</Title>
+                <Title ta="center" fw={700} my="40px" fz='30px' className={styles.title}>Изменить данные</Title>
                 <div className="flex items-end justify-center my-10">
                     {/* <img
                         src={
@@ -125,7 +126,7 @@ const ProfileForm = ({ onSubmit, defaultValues = {} }: Props) => {
                     rightSection={<IconPencil color='#4526FF' />}
                 />
                 <Group position="right" mt="md">
-                    <button type="submit" className=' bg-yellowlogin w-1/2 mx-auto h-12 rounded-lg my-1 text-bluelogin'>
+                    <button type="submit" className=' bg-yellowlogin w-1/2 mx-auto max-sm:w-full h-12 rounded-lg my-1 text-bluelogin'>
                         Сохранить изменения
                     </button>
                 </Group>

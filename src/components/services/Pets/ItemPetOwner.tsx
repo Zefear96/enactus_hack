@@ -20,7 +20,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 		<Link href={`/services/pets/${item.id}`}>
 			<div
 				// style={{ width: "300px" }}
-				className=" mx-auto flex w-full rounded-lg"
+				className=" mx-auto flex w-full rounded-lg max-sm:flex-col"
 				style={{
 					background: "#F3F3F3",
 					borderRadius: "8px",
