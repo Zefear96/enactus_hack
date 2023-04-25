@@ -1,10 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Vector1 from "../../public/Vector1.png";
+import Vector1_mobile from "../../public/Vector1_mobile.png";
 import planet from "../../public/planet.png";
 import zoonet from "../../public/zoonet.png";
 import dog from "../../public/dog.png";
 import Vector2 from "../../public/Vector2.png";
+import Vector2_mobile from "../../public/Vector2_mobile.png";
 import Link from "next/link";
 import arrowright from "../../public/arrowright.png";
 import { ArrowNarrowRight } from "tabler-icons-react";
@@ -37,7 +39,17 @@ export default function Home() {
 		<>
 			<div className="flex max-w-screen-xl mx-auto">
 				<div className=" left-block-head relative w-1/2 mx-auto ">
-					<Image src={Vector1} alt="error" className=" relative mx-auto" />
+					<Image
+						src={Vector1}
+						alt="error"
+						className=" relative mx-auto max-sm:hidden"
+					/>
+					<Image
+						src={Vector1_mobile}
+						alt="error"
+						className=" relative mx-auto max-sm:block hidden"
+					/>
+
 					<Image src={planet} alt="error" className=" absolute top-2/4 " />
 					<Image
 						src={zoonet}
@@ -45,8 +57,8 @@ export default function Home() {
 						className=" absolute top-2/3 right-0 "
 					/>
 
-					<h2 className=" w-full my-10">
-						<span className=" text-bluelogin font-bold text-2xl">
+					<h2 className=" w-full my-10 ">
+						<span className=" text-bluelogin font-bold text-2xl ">
 							Сайт по обмену
 						</span>
 						- покупке/продаже домашних животных, где будет актуальная база
@@ -91,18 +103,23 @@ export default function Home() {
 					<Image
 						src={Vector2}
 						alt="error"
-						className=" absolute top-1/4 z-[-1] max-lg:w-1/2 max-xl:w-1/2"
+						className=" absolute top-1/4 z-[-1] max-lg:w-1/2 max-xl:w-1/2 max-sm:hidden"
+					/>
+					<Image
+						src={Vector2_mobile}
+						alt="error"
+						className=" absolute top-1/3 z-1 max-sm:block hidden left-1/4"
 					/>
 					<Image
 						src={dog}
 						alt="error"
-						className=" absolute z-2 max-lg:w-1/2 max-xl:w-1/2"
+						className=" absolute z-2 max-lg:w-1/2 max-xl:w-1/2 max-sm:right-1/4 max-sm:top-1/3"
 					/>
 				</div>
 				<Image
 					src={footprints_right}
 					alt="error"
-					className=" absolute top-1/2 right-14 z-[-1] max-lg:w-1/2 min-xl:w-1/2 xl:right-14 lg:right-1 "
+					className=" absolute top-1/2 right-14 z-[1] max-lg:w-1/2 lg:right-1 lg:top-1/2"
 				/>
 			</div>
 

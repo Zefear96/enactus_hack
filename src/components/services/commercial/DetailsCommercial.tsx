@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Card, Text, Group, Rating, Title } from "@mantine/core";
+import { Card, Text, Group, Rating, Title, Loader } from "@mantine/core";
 import Image from "next/image";
 import contact from "../../../../public/contact.png";
 import address from "../../../../public/address.png";
 import time from "../../../../public/time.png";
 import globe from "../../../../public/globe.png";
 import { Commercial } from "@/utils/types";
-import Link from "next/link";
 import { usePutRating } from "@/services/commercials/putRating";
 import styles from "./styles/detailCommStyles.module.css";
 
@@ -18,6 +17,7 @@ const DetailsCommercial = ({ item }: Props) => {
 	const [value, setValue] = useState(0);
 	const [ratingOpen, setRatingOpen] = useState(false);
 	const [putRating] = usePutRating();
+	const [loading, setLoading] = useState(true);
 
 	return (
 		<div className={styles.mainDetail}>
@@ -29,6 +29,13 @@ const DetailsCommercial = ({ item }: Props) => {
 				className={styles.card}
 			>
 				<Card.Section>
+					{loading && (
+						<Loader
+							color="violet"
+							variant="dots"
+							style={{ height: "300px", margin: "auto", scale: "1.5" }}
+						/>
+					)}
 					<Image
 						className={styles.picture}
 						src={
@@ -39,6 +46,7 @@ const DetailsCommercial = ({ item }: Props) => {
 						alt="error :("
 						width={1000}
 						height={1000}
+						onLoad={() => setLoading(false)}
 					/>
 				</Card.Section>
 
