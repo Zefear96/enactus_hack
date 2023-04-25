@@ -7,9 +7,10 @@
 }
 
 .picture {
-    object-fit: contain;
+    object-fit: cover;
     border-bottom: 1px solid #CCCCFF !important;
-    height: auto !important;
+    width: 100%;
+    height: 300px;
 }
 
 .card {
