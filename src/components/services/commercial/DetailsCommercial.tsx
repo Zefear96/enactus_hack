@@ -40,7 +40,7 @@ const DetailsCommercial = ({ item }: Props) => {
                 </Card.Section >
 
                 <Group mt="10px" mb="xs">
-                    <Title weight={700} className={styles.titles} >{item.category}</Title>
+                    <Title weight={700} className={styles.titles} >{item.category === 1 ? "Приют" : item.category === 2 ? 'Клиника/Аптека' : item.category === 3 ? 'Зоомагазин' : ''}</Title>
                     <Title weight={700} c="#FFC800" className={styles.titles}>"{item.title}"</Title>
                 </Group>
                 <Rating value={item.ratings.rating__avg ? item.ratings.rating__avg : 0} readOnly defaultValue={0} />

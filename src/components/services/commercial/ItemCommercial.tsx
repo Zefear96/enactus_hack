@@ -70,7 +70,7 @@ const ItemCommercial = ({ item }: { item: Props }) => {
             <Text mt="xs" size="sm" className={styles.block_text}>
                 <Image src={globe} alt="error" style={{ marginRight: '10px' }} />
                 <Link href={item.social_net} target="_blank" >
-                    {item.address}
+                    {item.social_net}
                 </Link>
             </Text>
         </Card>

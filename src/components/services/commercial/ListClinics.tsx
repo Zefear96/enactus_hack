@@ -10,7 +10,7 @@ const ListClinics = () => {
 
     return (
         <div>
-            <div className=" flex justify-between flex-wrap w-3/4 mx-auto my-7">
+            <div className=" flex justify-between flex-wrap w-full mx-auto my-7">
                 {data.map((item) => (
                     <ItemCommercial item={item} key={item.id} />
                 ))}
