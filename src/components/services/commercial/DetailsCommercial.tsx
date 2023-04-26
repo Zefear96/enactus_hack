@@ -61,7 +61,7 @@ const DetailsCommercial = ({ item }: Props) => {
 							: ``}
 					</Title>
 					<Title weight={700} c="#FFC800" className={styles.titles}>
-						"{item.title}"
+						{`"${item.title}"`}
 					</Title>
 				</Group>
 				<Rating
