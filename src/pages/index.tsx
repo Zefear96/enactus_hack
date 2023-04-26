@@ -99,11 +99,16 @@ export default function Home() {
 					/>
 				</div>
 
-				<div className="right-block-head mx-auto w-1/2">
+				<div className=" relative right-block-head mx-auto w-1/2">
 					<Image
 						src={Vector2}
 						alt="error"
-						className=" absolute top-1/4 z-[-1] max-lg:w-1/2 max-xl:w-1/2 max-sm:hidden"
+						className=" absolute top-1/4 z-[-3] max-lg:w-1/2 max-xl:w-1/2 max-sm:hidden"
+					/>
+					<Image
+						src={footprints_right}
+						alt="error"
+						className=" absolute top-1/2 right-14 z-[1] max-lg:w-1/2 lg:right-1 lg:top-1/2"
 					/>
 					<Image
 						src={Vector2_mobile}
@@ -113,14 +118,9 @@ export default function Home() {
 					<Image
 						src={dog}
 						alt="error"
-						className=" absolute z-2 max-lg:w-1/2 max-xl:w-1/2 max-sm:right-1/4 max-sm:top-1/3"
+						className=" absolute z-10 max-lg:w-1/2 max-xl:w-1/2 max-sm:right-1/4 max-sm:top-1/3"
 					/>
 				</div>
-				<Image
-					src={footprints_right}
-					alt="error"
-					className=" absolute top-1/2 right-14 z-[1] max-lg:w-1/2 lg:right-1 lg:top-1/2"
-				/>
 			</div>
 
 			<section id="aboutus">
