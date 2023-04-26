@@ -5,6 +5,7 @@ import { Title, TextInput, FocusTrap, Loader, PasswordInput } from "@mantine/cor
 import { useResetPassComplete } from '@/services/user/resetPassComplete';
 import { IconLock } from '@tabler/icons-react';
 import styles from './styles/resetPassStyles.module.css';
+import { useRouter } from "next/router";
 
 type Props = {
     defaultValues?: Partial<ResetPassCompleteFormValues>;
@@ -19,6 +20,7 @@ const resetPassComplFormSchema = z.object({
 export type ResetPassCompleteFormValues = z.infer<typeof resetPassComplFormSchema>
 
 const ResetPassComplete = ({ defaultValues = {} }: Props) => {
+    const router = useRouter();
 
     const form = useForm<ResetPassCompleteFormValues>(
         {
@@ -32,14 +34,14 @@ const ResetPassComplete = ({ defaultValues = {} }: Props) => {
         }
     );
 
-    const [resetPassComplete, { isLoading, isError }] = useResetPassComplete();
+    const [resetPassComplete, { isLoading, isError, isSuccess }] = useResetPassComplete();
 
     const handleSubmit = (values: ResetPassCompleteFormValues) => {
         console.log(values, 'passcomplete');
         resetPassComplete(values);
         form.reset();
+        isSuccess ? router.push("/account/login/") : null
     }
-
 
     if (isLoading) return <Loader color="violet" />;
     if (isError) return <h1>Something wrong!!</h1>;

@@ -10,7 +10,7 @@ export const useLogout = () => {
 	const logout = useCallback(() => {
 		dispatch(updateTokens({ accessToken: null, refreshToken: null }));
 		router.push("/");
-	}, []);
+	}, [dispatch, router]);
 
 	return logout;
 };

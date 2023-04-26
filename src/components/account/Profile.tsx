@@ -129,7 +129,8 @@ const Profile = () => {
 						) : (
 							<Image src={logout_black} alt="error:(" className={`${styles.btn_icon} mx-2`} />
 						)}
-						Выйти
+						<Link href="/">Выйти</Link>
+
 					</button>
 				</div>
 			</div>
