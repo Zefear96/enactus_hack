@@ -7,7 +7,7 @@ export const useInitStore = () => {
 
     useEffect(() => {
         dispatch(loadFromLocalStorage());
-    }, []);
+    }, [dispatch]);
 }
 
 export const InitStore = () => {
