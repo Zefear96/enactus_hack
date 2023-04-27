@@ -108,17 +108,17 @@ export default function Home() {
 					<Image
 						src={footprints_right}
 						alt="error"
-						className=" absolute top-1/2 right-14 z-[1] max-lg:w-1/2 lg:right-1 lg:top-1/2"
+						className=" absolute top-1/2 right-1/2 z-[-1] max-lg:w-1/2 max-lg:top-1/3 lg:right-1 lg:top-1/2"
 					/>
 					<Image
 						src={Vector2_mobile}
 						alt="error"
-						className=" absolute top-1/3 z-1 max-sm:block hidden left-1/4"
+						className=" absolute top-1/3 z-[-3] max-sm:block hidden left-1/4"
 					/>
 					<Image
 						src={dog}
 						alt="error"
-						className=" absolute z-10 max-lg:w-1/2 max-xl:w-1/2 max-sm:right-1/4 max-sm:top-1/3"
+						className=" absolute z-1 max-lg:w-1/2 max-xl:w-1/2 max-sm:right-1/4 max-sm:top-1/3"
 					/>
 				</div>
 			</div>
@@ -138,8 +138,8 @@ export default function Home() {
 					</h2>
 
 					<div className="">
-						<ul className="flex justify-around mt-10 text-center">
-							<li className="w-1/3 ">
+						<ul className=" mt-10 text-center grid-cols-3">
+							<li className=" ">
 								<Image src={li1} alt="error" className="mx-auto" />
 								<h3>Объявления</h3>
 								<p>
@@ -147,7 +147,7 @@ export default function Home() {
 									о продаже животных
 								</p>
 							</li>
-							<li className="w-1/3 ">
+							<li className=" ">
 								<Image src={li2} alt="error" className="mx-auto" />
 								<h3>Легкие покупки</h3>
 								<p>
@@ -156,7 +156,7 @@ export default function Home() {
 									сайта Zoo.Net
 								</p>
 							</li>
-							<li className="w-1/3 ">
+							<li className=" ">
 								<Image src={li3} alt="error" className="mx-auto" />
 								<h3>Помощь</h3>
 								<p>
