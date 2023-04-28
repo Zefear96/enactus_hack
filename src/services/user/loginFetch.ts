@@ -3,6 +3,8 @@ import { baseAxios } from "@/utils/baseAxios";
 import { storageSetItem } from "@/utils/storage";
 import { useAppDispatch } from "@/store/hooks";
 import { updateTokens } from "@/store/slices/auth.slice";
+import { error } from "console";
+import React from "react";
 
 type loginUserArg = {
 	phone_number: string;
@@ -21,22 +23,31 @@ const loginUser = async (arg: loginUserArg) => {
 export const useLoginUser = () => {
 	const dispatch = useAppDispatch();
 	const queryClient = useQueryClient();
+	const [errorMessage, setErrorMessage] = React.useState<string>("");
 
 	const mutation = useMutation({
 		mutationFn: loginUser,
 		onSuccess(data) {
-			dispatch(updateTokens({ accessToken: data.access, refreshToken: data.refresh }));
+			dispatch(
+				updateTokens({ accessToken: data.access, refreshToken: data.refresh }),
+			);
+		},
+		onError(error: any) {
+			console.log("Ошибка входа:", error);
+			setErrorMessage(error);
+
+			// здесь можно обработать ошибку, например, вывести сообщение об ошибке на экран
 		},
 		onSettled() {
 			queryClient.invalidateQueries({
 				predicate(query) {
 					return query.queryKey?.[0] === "account";
 				},
-			})
+			});
 		},
 	});
 
-	return [mutation.mutateAsync, mutation] as const;
+	return [mutation.mutateAsync, mutation, errorMessage] as const;
 };
 
 //Первый вариант логики без оптимизации
