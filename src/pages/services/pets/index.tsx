@@ -3,7 +3,7 @@ import ListPets from "@/components/services/Pets/ListPets";
 import HeaderMenu from "@/components/services/Pets/HeaderMenu";
 import Header from "@/components/services/Header";
 
-const AdvListPage = () => {
+const PetsPage = () => {
 	return (
 		<div style={{ width: "90%" }} className="mx-auto my-5">
 			{/* <Header /> */}
@@ -12,4 +12,4 @@ const AdvListPage = () => {
 	);
 };
 
-export default AdvListPage;
+export default PetsPage;

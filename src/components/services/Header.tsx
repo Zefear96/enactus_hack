@@ -3,7 +3,7 @@ import ListCommercials from "./commercial/ListCommercials";
 import Image from "next/image";
 import ListPets from "./Pets/ListPets";
 import ListClinics from "./commercial/ListClinics";
-import ListHostels from './commercial/ListHostels';
+import ListHostels from "./commercial/ListHostels";
 import ListZoo from "./commercial/ListZoo";
 
 function classNames(...classes: string[]) {
@@ -37,15 +37,16 @@ export default function Header() {
 	];
 
 	return (
-		<div className="w-full max-w-screen-xl mx-auto my-10">
-			<div className="flex flex-wrap sm: justify-center mx-auto">
+		<div className=" w-11/12 max-w-screen-xl mx-auto my-10">
+			<div className=" flex flex-wrap sm: justify-center mx-auto">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
-						className={`${activeTab === index
-							? " bg-yellowlogin text-bluelogin"
-							: "bg-white text-gray-700"
-							} flex-1 py-4 px-6 font-medium text-md focus:outline-none border border-bluelogin rounded-lg sm: w-40 `}
+						className={`${
+							activeTab === index
+								? " bg-yellowlogin text-bluelogin"
+								: "bg-white text-gray-700"
+						} flex-1 py-4 px-6 font-medium text-md focus:outline-none border border-bluelogin rounded-lg sm: w-40 `}
 						onClick={() => setActiveTab(index)}
 					>
 						<Image
