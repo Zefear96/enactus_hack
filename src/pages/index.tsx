@@ -50,14 +50,18 @@ export default function Home() {
 						className=" relative mx-auto max-sm:block hidden"
 					/>
 
-					<Image src={planet} alt="error" className=" absolute top-2/4 " />
+					<Image
+						src={planet}
+						alt="error"
+						className=" absolute top-2/4 max-xl:top-1/3 max-xl:w-1/2 max-xl:mx-10 max-md:top-1/4 max-sm:w-full max-sm:left-1/2 max-sm:top-10"
+					/>
 					<Image
 						src={zoonet}
 						alt="error"
-						className=" absolute top-2/3 right-0 "
+						className=" absolute top-2/3 right-0 max-xl:top-1/2 max-xl:w-1/2 max-md:top-1/3 max-sm:w-full max-sm:left-2/3 max-sm:top-20 max-sm:mx-0"
 					/>
 
-					<h2 className=" w-full my-10 ">
+					<h2 className=" w-2/3 my-10 mx-auto max-md:right-0">
 						<span className=" text-bluelogin font-bold text-2xl ">
 							Сайт по обмену
 						</span>
@@ -86,6 +90,7 @@ export default function Home() {
 								e.currentTarget.style.color = "blue";
 								e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
 							}}
+							className=" mx-20"
 						>
 							<span className="flex items-center mx-auto justify-center ">
 								Добавить объявление <ArrowNarrowRight className="mx-2" />
@@ -99,26 +104,26 @@ export default function Home() {
 					/>
 				</div>
 
-				<div className=" relative right-block-head mx-auto w-1/2">
+				<div className=" relative right-block-head mx-auto w-1/2 max-sm:right-[-1/2]">
 					<Image
 						src={Vector2}
 						alt="error"
-						className=" absolute top-1/4 z-[-3] max-lg:w-1/2 max-xl:w-1/2 max-sm:hidden"
+						className=" absolute top-1/4 z-[-3]  max-sm:hidden"
 					/>
 					<Image
 						src={footprints_right}
 						alt="error"
-						className=" absolute top-1/2 right-1/2 z-[-1] max-lg:w-1/2 max-lg:top-1/3 lg:right-1 lg:top-1/2"
+						className=" absolute top-1/2 right-1/2 z-[-1] max-lg:w-1/2 max-lg:top-1/3 lg:right-1 lg:top-1/2 max-xl:w-1/2 max-xl:right-0"
 					/>
 					<Image
 						src={Vector2_mobile}
 						alt="error"
-						className=" absolute top-1/3 z-[-3] max-sm:block hidden left-1/4"
+						className=" absolute top-1/3 z-[-3] max-sm:block hidden left-1/4 "
 					/>
 					<Image
 						src={dog}
 						alt="error"
-						className=" absolute z-1 max-lg:w-1/2 max-xl:w-1/2 max-sm:right-1/4 max-sm:top-1/3"
+						className=" absolute z-1 max-sm:right-1/4 max-sm:top-1/3 max-sm:w-full"
 					/>
 				</div>
 			</div>
@@ -138,8 +143,8 @@ export default function Home() {
 					</h2>
 
 					<div className="">
-						<ul className=" mt-10 text-center grid-cols-3">
-							<li className=" ">
+						<ul className=" my-10 text-center grid-cols-3">
+							<li className=" my-10 w-1/2 mx-auto ">
 								<Image src={li1} alt="error" className="mx-auto" />
 								<h3>Объявления</h3>
 								<p>
@@ -147,7 +152,7 @@ export default function Home() {
 									о продаже животных
 								</p>
 							</li>
-							<li className=" ">
+							<li className=" my-10 w-1/2 mx-auto ">
 								<Image src={li2} alt="error" className="mx-auto" />
 								<h3>Легкие покупки</h3>
 								<p>
@@ -156,7 +161,7 @@ export default function Home() {
 									сайта Zoo.Net
 								</p>
 							</li>
-							<li className=" ">
+							<li className=" my-10 w-1/2 mx-auto ">
 								<Image src={li3} alt="error" className="mx-auto" />
 								<h3>Помощь</h3>
 								<p>
@@ -174,7 +179,7 @@ export default function Home() {
 					<Image
 						src={feedback}
 						alt="error"
-						className="mx-auto absolute right-1/2 z-10"
+						className="mx-auto absolute right-1/2 z-10 max-md:right-1/3 max-lg:right-1/3 max-xl:right-1/3"
 					/>
 					<div className=" w-1/2 relative">
 						<Image
@@ -182,9 +187,13 @@ export default function Home() {
 							alt="error"
 							className=" absolute left-0"
 						/>
-						<Image src={Vector3} alt="error" className=" left-0" />
+						<Image
+							src={Vector3}
+							alt="error"
+							className=" feedback-message left-0 max-sm:hidden"
+						/>
 						<div
-							className=" absolute top-1/3 right-0"
+							className=" absolute top-1/3 right-0  max-lg:w-3/4 max-lg:h-2/3 max-xl:w-2/3 max-xl:h-1/2 max-2xl:w-3/4 max-2xl:h-1/2 max-md: w-3/4 max-md:"
 							style={{
 								borderTopLeftRadius: "117px",
 								borderBottomLeftRadius: "117px",
@@ -192,11 +201,11 @@ export default function Home() {
 								boxShadow:
 									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
 								background: "rgba(243, 243, 243, 0.85)",
-								height: "280px",
-								width: "430px",
+								// height: "280px",
+								// width: "430px",
 							}}
 						>
-							<div className="feedblack-text mt-20 w-2/3 mx-auto">
+							<div className="feedblack-text mt-20 w-2/3 mx-auto text-center max-lg:mt-10">
 								{reviews.map((item) => (
 									<div key={item.id}>
 										<h3 style={{ borderBottom: "1px solid gray" }}>
@@ -216,7 +225,7 @@ export default function Home() {
 										transition: "all 0.3s ease",
 										height: "60px",
 										width: "70%",
-										marginTop: "100px",
+										// marginTop: "100px",
 										marginLeft: "100px",
 									}}
 									onMouseOver={(e) => {
@@ -230,6 +239,7 @@ export default function Home() {
 										e.currentTarget.style.boxShadow =
 											"10px 10px 0px 4px #988CE1";
 									}}
+									className=" mt-40 max-lg:mt-20 max-md:mt-10"
 								>
 									<span className="flex items-center mx-auto justify-center">
 										Оставить отзыв
@@ -244,7 +254,7 @@ export default function Home() {
 						<Image
 							src={Vector4top}
 							alt="error"
-							className="mx-auto absolute top-20 right-14 "
+							className="mx-auto absolute top-20 right-14 max-lg:w-2/3"
 						/>
 					</div>
 				</div>
@@ -252,11 +262,11 @@ export default function Home() {
 
 			<section id="articles">
 				<div className=" max-w-screen-xl mx-auto">
-					<Image src={statestitle} alt="error" className=" mx-auto" />
+					<Image src={statestitle} alt="error" className=" mx-auto mt-40" />
 
-					<ul className="flex justify-around mt-10 text-center">
+					<ul className=" grid grid-cols-3 gap-5 my-10 text-center max-xl:grid-cols-2 max-lg:grid-cols-1 max-lg:w-3/4 mx-auto">
 						<li
-							className=" w-1/4  p-5"
+							className="  p-5"
 							style={{
 								boxShadow:
 									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
@@ -277,7 +287,7 @@ export default function Home() {
 							</a>
 						</li>
 						<li
-							className=" w-1/4 p-5"
+							className=" p-5"
 							style={{
 								boxShadow:
 									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
@@ -298,7 +308,7 @@ export default function Home() {
 							</a>
 						</li>
 						<li
-							className=" w-1/4  p-5"
+							className="  p-5"
 							style={{
 								boxShadow:
 									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",

@@ -38,7 +38,7 @@ export default function Header() {
 
 	return (
 		<div className=" w-11/12 max-w-screen-xl mx-auto my-10">
-			<div className=" flex flex-wrap sm: justify-center mx-auto">
+			<div className=" flex flex-wrap sm:justify-center mx-auto">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
