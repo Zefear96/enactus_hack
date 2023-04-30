@@ -38,7 +38,7 @@ export default function Home() {
 	return (
 		<>
 			<div className="flex max-w-screen-xl mx-auto">
-				<div className=" left-block-head relative w-1/2 mx-auto ">
+				<div className=" left-block-head relative w-1/2 mx-auto max-sm:w-full">
 					<Image
 						src={Vector1}
 						alt="error"
@@ -47,18 +47,29 @@ export default function Home() {
 					<Image
 						src={Vector1_mobile}
 						alt="error"
-						className=" relative mx-auto max-sm:block hidden"
+						className=" relative mx-auto max-sm:block hidden max-sm:mx-0"
 					/>
 
 					<Image
 						src={planet}
 						alt="error"
-						className=" absolute top-2/4 max-xl:top-1/3 max-xl:w-1/2 max-xl:mx-10 max-md:top-1/4 max-sm:w-full max-sm:left-1/2 max-sm:top-10"
+						className=" absolute top-2/4 max-xl:top-1/3 max-xl:w-1/2 max-xl:mx-10 max-md:top-1/4 max-sm:w-1/2 max-sm:left-1/4 max-sm:mx-0 max-sm:top-10"
 					/>
 					<Image
 						src={zoonet}
 						alt="error"
-						className=" absolute top-2/3 right-0 max-xl:top-1/2 max-xl:w-1/2 max-md:top-1/3 max-sm:w-full max-sm:left-2/3 max-sm:top-20 max-sm:mx-0"
+						className=" absolute top-2/3 right-0 max-xl:top-1/2 max-xl:w-1/2 max-md:top-1/3 max-sm:w-1/2 max-sm:left-1/4 max-sm:top-20 max-sm:mx-0"
+					/>
+
+					<Image
+						src={Vector2_mobile}
+						alt="error"
+						className=" absolute left-1/4 top-1/3 z-[-3] hidden max-sm:block "
+					/>
+					<Image
+						src={dog}
+						alt="error"
+						className=" absolute z-1 max-sm:right-1/4 max-sm:top-1/3 max-sm:w-1/2"
 					/>
 
 					<h2 className=" w-2/3 my-10 mx-auto max-md:right-0">
@@ -104,7 +115,7 @@ export default function Home() {
 					/>
 				</div>
 
-				<div className=" relative right-block-head mx-auto w-1/2 max-sm:right-[-1/2]">
+				<div className=" relative right-block-head mx-auto w-1/2 max-sm:hidden ">
 					<Image
 						src={Vector2}
 						alt="error"
@@ -115,15 +126,15 @@ export default function Home() {
 						alt="error"
 						className=" absolute top-1/2 right-1/2 z-[-1] max-lg:w-1/2 max-lg:top-1/3 lg:right-1 lg:top-1/2 max-xl:w-1/2 max-xl:right-0"
 					/>
-					<Image
+					{/* <Image
 						src={Vector2_mobile}
 						alt="error"
-						className=" absolute top-1/3 z-[-3] max-sm:block hidden left-1/4 "
-					/>
+						className=" absolute top-1/3 z-[-3] hidden max-sm:block "
+					/> */}
 					<Image
 						src={dog}
 						alt="error"
-						className=" absolute z-1 max-sm:right-1/4 max-sm:top-1/3 max-sm:w-full"
+						className=" absolute z-1 max-sm:right-1/4 max-sm:top-1/3 max-sm:hidden"
 					/>
 				</div>
 			</div>
