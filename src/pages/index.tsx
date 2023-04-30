@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Vector1 from "../../public/Vector1.png";
 import Vector1_mobile from "../../public/Vector1_mobile.png";
@@ -8,7 +7,6 @@ import dog from "../../public/dog.png";
 import Vector2 from "../../public/Vector2.png";
 import Vector2_mobile from "../../public/Vector2_mobile.png";
 import Link from "next/link";
-import arrowright from "../../public/arrowright.png";
 import { ArrowNarrowRight } from "tabler-icons-react";
 import mission from "../../public/mission.png";
 import logocentr from "../../public/logocentr.png";
@@ -17,27 +15,49 @@ import li2 from "../../public/li2.png";
 import li3 from "../../public/li3.png";
 import Vector3 from "../../public/Vector3.png";
 import Vector4 from "../../public/Vector4.png";
+import Vector4_mobile from "../../public/Vector4_mobile.png";
 import Vector4top from "../../public/Vector4top.png";
+import Vector4top_mobile from "../../public/Vector4top_mobile.png";
+
 import feedback from "../../public/feedback.png";
 import statestitle from "../../public/statestitle.png";
+import statestitle_mobile from "../../public/statestitle_mobile.png";
 import { useFetchUser } from "@/services/user/fetchUser";
-import React from "react";
+import React, { useState } from "react";
 import { useFetchReviews } from "@/services/reviews/fetchReviews";
 import footprints_left from "../../public/footprints_left.png";
 import footprints_right from "../../public/footprints_right.png";
 import footprints_left_bottom from "../../public/footprints_left_bottom.png";
+import { current } from "@reduxjs/toolkit";
 
 export default function Home() {
 	const [user] = useFetchUser();
 	const [reviews] = useFetchReviews();
+	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const href = user ? "/services/add/pets" : "/account/login";
 
-	if (!reviews) return <h1>Еще нет отзывов</h1>;
+	if (!reviews || reviews.length === 0) return <h1>Еще нет отзывов</h1>;
+
+	const handleNextReview = () => {
+		if (currentIndex === reviews.length - 1) {
+			setCurrentIndex(0);
+		} else {
+			setCurrentIndex(currentIndex + 1);
+		}
+	};
+
+	const handlePrevReview = () => {
+		if (currentIndex === 0) {
+			setCurrentIndex(reviews.length - 1);
+		} else {
+			setCurrentIndex(currentIndex - 1);
+		}
+	};
 
 	return (
 		<>
-			<div className="flex max-w-screen-xl mx-auto">
+			<div className="flex max-w-screen-xl mx-auto max-sm:flex-col max-sm:block">
 				<div className=" left-block-head relative w-1/2 mx-auto max-sm:w-full">
 					<Image
 						src={Vector1}
@@ -47,7 +67,7 @@ export default function Home() {
 					<Image
 						src={Vector1_mobile}
 						alt="error"
-						className=" relative mx-auto max-sm:block hidden max-sm:mx-0"
+						className=" relative mx-auto max-sm:block hidden max-sm:mx-0 z-[-10]"
 					/>
 
 					<Image
@@ -58,21 +78,21 @@ export default function Home() {
 					<Image
 						src={zoonet}
 						alt="error"
-						className=" absolute top-2/3 right-0 max-xl:top-1/2 max-xl:w-1/2 max-md:top-1/3 max-sm:w-1/2 max-sm:left-1/4 max-sm:top-20 max-sm:mx-0"
+						className=" absolute top-2/3 right-0 max-xl:top-1/2 max-xl:w-1/2 max-md:top-1/3 max-sm:w-1/2 max-sm:left-1/4 max-sm:top-20 max-sm:mx-0 max-sm:mt-2"
 					/>
 
 					<Image
 						src={Vector2_mobile}
 						alt="error"
-						className=" absolute left-1/4 top-1/3 z-[-3] hidden max-sm:block "
+						className=" absolute left-10 top-2/3 z-[-3] hidden max-sm:block w-3/4"
 					/>
 					<Image
 						src={dog}
 						alt="error"
-						className=" absolute z-1 max-sm:right-1/4 max-sm:top-1/3 max-sm:w-1/2"
+						className=" absolute z-1 max-sm:left-14 max-sm:top-1/2 max-sm:w-2/3 hidden max-sm:block"
 					/>
 
-					<h2 className=" w-2/3 my-10 mx-auto max-md:right-0">
+					<h2 className=" w-2/3 my-10 mx-auto max-md:right-0 max-sm:hidden">
 						<span className=" text-bluelogin font-bold text-2xl ">
 							Сайт по обмену
 						</span>
@@ -101,7 +121,7 @@ export default function Home() {
 								e.currentTarget.style.color = "blue";
 								e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
 							}}
-							className=" mx-20"
+							className=" mx-20 max-sm:hidden"
 						>
 							<span className="flex items-center mx-auto justify-center ">
 								Добавить объявление <ArrowNarrowRight className="mx-2" />
@@ -126,11 +146,6 @@ export default function Home() {
 						alt="error"
 						className=" absolute top-1/2 right-1/2 z-[-1] max-lg:w-1/2 max-lg:top-1/3 lg:right-1 lg:top-1/2 max-xl:w-1/2 max-xl:right-0"
 					/>
-					{/* <Image
-						src={Vector2_mobile}
-						alt="error"
-						className=" absolute top-1/3 z-[-3] hidden max-sm:block "
-					/> */}
 					<Image
 						src={dog}
 						alt="error"
@@ -139,11 +154,50 @@ export default function Home() {
 				</div>
 			</div>
 
+			<div className=" mobile relative mt-60 hidden max-sm:block">
+				<h2 className=" w-2/3 my-10 mx-auto max-md:right-0 text-center">
+					<span className=" text-bluelogin font-bold text-2xl ">
+						Сайт по обмену
+					</span>
+					- покупке/продаже домашних животных, где будет актуальная база
+					питомцев со всех регионов страны.
+				</h2>
+
+				<Link href={href}>
+					<button
+						style={{
+							color: "blue",
+							backgroundColor: "yellow",
+							boxShadow: "10px 10px 0px 4px #988CE1",
+							borderRadius: "2rem",
+							transition: "all 0.3s ease",
+							height: "70px",
+							width: "70%",
+						}}
+						onMouseOver={(e) => {
+							e.currentTarget.style.backgroundColor = "blue";
+							e.currentTarget.style.color = "yellow";
+							e.currentTarget.style.boxShadow = "none";
+						}}
+						onMouseOut={(e) => {
+							e.currentTarget.style.backgroundColor = "yellow";
+							e.currentTarget.style.color = "blue";
+							e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+						}}
+						className=" mx-12"
+					>
+						<span className="flex items-center mx-auto justify-center ">
+							Добавить объявление <ArrowNarrowRight className="mx-2" />
+						</span>
+					</button>
+				</Link>
+			</div>
+
 			<section id="aboutus">
 				<div className="our-mission max-w-screen-xl mx-auto">
 					<Image src={mission} alt="error" className=" mt-20 mx-auto" />
 					<Image src={logocentr} alt="error" className=" mx-auto" />
-					<h2 className=" w-3/4  mx-auto text-center">
+					<h2 className=" w-3/4  mx-auto text-center max-sm:mt-10">
 						<span className=" text-bluelogin font-bold text-2xl ">
 							Наша миссия
 						</span>
@@ -155,7 +209,7 @@ export default function Home() {
 
 					<div className="">
 						<ul className=" my-10 text-center grid-cols-3">
-							<li className=" my-10 w-1/2 mx-auto ">
+							<li className=" my-10 w-1/2 mx-auto max-sm:w-3/4">
 								<Image src={li1} alt="error" className="mx-auto" />
 								<h3>Объявления</h3>
 								<p>
@@ -163,7 +217,7 @@ export default function Home() {
 									о продаже животных
 								</p>
 							</li>
-							<li className=" my-10 w-1/2 mx-auto ">
+							<li className=" my-10 w-1/2 mx-auto max-sm:w-3/4">
 								<Image src={li2} alt="error" className="mx-auto" />
 								<h3>Легкие покупки</h3>
 								<p>
@@ -172,7 +226,7 @@ export default function Home() {
 									сайта Zoo.Net
 								</p>
 							</li>
-							<li className=" my-10 w-1/2 mx-auto ">
+							<li className=" my-10 w-1/2 mx-auto max-sm:w-3/4">
 								<Image src={li3} alt="error" className="mx-auto" />
 								<h3>Помощь</h3>
 								<p>
@@ -186,7 +240,7 @@ export default function Home() {
 			</section>
 
 			<section id="feedbackblock">
-				<div className="feedback max-w-screen-xl mx-auto flex mt-20 relative">
+				<div className="feedback max-w-screen-xl mx-auto flex mt-20 relative max-sm:hidden">
 					<Image
 						src={feedback}
 						alt="error"
@@ -269,11 +323,96 @@ export default function Home() {
 						/>
 					</div>
 				</div>
+
+				<div className="feedback-mobile hidden max-sm:block">
+					<Image src={feedback} alt="error" className="mx-auto scale-75" />
+					<div className=" w-3/4 mx-5">
+						<div
+							style={{
+								borderTopLeftRadius: "117px",
+								borderBottomLeftRadius: "117px",
+								borderTopRightRadius: "117px",
+								boxShadow:
+									"inset 0px 4px 4px rgba(117, 117, 117, 0.1), inset 0px -4px 4px rgba(117, 117, 117, 0.1), inset 4px 0px 4px rgba(117, 117, 117, 0.1), inset -4px 0px 4px rgba(117, 117, 117, 0.1)",
+								background: "rgba(243, 243, 243, 0.85)",
+								// height: "280px",
+								// width: "430px",
+							}}
+						>
+							<div className="feedblack-text text-sm mx-10">
+								{/* {reviews.map((item, index) => (
+									<div key={item.id} className=" ">
+										<h3 style={{ borderBottom: "1px solid gray" }}>
+											{item.name}
+										</h3>
+										<p>{item.message.slice(0, 80) + "..."}</p>
+									</div>
+								))} */}
+								<div className=" p-5">
+									<h3 style={{ borderBottom: "1px solid gray" }}>
+										{reviews[currentIndex].name}
+									</h3>
+									<p>{reviews[currentIndex].message.slice(0, 80) + "..."}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="w-full relative ">
+						<Image
+							src={Vector4top}
+							alt="error"
+							className=" absolute z-10 right-0 top-10 w-2/3"
+						/>
+						<Image
+							src={Vector4_mobile}
+							alt="error"
+							className=" right-0 absolute w-3/4"
+						/>
+					</div>
+				</div>
+
+				<div className=" mt-96 hidden max-sm:block">
+					<Link href="/reviews/add/">
+						<button
+							style={{
+								color: "blue",
+								backgroundColor: "yellow",
+								boxShadow: "10px 10px 0px 4px #988CE1",
+								borderRadius: "2rem",
+								transition: "all 0.3s ease",
+								height: "60px",
+								width: "70%",
+								// marginTop: "100px",
+								marginLeft: "60px",
+							}}
+							onMouseOver={(e) => {
+								e.currentTarget.style.backgroundColor = "blue";
+								e.currentTarget.style.color = "yellow";
+								e.currentTarget.style.boxShadow = "none";
+							}}
+							onMouseOut={(e) => {
+								e.currentTarget.style.backgroundColor = "yellow";
+								e.currentTarget.style.color = "blue";
+								e.currentTarget.style.boxShadow = "10px 10px 0px 4px #988CE1";
+							}}
+							className=" z-20"
+						>
+							<span className="flex items-center mx-auto justify-center">
+								Оставить отзыв
+							</span>
+						</button>
+					</Link>
+				</div>
 			</section>
 
 			<section id="articles">
 				<div className=" max-w-screen-xl mx-auto">
-					<Image src={statestitle} alt="error" className=" mx-auto mt-40" />
+					<Image
+						src={statestitle_mobile}
+						alt="error"
+						className=" mx-auto mt-40 max-sm:mt-20"
+					/>
 
 					<ul className=" grid grid-cols-3 gap-5 my-10 text-center max-xl:grid-cols-2 max-lg:grid-cols-1 max-lg:w-3/4 mx-auto">
 						<li
