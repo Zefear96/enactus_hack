@@ -101,7 +101,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
 
 	return (
 		<footer
-			className={`flex max-sm:flex-col max-lg:mx-20 justify-between items-center max-w-screen-xl mx-auto my-7 ${styles.main_footer}`}
+			className={`flex max-sm:flex-col max-lg:mx-20 justify-between items-center max-w-screen-xl mx-auto my-7 max-sm:w-3/4 max-sm:mx-auto ${styles.main_footer}`}
 		>
 			<Link href="/">
 				<Image

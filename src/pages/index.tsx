@@ -195,8 +195,16 @@ export default function Home() {
 
 			<section id="aboutus">
 				<div className="our-mission max-w-screen-xl mx-auto">
-					<Image src={mission} alt="error" className=" mt-20 mx-auto" />
-					<Image src={logocentr} alt="error" className=" mx-auto" />
+					<Image
+						src={mission}
+						alt="error"
+						className=" mt-20 mx-auto max-sm:w-3/4"
+					/>
+					<Image
+						src={logocentr}
+						alt="error"
+						className=" mx-auto max-sm:w-1/2"
+					/>
 					<h2 className=" w-3/4  mx-auto text-center max-sm:mt-10">
 						<span className=" text-bluelogin font-bold text-2xl ">
 							Наша миссия

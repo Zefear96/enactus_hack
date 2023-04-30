@@ -48,8 +48,8 @@ const ItemPet = ({ item }: { item: Pet }) => {
 						style={{
 							objectFit: "cover",
 							objectPosition: "center",
-							height: "100%",
-							width: "100%",
+							// height: "100%",
+							// width: "100%",
 							borderTopLeftRadius: "8px",
 							borderBottomLeftRadius: "8px",
 						}}
@@ -57,7 +57,7 @@ const ItemPet = ({ item }: { item: Pet }) => {
 					/>
 				</div>
 
-				<div className=" w-full ms-5">
+				<div className=" w-11/12 ms-5">
 					<Text weight={700} size="xl" mt="md">
 						{item.title}
 					</Text>

@@ -38,6 +38,7 @@ import Image from "next/image";
 import phone_blue from "../../../../public/phone_blue.png";
 import address_blue from "../../../../public/address_blue.png";
 import arrow_back from "../../../../public/arrow_back.png";
+import styles from "./styles/DetailsPet.module.css";
 
 type Props = {
 	pet: Pet;
@@ -129,11 +130,11 @@ const DetailsPet = ({ pet }: Props) => {
 	// console.log(item.comments);
 
 	return (
-		<div className="flex max-w-screen-xl mx-auto my-14 flex-wrap ">
+		<div className="flex max-w-screen-xl mx-auto my-14 flex-wrap max-sm:w-11/12">
 			<button className=" mx-5" onClick={() => router.back()}>
 				<Image src={arrow_back} alt="error" />
 			</button>
-			<div className="flex max-w-screen-xl mx-auto my-10 flex-wrap justify-center">
+			<div className="flex max-w-screen-xl mx-auto my-10 flex-wrap justify-center max-sm:flex-col">
 				<div className=" relative" style={{ width: "40%" }}>
 					{loading && (
 						<Loader
@@ -143,21 +144,18 @@ const DetailsPet = ({ pet }: Props) => {
 						/>
 					)}
 
-					<Image
-						src={pet.image}
-						height={1000}
-						width={1000}
-						alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
-						style={{
-							objectFit: "cover",
-							height: "100%",
-							objectPosition: "center",
-						}}
-						className="  shadow-neon border rounded-lg"
-						onLoad={() => setLoading(false)}
-					/>
+					<div className={styles.block_image_pet}>
+						<Image
+							src={pet.image}
+							height={1000}
+							width={1000}
+							alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2K5q7DJQGNgm-poDK57z2nK0jZJR-r1KYw&usqp=CAU"
+							className={` ${styles.image_pet} shadow-neon border rounded-lg`}
+							onLoad={() => setLoading(false)}
+						/>
+					</div>
 				</div>
-				<Card radius="md" className=" mx-10 w-1/2">
+				<Card radius="md" className=" mx-10 w-1/2 max-sm:w-full max-sm:mx-0">
 					<Card.Section withBorder inheritPadding py="xs">
 						<Group position="apart">
 							<Text weight={500}>
@@ -174,12 +172,12 @@ const DetailsPet = ({ pet }: Props) => {
 											<IconHeart
 												fill="#4526FF"
 												className=" cursor-pointer"
-												size={rem(14)}
+												size={rem(30)}
 											/>
 										) : (
 											<IconHeart
 												className=" cursor-pointer"
-												size={rem(14)}
+												size={rem(30)}
 												color="#4526FF"
 											/>
 										)}
@@ -251,12 +249,24 @@ const DetailsPet = ({ pet }: Props) => {
 						{pet.description}
 					</Text>
 
-					<Text mt="md" color="dimmed" size="md" className="flex" c="black">
-						<Image src={address_blue} alt="error" className=" me-3" />
+					<Text
+						mt="md"
+						color="dimmed"
+						size="md"
+						className="flex items-center"
+						c="black"
+					>
+						<Image src={address_blue} alt="error" className=" me-3 h-full" />
 						{pet.address}
 					</Text>
-					<Text mt="md" color="dimmed" size="md" className="flex" c="black">
-						<Image src={phone_blue} alt="error" className=" me-3" />
+					<Text
+						mt="md"
+						color="dimmed"
+						size="md"
+						className="flex items-center"
+						c="black"
+					>
+						<Image src={phone_blue} alt="error" className=" me-3 h-full" />
 						{pet.contact}
 					</Text>
 

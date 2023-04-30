@@ -1,0 +1,13 @@
+
+@media all and (max-width: 624px) {
+
+  .block_image_pet {
+    width: 250px;
+    height: auto;
+  }
+  
+  .image_pet {
+    width: 100%;
+    margin: auto 20px;
+  }
+}
